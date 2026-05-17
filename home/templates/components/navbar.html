@@ -14,6 +14,13 @@
             </div>
         </a>
 
+        <!-- MOBILE TOGGLER -->
+        <button class="nav-toggler" id="nav-toggler" aria-expanded="false" aria-label="Open navigation">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+
         <!-- MENU -->
         <div class="menu">
             <a href="{% url 'home' %}">HOME</a>
@@ -42,3 +49,18 @@
     </div>
 
 </nav>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const toggler = document.getElementById('nav-toggler');
+        const navbar = document.querySelector('.custom-navbar');
+        if (!toggler || !navbar) return;
+
+        toggler.addEventListener('click', function() {
+            const isOpen = navbar.classList.toggle('nav-open');
+            const togglerOpen = toggler.classList.toggle('open');
+            toggler.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+            toggler.setAttribute('aria-label', isOpen ? 'Close navigation' : 'Open navigation');
+        });
+    });
+</script>

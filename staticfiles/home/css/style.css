@@ -1,13 +1,29 @@
 /* RESET */
+html {
+    box-sizing: border-box;
+}
+
+*, *::before, *::after {
+    box-sizing: inherit;
+}
+
 body {
     margin: 0;
     font-family: Arial, sans-serif;
+    padding-top: 140px;
 }
 
 /* NAVBAR MAIN */
 .custom-navbar {
-    background: black;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.95);
     color: white;
+    z-index: 9999;
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.22);
+    backdrop-filter: blur(10px);
 }
 
 /* TOP BAR */
@@ -58,6 +74,42 @@ body {
 .menu {
     display: flex;
     gap: 10px;
+}
+
+.nav-toggler {
+    display: none;
+    align-items: center;
+    justify-content: center;
+    width: 42px;
+    height: 42px;
+    border: 2px solid #ffffff;
+    border-radius: 10px;
+    background: transparent;
+    color: white;
+    cursor: pointer;
+    gap: 4px;
+    padding: 0;
+}
+
+.nav-toggler span {
+    display: block;
+    width: 22px;
+    height: 2px;
+    background: white;
+    border-radius: 2px;
+    transition: transform 0.25s ease, opacity 0.25s ease;
+}
+
+.nav-toggler.open span:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+}
+
+.nav-toggler.open span:nth-child(2) {
+    opacity: 0;
+}
+
+.nav-toggler.open span:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
 }
 
 .menu a {
@@ -386,7 +438,127 @@ body {
 /* RESPONSIVE */
 /* ========================================= */
 
+@media(max-width: 1200px) {
+    .top-bar,
+    .sub-bar {
+        padding: 10px 24px;
+    }
+}
+
+@media(max-width: 992px) {
+    .top-bar {
+        flex-direction: column;
+        justify-content: center;
+        align-items: stretch;
+        gap: 12px;
+        padding: 14px 22px;
+    }
+
+    .brand {
+        justify-content: center;
+        width: 100%;
+        text-align: center;
+    }
+
+    .nav-toggler {
+        display: inline-flex;
+        margin-left: auto;
+    }
+
+    .menu {
+        display: none;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 10px;
+        width: 100%;
+        padding: 0;
+        margin: 0;
+    }
+
+    .custom-navbar.nav-open .menu {
+        display: flex;
+    }
+
+    .sub-bar {
+        display: none;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 14px;
+        padding: 12px 22px;
+    }
+
+    .custom-navbar.nav-open .sub-bar {
+        display: flex;
+    }
+
+    .menu a {
+        width: 100%;
+        text-align: center;
+    }
+
+    .brand {
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .service-box {
+        font-size: 15px;
+    }
+
+    .footer-bottom-content {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .footer-bottom {
+        padding: 18px 0;
+    }
+}
+
 @media(max-width: 768px){
+
+    .top-bar {
+        padding: 10px 16px;
+    }
+
+    .brand-text {
+        font-size: 14px;
+    }
+
+    .brand-sub {
+        font-size: 10px;
+    }
+
+    .menu {
+        gap: 8px;
+    }
+
+    .menu a {
+        padding: 10px 12px;
+        font-size: 13px;
+    }
+
+    .slider-img {
+        height: auto;
+        min-height: 240px;
+    }
+
+    .home-content {
+        padding: 0 16px;
+        font-size: 15px;
+    }
+
+    .services-section {
+        padding: 35px 0;
+    }
+
+    .icon {
+        font-size: 32px;
+    }
+
+    .service-box {
+        padding: 16px 12px;
+    }
 
     .footer-top {
         padding-top: 50px;
@@ -401,4 +573,50 @@ body {
         flex-wrap: wrap;
     }
 
+    .footer-bottom-content {
+        align-items: center;
+    }
+}
+
+@media(max-width: 576px){
+
+    .top-bar,
+    .sub-bar {
+        padding: 12px 12px;
+    }
+
+    .menu {
+        justify-content: center;
+    }
+
+    .menu a {
+        flex: 1 1 calc(50% - 10px);
+        min-width: 140px;
+        text-align: center;
+    }
+
+    .brand {
+        justify-content: center;
+    }
+
+    .home-content {
+        font-size: 14px;
+    }
+
+    .service-box {
+        font-size: 14px;
+        padding: 14px 10px;
+    }
+
+    .services-section {
+        padding: 30px 0;
+    }
+
+    .footer-links li {
+        font-size: 14px;
+    }
+
+    .footer-bottom p {
+        font-size: 13px;
+    }
 }
