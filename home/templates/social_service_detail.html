@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'home/css/social_services.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<section class="detail-section">
+
+    <div class="container">
+
+        <a href="{% url 'social_services' %}" class="back-btn">← Back to Social Services</a>
+
+        <h1 class="detail-title">{{ service.title }}</h1>
+
+        <div class="detail-meta">
+            <span class="detail-date">{{ service.project_date }}</span>
+            <span class="detail-status {{ service.status }}">{{ service.get_status_display }}</span>
+        </div>
+
+        <div class="detail-image">
+            <img src="{{ service.image.url }}" alt="{{ service.title }}">
+        </div>
+
+        <div class="detail-description">
+            {{ service.short_description|safe }}
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock %}

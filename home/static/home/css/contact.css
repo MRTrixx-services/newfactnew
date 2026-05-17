@@ -1,0 +1,472 @@
+/* ======================================== */
+/* CONTACT HERO */
+/* ======================================== */
+
+.contact-hero {
+
+    background: linear-gradient(135deg, #0f3b82 0%, #1e5fbd 60%, #0284c7 100%);
+
+    padding: 60px 0 50px;
+
+    text-align: center;
+}
+
+.contact-hero-title {
+
+    font-size: 48px;
+
+    font-weight: 800;
+
+    color: white;
+
+    letter-spacing: 3px;
+
+    margin-bottom: 14px;
+}
+
+.contact-hero-sub {
+
+    font-size: 17px;
+
+    color: rgba(255,255,255,0.80);
+
+    font-weight: 500;
+}
+
+/* ======================================== */
+/* CONTACT MAIN */
+/* ======================================== */
+
+.contact-main {
+
+    background: #f0f7ff;
+
+    padding: 60px 0;
+}
+
+/* INFO CARD */
+
+.info-card {
+
+    background: white;
+
+    border-radius: 16px;
+
+    padding: 36px 32px;
+
+    box-shadow: 0 4px 24px rgba(15,59,130,0.10);
+
+    height: 100%;
+}
+
+.info-label {
+
+    font-size: 12px;
+
+    font-weight: 800;
+
+    letter-spacing: 3px;
+
+    color: #0f3b82;
+
+    margin-bottom: 14px;
+}
+
+.company-name {
+
+    font-size: 20px;
+
+    font-weight: 800;
+
+    color: #0f172a;
+
+    margin-bottom: 28px;
+
+    line-height: 1.4;
+}
+
+/* INFO ITEM */
+
+.info-item {
+
+    display: flex;
+
+    align-items: flex-start;
+
+    gap: 14px;
+
+    margin-bottom: 20px;
+
+    font-size: 15px;
+
+    font-weight: 500;
+
+    color: #334155;
+
+    line-height: 1.7;
+}
+
+.info-icon {
+
+    width: 38px;
+
+    height: 38px;
+
+    background: #dbeafe;
+
+    border-radius: 50%;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    color: #0f3b82;
+
+    font-size: 15px;
+
+    flex-shrink: 0;
+}
+
+.divider {
+
+    border-top: 1px solid #e2e8f0;
+
+    margin: 28px 0;
+}
+
+/* SOCIAL LINKS */
+
+.social-links {
+
+    display: flex;
+
+    flex-wrap: wrap;
+
+    gap: 12px;
+}
+
+.social-link {
+
+    width: 42px;
+
+    height: 42px;
+
+    background: #0f3b82;
+
+    color: white;
+
+    border-radius: 50%;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    font-size: 16px;
+
+    text-decoration: none;
+
+    transition: 0.3s;
+}
+
+.social-link:hover {
+
+    background: #1e40af;
+
+    color: white;
+
+    transform: translateY(-3px);
+}
+
+/* ======================================== */
+/* FORM CARD */
+/* ======================================== */
+
+.form-card {
+
+    background: white;
+
+    border-radius: 16px;
+
+    padding: 36px 32px;
+
+    box-shadow: 0 4px 24px rgba(15,59,130,0.10);
+}
+
+.form-heading {
+
+    font-size: 18px;
+
+    font-weight: 600;
+
+    color: #334155;
+
+    margin-bottom: 28px;
+}
+
+/* FIELD GROUP */
+
+.field-group {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 8px;
+}
+
+.field-group label {
+
+    font-size: 13px;
+
+    font-weight: 700;
+
+    color: #0f3b82;
+
+    letter-spacing: 1px;
+}
+
+.field-group input,
+.field-group textarea {
+
+    border: 1.5px solid #e2e8f0;
+
+    border-radius: 8px;
+
+    padding: 12px 16px;
+
+    font-size: 15px;
+
+    color: #0f172a;
+
+    outline: none;
+
+    transition: 0.2s;
+
+    background: #f8fafc;
+}
+
+.field-group input:focus,
+.field-group textarea:focus {
+
+    border-color: #0f3b82;
+
+    background: white;
+}
+
+.field-group textarea {
+
+    resize: vertical;
+}
+
+/* SEND BUTTON */
+
+.send-btn {
+
+    background: #0f3b82;
+
+    color: white;
+
+    border: none;
+
+    padding: 14px 36px;
+
+    font-size: 15px;
+
+    font-weight: 700;
+
+    border-radius: 10px;
+
+    letter-spacing: 1px;
+
+    transition: 0.3s;
+
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 10px;
+}
+
+.send-btn:hover {
+
+    background: #1e40af;
+
+    transform: translateY(-2px);
+
+    box-shadow: 0 8px 20px rgba(15,59,130,0.25);
+}
+
+/* ======================================== */
+/* STATS */
+/* ======================================== */
+
+.stats-section {
+
+    background: #0f3b82;
+
+    padding: 50px 0;
+}
+
+.stat-box {
+
+    text-align: center;
+}
+
+.stat-box i {
+
+    font-size: 44px;
+
+    color: #7dd3fc;
+
+    margin-bottom: 12px;
+}
+
+.stat-box h2 {
+
+    font-size: 46px;
+
+    font-weight: 800;
+
+    color: white;
+
+    margin-bottom: 6px;
+}
+
+.stat-box p {
+
+    font-size: 13px;
+
+    font-weight: 700;
+
+    letter-spacing: 3px;
+
+    color: rgba(255,255,255,0.70);
+}
+
+/* ======================================== */
+/* WORLD MAP */
+/* ======================================== */
+
+.world-map-section {
+
+    background: #eef2ff;
+
+    padding: 60px 0 70px;
+}
+
+.map-title {
+
+    text-align: center;
+
+    font-size: 28px;
+
+    font-weight: 800;
+
+    color: #0f172a;
+
+    letter-spacing: 2px;
+
+    margin-bottom: 40px;
+}
+
+.map-wrapper {
+
+    max-width: 1000px;
+
+    margin: auto;
+}
+
+#world-map {
+
+    width: 100%;
+
+    height: 500px;
+
+    border-radius: 16px;
+
+    overflow: hidden;
+
+    box-shadow: 0 4px 24px rgba(15,59,130,0.12);
+}
+
+/* TOOLTIP */
+
+.jvm-tooltip {
+
+    background: #0f3b82 !important;
+
+    color: white !important;
+
+    font-size: 13px !important;
+
+    font-weight: 700 !important;
+
+    font-family: inherit !important;
+
+    padding: 6px 14px !important;
+
+    border-radius: 8px !important;
+
+    border: none !important;
+
+    box-shadow: 0 4px 12px rgba(15,59,130,0.30) !important;
+
+    letter-spacing: 0.5px !important;
+}
+
+/* ======================================== */
+/* RESPONSIVE */
+/* ======================================== */
+
+@media(max-width: 992px) {
+
+    .contact-hero-title {
+        font-size: 36px;
+    }
+
+    .company-name {
+        font-size: 18px;
+    }
+}
+
+@media(max-width: 768px) {
+
+    .contact-hero-title {
+        font-size: 28px;
+    }
+
+    .contact-hero-sub {
+        font-size: 15px;
+    }
+
+    .info-card,
+    .form-card {
+        padding: 24px 20px;
+    }
+
+    .stat-box h2 {
+        font-size: 34px;
+    }
+
+    .stat-box i {
+        font-size: 34px;
+    }
+
+    .map-title {
+        font-size: 20px;
+    }
+
+    .dot-label {
+        font-size: 9px;
+        padding: 2px 6px;
+    }
+
+    .pulse {
+        width: 10px;
+        height: 10px;
+    }
+}

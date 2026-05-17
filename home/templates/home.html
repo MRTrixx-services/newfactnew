@@ -1,0 +1,73 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<!-- 🔥 SLIDER -->
+<!-- 🔥 SLIDER -->
+<div id="mainCarousel" class="carousel slide" data-bs-ride="carousel">
+
+    <!-- Indicators -->
+    <div class="carousel-indicators">
+        {% for slide in sliders %}
+            <button type="button" data-bs-target="#mainCarousel"
+                    data-bs-slide-to="{{ forloop.counter0 }}"
+                    class="{% if forloop.first %}active{% endif %}">
+            </button>
+        {% endfor %}
+    </div>
+
+    <!-- Slides -->
+    <div class="carousel-inner">
+        {% for slide in sliders %}
+        <div class="carousel-item {% if forloop.first %}active{% endif %}">
+            <img src="{{ slide.image.url }}" class="d-block w-100 slider-img">
+        </div>
+        {% endfor %}
+    </div>
+
+    <!-- Controls -->
+    <button class="carousel-control-prev" type="button" data-bs-target="#mainCarousel" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon"></span>
+    </button>
+
+    <button class="carousel-control-next" type="button" data-bs-target="#mainCarousel" data-bs-slide="next">
+        <span class="carousel-control-next-icon"></span>
+    </button>
+
+</div>
+
+<!-- 🔥 CONTENT -->
+<div class="home-content-wrapper">
+    <div class="home-content container">
+        {% if content %}
+            {{ content.content|safe }}
+        {% endif %}
+    </div>
+</div>
+
+<!-- 🔥 SERVICES -->
+<div class="services-section">
+    <div class="container text-center">
+
+        <div class="icon mb-4">🏢</div>
+
+        <div class="row g-4 justify-content-center">
+
+            <div class="col-md-4"><a href="{% url 'services' %}" class="service-box">ARCHITECTURE BIM SERVICES</a></div>
+            <div class="col-md-4"><a href="{% url 'services' %}" class="service-box">STRUCTURAL BIM SERVICES</a></div>
+            <div class="col-md-4"><a href="{% url 'services' %}" class="service-box">MEP BIM SERVICES</a></div>
+
+            <div class="col-md-4"><a href="{% url 'services' %}" class="service-box">VDC / BIM COORDINATION / CSD</a></div>
+            <div class="col-md-4"><a href="{% url 'services' %}" class="service-box">4D SIMULATION / RENDERING</a></div>
+            <div class="col-md-4"><a href="{% url 'services' %}" class="service-box">5D COST / QUANTITY TAKE-OFF</a></div>
+
+            <div class="col-md-4"><a href="{% url 'services' %}" class="service-box">POINT CLOUD SCAN TO BIM</a></div>
+            <div class="col-md-4"><a href="{% url 'services' %}" class="service-box">VR / AR VDC</a></div>
+            <div class="col-md-4"><a href="{% url 'services' %}" class="service-box">BIM DOCUMENTATION</a></div>
+
+        </div>
+    </div>
+</div>
+
+{% endblock %}

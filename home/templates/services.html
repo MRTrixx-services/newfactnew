@@ -1,0 +1,161 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block extra_css %}
+
+<link rel="stylesheet" href="{% static 'home/css/services.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<!-- ======================================== -->
+<!-- SERVICES HERO -->
+<!-- ======================================== -->
+
+<section class="services-hero">
+
+    <div class="container">
+
+        <h1 class="services-title">
+            BIM SERVICES
+        </h1>
+
+        <!-- INTRO -->
+        {% if intro %}
+
+        <div class="intro-wrapper">
+
+            <!-- LEFT -->
+            <div class="intro-content">
+
+                {{ intro.left_content|safe }}
+
+            </div>
+
+            <!-- CENTER IMAGE -->
+            <div class="intro-image">
+
+                <img src="{{ intro.center_image.url }}" alt="intro-image">
+
+            </div>
+
+            <!-- RIGHT -->
+            <div class="intro-content">
+
+                {{ intro.right_content|safe }}
+
+            </div>
+
+        </div>
+
+        {% endif %}
+
+    </div>
+
+</section>
+
+
+<!-- ======================================== -->
+<!-- FEATURED SERVICES -->
+<!-- ======================================== -->
+
+<section class="featured-services">
+
+    <div class="container">
+
+        <div class="row g-4">
+
+            {% for service in featured_services %}
+
+            <div class="col-lg-3 col-md-6">
+
+                <div class="service-card">
+
+                    <!-- TITLE -->
+                    <div class="service-header">
+                        {{ service.title }}
+                    </div>
+
+                    <!-- IMAGE -->
+                    <div class="service-image">
+
+                        <img src="{{ service.image.url }}" alt="{{ service.title }}">
+
+                    </div>
+
+                    <!-- DESCRIPTION -->
+                    <div class="service-description">
+
+                        <div class="desc-text clamped">{{ service.description|safe }}</div>
+
+                        <span class="see-more-btn" onclick="toggleDesc(this)">See More</span>
+
+                    </div>
+
+                    <!-- BULLETS -->
+                    <div class="service-points">
+
+                        <div class="custom-points">
+
+    {% for point in service.bullet_list %}
+
+        <p>{{ point }}</p>
+
+    {% endfor %}
+
+</div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            {% endfor %}
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ======================================== -->
+<!-- MINI SERVICES -->
+<!-- ======================================== -->
+
+<section class="mini-services">
+
+    <div class="container">
+
+        <div class="row g-4 justify-content-center">
+
+            {% for service in mini_services %}
+
+            <div class="col-lg-3 col-md-4 col-6">
+
+                <div class="mini-service-box">
+
+                    {{ service.title }}
+
+                </div>
+
+            </div>
+
+            {% endfor %}
+
+        </div>
+
+    </div>
+
+</section>
+
+<script>
+function toggleDesc(btn) {
+    const desc = btn.previousElementSibling;
+    const isClamped = desc.classList.contains('clamped');
+    desc.classList.toggle('clamped');
+    btn.textContent = isClamped ? 'See Less' : 'See More';
+}
+</script>
+
+{% endblock %}

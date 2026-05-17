@@ -1,0 +1,268 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'home/css/contact.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<!-- ======================================== -->
+<!-- CONTACT HERO -->
+<!-- ======================================== -->
+
+<section class="contact-hero">
+    <div class="container">
+        <h1 class="contact-hero-title">GET IN TOUCH</h1>
+        <p class="contact-hero-sub">We operate globally — reach out to us from anywhere in the world.</p>
+    </div>
+</section>
+
+
+<!-- ======================================== -->
+<!-- CONTACT MAIN -->
+<!-- ======================================== -->
+
+<section class="contact-main">
+    <div class="container">
+        <div class="row g-5 align-items-start">
+
+            <!-- LEFT: OFFICE INFO -->
+            <div class="col-lg-5">
+
+                <div class="info-card">
+
+                    <div class="info-label">MAIN OFFICE</div>
+
+                    <h2 class="company-name">NEW FACT ENGINEERING LTD</h2>
+
+                    <div class="info-item">
+                        <div class="info-icon"><i class="fa-solid fa-location-dot"></i></div>
+                        <div>
+                            Dubai Kurukku Sandhu,<br>
+                            Dubai Mainroad,<br>
+                            Dubai 420.
+                        </div>
+                    </div>
+
+                    <div class="info-item">
+                        <div class="info-icon"><i class="fa-solid fa-phone"></i></div>
+                        <div>+971 00 000 0000</div>
+                    </div>
+
+                    <div class="info-item">
+                        <div class="info-icon"><i class="fa-solid fa-envelope"></i></div>
+                        <div>info@newfactengineering.com</div>
+                    </div>
+
+                    <div class="divider"></div>
+
+                    <div class="info-label">FOLLOW US</div>
+
+                    <div class="social-links">
+                        <a href="#" class="social-link" title="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+                        <a href="#" class="social-link" title="YouTube"><i class="fa-brands fa-youtube"></i></a>
+                        <a href="#" class="social-link" title="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+                        <a href="#" class="social-link" title="Twitter"><i class="fa-brands fa-x-twitter"></i></a>
+                        <a href="#" class="social-link" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="#" class="social-link" title="Telegram"><i class="fa-brands fa-telegram"></i></a>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- RIGHT: FORM -->
+            <div class="col-lg-7">
+
+                <div class="form-card">
+
+                    <div class="info-label">CONTACT US</div>
+
+                    <h3 class="form-heading">For any questions, please reach out to us.</h3>
+
+                    <form class="contact-form">
+
+                        <div class="row g-3">
+
+                            <div class="col-md-6">
+                                <div class="field-group">
+                                    <label>Your Name</label>
+                                    <input type="text" placeholder="John Doe">
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="field-group">
+                                    <label>Your Email</label>
+                                    <input type="email" placeholder="john@example.com">
+                                </div>
+                            </div>
+
+                            <div class="col-12">
+                                <div class="field-group">
+                                    <label>Subject</label>
+                                    <input type="text" placeholder="How can we help?">
+                                </div>
+                            </div>
+
+                            <div class="col-12">
+                                <div class="field-group">
+                                    <label>Message</label>
+                                    <textarea rows="6" placeholder="Write your message here..."></textarea>
+                                </div>
+                            </div>
+
+                            <div class="col-12">
+                                <button type="submit" class="send-btn">
+                                    <i class="fa-solid fa-paper-plane"></i> SEND MESSAGE
+                                </button>
+                            </div>
+
+                        </div>
+
+                    </form>
+
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</section>
+
+
+<!-- ======================================== -->
+<!-- STATS -->
+<!-- ======================================== -->
+
+<section class="stats-section">
+    <div class="container">
+        <div class="row g-4">
+
+            <div class="col-lg-3 col-md-6">
+                <div class="stat-box">
+                    <i class="fa-solid fa-id-card"></i>
+                    <h2>1K+</h2>
+                    <p>CLIENTS</p>
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-md-6">
+                <div class="stat-box">
+                    <i class="fa-solid fa-earth-americas"></i>
+                    <h2>20+</h2>
+                    <p>COUNTRIES</p>
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-md-6">
+                <div class="stat-box">
+                    <i class="fa-solid fa-building"></i>
+                    <h2>10K+</h2>
+                    <p>PROJECTS</p>
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-md-6">
+                <div class="stat-box">
+                    <i class="fa-solid fa-users"></i>
+                    <h2>270+</h2>
+                    <p>PEOPLE</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+
+<!-- ======================================== -->
+<!-- WORLD MAP -->
+<!-- ======================================== -->
+
+<!-- jsvectormap CDN -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jsvectormap@1.5.3/dist/css/jsvectormap.min.css">
+
+<section class="world-map-section">
+
+    <div class="container">
+
+        <div class="map-title">OUR GLOBAL PRESENCE</div>
+
+        <div id="world-map"></div>
+
+    </div>
+
+</section>
+
+<script src="https://cdn.jsdelivr.net/npm/jsvectormap@1.5.3/dist/js/jsvectormap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jsvectormap@1.5.3/dist/maps/world.js"></script>
+
+<script>
+var map = new jsVectorMap({
+    selector: '#world-map',
+    map: 'world',
+    backgroundColor: '#eef2ff',
+    regionStyle: {
+        initial: {
+            fill: '#bfdbfe',
+            stroke: '#ffffff',
+            strokeWidth: 0.5,
+        },
+        hover: {
+            fill: '#3b82f6',
+            cursor: 'pointer',
+        },
+        selected: {
+            fill: '#1e40af',
+        },
+        selectedHover: {
+            fill: '#1d4ed8',
+        },
+    },
+    selectedRegions: ['US', 'CA', 'GB', 'NO', 'NL', 'DE', 'AE', 'IN', 'SG', 'AU', 'FR', 'IT', 'ES', 'PT', 'SE', 'DK', 'FI', 'BE', 'CH', 'AT', 'PL', 'CZ', 'HU', 'RO', 'GR', 'TR', 'SA', 'QA', 'KW', 'BH', 'OM', 'EG', 'ZA', 'NG', 'KE', 'GH', 'ET', 'TZ', 'MA', 'DZ', 'LY', 'TN', 'SD', 'MX', 'BR', 'AR', 'CL', 'CO', 'PE', 'VE', 'EC', 'BO', 'PY', 'UY', 'CN', 'JP', 'KR', 'TH', 'MY', 'ID', 'PH', 'VN', 'BD', 'PK', 'LK', 'NP', 'MM', 'KH', 'NZ', 'RU', 'UA', 'KZ', 'UZ', 'IQ', 'IR', 'JO', 'LB', 'IL', 'YE', 'SY', 'AF', 'HK', 'TW'],
+    markers: [
+        { name: 'USA',         coords: [37.09, -95.71] },
+        { name: 'Canada',      coords: [56.13, -106.34] },
+        { name: 'UK',          coords: [55.37, -3.43] },
+        { name: 'Norway',      coords: [60.47, 8.46] },
+        { name: 'Netherlands', coords: [52.13, 5.29] },
+        { name: 'Germany',     coords: [51.16, 10.45] },
+        { name: 'UAE',         coords: [23.42, 53.84] },
+        { name: 'India',       coords: [20.59, 78.96] },
+        { name: 'Singapore',   coords: [1.35, 103.81] },
+        { name: 'Australia',   coords: [-25.27, 133.77] },
+    ],
+    markerStyle: {
+        initial: {
+            fill: '#f97316',
+            stroke: '#ffffff',
+            strokeWidth: 2,
+            r: 7,
+        },
+        hover: {
+            fill: '#ea580c',
+            r: 10,
+        },
+    },
+    markerLabelStyle: {
+        initial: {
+            fontFamily: 'inherit',
+            fontSize: 11,
+            fontWeight: 700,
+            fill: '#f97316',
+        },
+    },
+    showTooltip: true,
+    labels: {
+        markers: {
+            render: function(marker) {
+                return marker.name;
+            },
+        },
+    },
+});
+</script>
+
+{% endblock %}

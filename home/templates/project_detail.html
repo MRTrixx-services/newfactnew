@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static '/home/css/project_detail.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<!-- ======================================== -->
+<!-- PROJECT DETAIL -->
+<!-- ======================================== -->
+
+<section class="detail-section">
+
+    <div class="container">
+
+        <!-- BACK BUTTON -->
+        <a href="{% url 'projects' %}" class="back-btn">← Back to Projects</a>
+
+        <!-- TITLE -->
+        <h1 class="detail-title">{{ project.title }}</h1>
+
+        <!-- DATE & STATUS -->
+        <div class="detail-meta">
+            <span class="detail-date">{{ project.project_date }}</span>
+            <span class="detail-status {{ project.status }}">{{ project.get_status_display }}</span>
+        </div>
+
+        <!-- IMAGE -->
+        <div class="detail-image">
+            <img src="{{ project.image.url }}" alt="{{ project.title }}">
+        </div>
+
+        <!-- DESCRIPTION -->
+        <div class="detail-description">
+            {{ project.short_description|safe }}
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock %}

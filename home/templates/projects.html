@@ -1,0 +1,230 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block extra_css %}
+
+<link rel="stylesheet" href="{% static 'home/css/projects.css' %}">
+
+{% endblock %}
+
+{% block content %}
+
+<!-- ======================================== -->
+<!-- HERO SECTION -->
+<!-- ======================================== -->
+
+<section class="projects-hero">
+
+    {% if page.hero_image %}
+
+    <img src="{{ page.hero_image.url }}"
+         class="hero-bg"
+         alt="hero-image">
+
+    {% endif %}
+
+    <div class="hero-overlay">
+
+        <h1 class="projects-title">
+            {{ page.title }}
+        </h1>
+
+    </div>
+
+</section>
+
+
+<!-- ======================================== -->
+<!-- PROJECTS SECTION -->
+<!-- ======================================== -->
+
+<section class="projects-section">
+
+    <div class="container-fluid">
+
+        <div class="row g-4">
+
+            <!-- ======================================== -->
+            <!-- HISTORY PROJECTS -->
+            <!-- ======================================== -->
+
+            <div class="col-lg-4">
+
+                <div class="project-column">
+
+                    <div class="column-title">
+                        PROJECT HISTORY
+                    </div>
+
+                    {% for project in history_projects %}
+
+                    <div class="project-card">
+
+                        <!-- TITLE -->
+                        <h3 class="project-name">
+                            {{ forloop.counter }}.
+                            {{ project.title }}
+                        </h3>
+
+                        <!-- DATE -->
+                        <div class="project-date">
+                            {{ project.project_date }}
+                        </div>
+
+                        <!-- DESCRIPTION -->
+                        <div class="project-description">
+
+                            <div class="desc-text clamped">{{ project.short_description|safe }}</div>
+                            <span class="see-more-btn" onclick="toggleDesc(this, '{% url 'project_detail' project.slug %}')">See More</span>
+
+                        </div>
+
+                        <!-- IMAGE -->
+                        <div class="project-image">
+
+                            <img src="{{ project.image.url }}"
+                                 alt="{{ project.title }}">
+
+                        </div>
+
+                    </div>
+
+                    {% endfor %}
+
+                </div>
+
+            </div>
+
+
+            <!-- ======================================== -->
+            <!-- LIVE PROJECTS -->
+            <!-- ======================================== -->
+
+            <div class="col-lg-4">
+
+                <div class="project-column">
+
+                    <div class="column-title">
+                        LIVE PROJECTS
+                    </div>
+
+                    {% for project in live_projects %}
+
+                    <div class="project-card">
+
+                        <!-- TITLE -->
+                        <h3 class="project-name">
+                            {{ forloop.counter }}.
+                            {{ project.title }}
+                        </h3>
+
+                        <!-- DATE -->
+                        <div class="project-date">
+                            {{ project.project_date }}
+                        </div>
+
+                        <!-- DESCRIPTION -->
+                        <div class="project-description">
+
+                            <div class="desc-text clamped">{{ project.short_description|safe }}</div>
+                            <span class="see-more-btn" onclick="toggleDesc(this, '{% url 'project_detail' project.slug %}')">See More</span>
+
+                        </div>
+
+                        <!-- IMAGE -->
+                        <div class="project-image">
+
+                            <img src="{{ project.image.url }}"
+                                 alt="{{ project.title }}">
+
+                        </div>
+
+                    </div>
+
+                    {% endfor %}
+
+                </div>
+
+            </div>
+
+
+            <!-- ======================================== -->
+            <!-- UPCOMING PROJECTS -->
+            <!-- ======================================== -->
+
+            <div class="col-lg-4">
+
+                <div class="project-column">
+
+                    <div class="column-title">
+                        UPCOMING PROJECTS
+                    </div>
+
+                    {% for project in upcoming_projects %}
+
+                    <div class="project-card">
+
+                        <!-- TITLE -->
+                        <h3 class="project-name">
+                            {{ forloop.counter }}.
+                            {{ project.title }}
+                        </h3>
+
+                        <!-- DATE -->
+                        <div class="project-date">
+                            {{ project.project_date }}
+                        </div>
+
+                        <!-- DESCRIPTION -->
+                        <div class="project-description">
+
+                            <div class="desc-text clamped">{{ project.short_description|safe }}</div>
+                            <span class="see-more-btn" onclick="toggleDesc(this, '{% url 'project_detail' project.slug %}')">See More</span>
+
+                        </div>
+
+                        <!-- IMAGE -->
+                        <div class="project-image">
+
+                            <img src="{{ project.image.url }}"
+                                 alt="{{ project.title }}">
+
+                        </div>
+
+                    </div>
+
+                    {% endfor %}
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<script>
+function toggleDesc(btn, url) {
+    const desc = btn.previousElementSibling;
+    const isClamped = desc.classList.contains('clamped');
+    desc.classList.toggle('clamped');
+    if (isClamped) {
+        btn.textContent = 'See Less';
+        if (!btn.nextElementSibling) {
+            const link = document.createElement('a');
+            link.href = url;
+            link.className = 'view-details-btn';
+            link.textContent = 'View Full Details';
+            btn.insertAdjacentElement('afterend', link);
+        }
+    } else {
+        btn.textContent = 'See More';
+        const link = btn.nextElementSibling;
+        if (link) link.remove();
+    }
+}
+</script>
+
+{% endblock %}

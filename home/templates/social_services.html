@@ -1,0 +1,149 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'home/css/social_services.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<!-- ======================================== -->
+<!-- HERO SECTION -->
+<!-- ======================================== -->
+
+<section class="social-hero">
+
+    {% if page.hero_image %}
+    <img src="{{ page.hero_image.url }}" class="hero-bg" alt="hero-image">
+    {% endif %}
+
+    <div class="hero-overlay">
+        <h1 class="social-title">{{ page.title }}</h1>
+    </div>
+
+</section>
+
+
+<!-- ======================================== -->
+<!-- SOCIAL SERVICES SECTION -->
+<!-- ======================================== -->
+
+<section class="social-section">
+
+    <div class="container-fluid">
+
+        <div class="row g-4">
+
+            <!-- SERVICE HISTORY -->
+            <div class="col-lg-4">
+                <div class="social-column">
+
+                    <div class="column-title">SERVICE HISTORY</div>
+
+                    {% for item in history %}
+                    <div class="social-card">
+
+                        <h3 class="social-name">{{ forloop.counter }}. {{ item.title }}</h3>
+
+                        <div class="social-date">{{ item.project_date }}</div>
+
+                        <div class="social-description">
+                            <div class="desc-text clamped">{{ item.short_description|safe }}</div>
+                            <span class="see-more-btn" onclick="toggleDesc(this, '{% url 'social_service_detail' item.slug %}')">See More</span>
+                        </div>
+
+                        <div class="social-image">
+                            <img src="{{ item.image.url }}" alt="{{ item.title }}">
+                        </div>
+
+                    </div>
+                    {% endfor %}
+
+                </div>
+            </div>
+
+            <!-- ONGOING SERVICES -->
+            <div class="col-lg-4">
+                <div class="social-column">
+
+                    <div class="column-title">ONGOING SERVICES</div>
+
+                    {% for item in ongoing %}
+                    <div class="social-card">
+
+                        <h3 class="social-name">{{ forloop.counter }}. {{ item.title }}</h3>
+
+                        <div class="social-date">{{ item.project_date }}</div>
+
+                        <div class="social-description">
+                            <div class="desc-text clamped">{{ item.short_description|safe }}</div>
+                            <span class="see-more-btn" onclick="toggleDesc(this, '{% url 'social_service_detail' item.slug %}')">See More</span>
+                        </div>
+
+                        <div class="social-image">
+                            <img src="{{ item.image.url }}" alt="{{ item.title }}">
+                        </div>
+
+                    </div>
+                    {% endfor %}
+
+                </div>
+            </div>
+
+            <!-- UPCOMING SERVICES -->
+            <div class="col-lg-4">
+                <div class="social-column">
+
+                    <div class="column-title">UPCOMING SERVICES</div>
+
+                    {% for item in upcoming %}
+                    <div class="social-card">
+
+                        <h3 class="social-name">{{ forloop.counter }}. {{ item.title }}</h3>
+
+                        <div class="social-date">{{ item.project_date }}</div>
+
+                        <div class="social-description">
+                            <div class="desc-text clamped">{{ item.short_description|safe }}</div>
+                            <span class="see-more-btn" onclick="toggleDesc(this, '{% url 'social_service_detail' item.slug %}')">See More</span>
+                        </div>
+
+                        <div class="social-image">
+                            <img src="{{ item.image.url }}" alt="{{ item.title }}">
+                        </div>
+
+                    </div>
+                    {% endfor %}
+
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<script>
+function toggleDesc(btn, url) {
+    const desc = btn.previousElementSibling;
+    const isClamped = desc.classList.contains('clamped');
+    desc.classList.toggle('clamped');
+    if (isClamped) {
+        btn.textContent = 'See Less';
+        if (!btn.nextElementSibling) {
+            const link = document.createElement('a');
+            link.href = url;
+            link.className = 'view-details-btn';
+            link.textContent = 'View Full Details';
+            btn.insertAdjacentElement('afterend', link);
+        }
+    } else {
+        btn.textContent = 'See More';
+        const link = btn.nextElementSibling;
+        if (link) link.remove();
+    }
+}
+</script>
+
+{% endblock %}

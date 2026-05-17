@@ -1,0 +1,164 @@
+/* ======================================== */
+/* PROJECT DETAIL PAGE */
+/* ======================================== */
+
+.detail-section {
+
+    background: #dff4ff;
+
+    min-height: 100vh;
+
+    padding: 40px 0 60px;
+}
+
+/* BACK BUTTON */
+
+.back-btn {
+
+    display: inline-block;
+
+    margin-bottom: 24px;
+
+    font-size: 15px;
+
+    font-weight: 700;
+
+    color: #0f3b82;
+
+    text-decoration: none;
+}
+
+.back-btn:hover {
+
+    text-decoration: underline;
+
+    color: #0f3b82;
+}
+
+/* TITLE */
+
+.detail-title {
+
+    font-size: 36px;
+
+    font-weight: 800;
+
+    color: #0f172a;
+
+    margin-bottom: 14px;
+
+    text-decoration: underline;
+}
+
+/* META */
+
+.detail-meta {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 16px;
+
+    margin-bottom: 24px;
+}
+
+.detail-date {
+
+    font-size: 14px;
+
+    font-weight: 700;
+
+    color: #2563eb;
+}
+
+.detail-status {
+
+    font-size: 13px;
+
+    font-weight: 700;
+
+    padding: 4px 14px;
+
+    border-radius: 20px;
+
+    background: #0f3b82;
+
+    color: white;
+}
+
+.detail-status.history { background: #64748b; }
+.detail-status.live    { background: #16a34a; }
+.detail-status.upcoming { background: #d97706; }
+
+/* IMAGE */
+
+.detail-image {
+
+    margin-bottom: 30px;
+}
+
+.detail-image img {
+
+    width: 100%;
+
+    max-height: 480px;
+
+    object-fit: contain;
+
+    border-radius: 12px;
+
+    border: 3px solid #0f3b82;
+
+    background: white;
+}
+
+/* DESCRIPTION */
+
+.detail-description {
+
+    background: white;
+
+    border: 2px solid #bfdbfe;
+
+    border-radius: 12px;
+
+    padding: 28px 32px;
+
+    font-size: 16px;
+
+    line-height: 1.9;
+
+    font-weight: 500;
+
+    color: #334155;
+}
+
+.detail-description p {
+
+    margin-bottom: 14px;
+}
+
+/* ======================================== */
+/* RESPONSIVE */
+/* ======================================== */
+
+@media(max-width: 768px) {
+
+    .detail-title {
+
+        font-size: 26px;
+    }
+
+    .detail-image img {
+
+        max-height: 280px;
+    }
+
+    .detail-description {
+
+        padding: 20px 18px;
+
+        font-size: 15px;
+    }
+}

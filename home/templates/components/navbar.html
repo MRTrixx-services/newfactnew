@@ -1,0 +1,44 @@
+{% load static %}
+
+<nav class="custom-navbar">
+
+    <!-- TOP BAR -->
+    <div class="top-bar">
+
+        <!-- LOGO + TITLE -->
+        <a href="{% url 'home' %}" class="brand">
+            <img src="{% static 'home/images/logo.png' %}" alt="logo">
+            <div>
+                <span class="brand-text">NEW FACT ENGINEERING</span>
+                <span class="brand-sub">BIM & Engineering Solutions</span>
+            </div>
+        </a>
+
+        <!-- MENU -->
+        <div class="menu">
+            <a href="{% url 'home' %}">HOME</a>
+            <a href="{% url 'services' %}">SERVICES</a>
+            <a href="{% url 'projects' %}">PROJECTS</a>
+            <a href="{% url 'social_services' %}">SOCIAL SERVICE</a>
+            <a href="{% url 'contact' %}">CONTACTS</a>
+        </div>
+
+    </div>
+
+    <!-- SUB BAR -->
+    <div class="sub-bar">
+
+        <div></div> <!-- empty for spacing -->
+
+        <div class="social-links">
+            <a href="#">LinkedIn</a>
+            <a href="#">YouTube</a>
+            <a href="#">Facebook</a>
+            <a href="#">Twitter</a>
+            <a href="#">Instagram</a>
+            <a href="#">Telegram</a>
+        </div>
+
+    </div>
+
+</nav>
