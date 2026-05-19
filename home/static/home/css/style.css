@@ -225,87 +225,129 @@ body{
 /* ========================================= */
 
 .footer{
-    background: linear-gradient(to bottom, #f8fafc, #eef2f7);
+    background: #f8fafc;
     border-top: 1px solid #dbe3ec;
+    margin-top: 60px;
 }
 
+/* TOP */
+
 .footer-top{
-    padding: 70px 0 60px;
+    padding: 70px 0 50px;
 }
+
+/* BRAND */
 
 .footer-brand{
     display: flex;
     align-items: center;
-    gap: 15px;
-    margin-bottom: 20px;
+    gap: 16px;
+    text-decoration: none;
+    margin-bottom: 25px;
 }
 
 .footer-logo{
-    width: 70px;
-    height: 70px;
+    width: 80px;
+    height: 80px;
     object-fit: contain;
 }
 
-.footer-brand-link{
-    display: flex;
-    align-items: center;
-    gap: 15px;
-    text-decoration: none;
-    color: inherit;
-}
-
-.brand-title{
-    font-size: 20px;
+.footer-brand h3{
+    font-size: 22px;
     font-weight: 800;
-    color: #111827;
+    color: #0f172a;
+    margin-bottom: 4px;
 }
 
-.brand-subtitle{
-    font-size: 14px;
+.footer-brand p{
+    font-size: 15px;
     color: #64748b;
+    margin: 0;
 }
+
+/* DESCRIPTION */
 
 .footer-description{
-    font-size: 15px;
-    line-height: 1.8;
+    font-size: 16px;
+    line-height: 1.9;
     color: #475569;
+    max-width: 500px;
 }
 
-.footer-heading{
-    font-size: 17px;
+/* TITLES */
+
+.footer-title{
+    font-size: 18px;
     font-weight: 700;
     margin-bottom: 24px;
-    color: #111827;
+    color: #0f172a;
 }
+
+/* LINKS */
 
 .footer-links{
     list-style: none;
+    padding: 0;
+    margin: 0;
 }
 
 .footer-links li{
-    margin-bottom: 14px;
+    margin-bottom: 16px;
 }
 
 .footer-links a{
-    color: #475569;
     text-decoration: none;
-    transition: 0.3s;
+    color: #475569;
+    font-size: 15px;
+    transition: 0.3s ease;
 }
 
 .footer-links a:hover{
     color: #2563eb;
+    padding-left: 4px;
+}
+
+/* CONTACT */
+
+.footer-contact{
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+}
+
+.footer-contact div{
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    color: #334155;
+    line-height: 1.7;
+}
+
+.footer-contact i{
+    font-size: 16px;
+    margin-top: 4px;
+}
+
+/* SOCIAL */
+
+.footer-social{
+    padding: 20px 0 35px;
+    display: flex;
+    justify-content: center;
+    border-top: 1px solid #e2e8f0;
 }
 
 .social-icons{
     display: flex;
-    gap: 14px;
-    margin-top: 15px;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
     flex-wrap: wrap;
 }
 
 .social-icons a{
-    width: 45px;
-    height: 45px;
+    width: 50px;
+    height: 50px;
     border-radius: 50%;
     background: white;
     border: 1px solid #dbe3ec;
@@ -314,273 +356,159 @@ body{
     justify-content: center;
     text-decoration: none;
     color: #334155;
+    font-size: 18px;
     transition: 0.3s ease;
 }
 
 .social-icons a:hover{
     background: #2563eb;
     color: white;
+    transform: translateY(-4px);
 }
 
+/* BOTTOM */
+
 .footer-bottom{
-    border-top: 1px solid #dbe3ec;
-    padding: 20px 0;
+    border-top: 1px solid #e2e8f0;
+    padding: 22px 0;
     text-align: center;
 }
 
 .footer-bottom p{
-    font-size: 14px;
+    margin: 0;
     color: #64748b;
+    font-size: 14px;
 }
 
 /* ========================================= */
-/* MOBILE RESPONSIVE */
+/* TABLET */
 /* ========================================= */
 
 @media (max-width: 992px){
 
-    /* TOGGLER SHOW */
-
-    .nav-toggler{
-        display: flex;
-    }
-
-    /* TOP BAR */
-
-    .top-bar{
-        flex-wrap: wrap;
-        padding: 15px;
-        position: relative;
-    }
-
-    /* BRAND */
-
-    .brand{
-        flex: 1;
-    }
-
-    .brand img{
-        height: 38px;
-    }
-
-    .brand-text{
-        font-size: 14px;
-    }
-
-    .brand-sub{
-        font-size: 10px;
-    }
-
-    /* MENU */
-
-    .menu{
-        position: absolute;
-        top: 100%;
-        left: 0;
-
-        width: 100%;
-
-        display: flex;
-        flex-direction: column;
-        gap: 12px;
-
-        background: #111827;
-
-        padding: 0 18px;
-
-        border-radius: 0 0 14px 14px;
-
-        max-height: 0;
-        overflow: hidden;
-
-        opacity: 0;
-        visibility: hidden;
-
-        transition:
-            max-height 0.4s ease,
-            opacity 0.3s ease,
-            padding 0.3s ease;
-    }
-
-    /* OPEN MENU */
-
-    .custom-navbar.nav-open .menu{
-        max-height: 500px;
-        opacity: 1;
-        visibility: visible;
-        padding: 18px;
-    }
-
-    .menu a{
-        width: 100%;
-        text-align: center;
-    }
-
-    /* SUB BAR */
-
-    .sub-bar{
-        padding: 12px 15px;
-    }
-    /* SLIDER */
-
-    .slider-img{
-        height: 260px;
-    }
-
-    /* CONTENT */
-
-    .home-content{
-        font-size: 15px;
-        text-align: left;
-    }
-
-    /* SERVICES */
-
-    .services-section{
-        padding: 45px 15px;
-    }
-
-    /* FOOTER */
-
     .footer-top{
-        padding: 50px 0 40px;
-        text-align: center;
+        padding: 55px 0 40px;
     }
 
     .footer-brand{
-        justify-content: center;
+        margin-bottom: 20px;
     }
 
-    .social-icons{
-        justify-content: center;
-    }
-}
-
-/* ========================================= */
-/* SMALL MOBILE */
-/* ========================================= */
-
-@media (max-width: 576px){
-
-    .slider-img{
-        height: 180px;
+    .footer-title{
+        margin-top: 10px;
     }
 
-    .brand-text{
-        font-size: 13px;
-    }
-
-    .brand-sub{
-        font-size: 9px;
-    }
-
-    .menu a{
-        font-size: 13px;
-        padding: 10px;
-    }
-
-    .service-box{
-        font-size: 13px;
-    }
-
-    .footer-bottom p{
-        font-size: 12px;
+    .footer-description{
+        max-width: 100%;
     }
 }
 
 /* ========================================= */
-/* MOBILE FOOTER IMPROVEMENT */
+/* MOBILE */
 /* ========================================= */
 
 @media (max-width: 768px){
 
-    .footer-top{
+    .footer{
         text-align: left;
+    }
+
+    .footer-top{
         padding: 45px 20px 35px;
     }
 
-    /* BRAND */
-
     .footer-brand{
-        justify-content: flex-start;
-        align-items: flex-start;
-    }
-
-    .footer-brand-link{
         align-items: flex-start;
     }
 
     .footer-logo{
-        width: 60px;
-        height: 60px;
-        margin-top: 4px;
+        width: 65px;
+        height: 65px;
     }
 
-    /* DESCRIPTION */
+    .footer-brand h3{
+        font-size: 18px;
+    }
+
+    .footer-brand p{
+        font-size: 13px;
+    }
 
     .footer-description{
         font-size: 14px;
-        line-height: 1.7;
-        margin-top: 12px;
+        line-height: 1.8;
     }
 
-    /* HEADING */
-
-    .footer-heading{
-        margin-top: 30px;
+    .footer-title{
+        margin-top: 28px;
         margin-bottom: 18px;
-        font-size: 16px;
+        font-size: 17px;
     }
 
-    .footer-heading::after{
-        left: 0;
-        transform: none;
-    }
-
-    /* LINKS */
-
-    .footer-links li{
-        justify-content: flex-start;
-        margin-bottom: 14px;
-    }
-
-    .footer-links li a{
-        justify-content: flex-start;
+    .footer-links a{
         font-size: 14px;
     }
 
-    /* SOCIAL ICONS */
+    .footer-contact{
+        gap: 18px;
+    }
+
+    .footer-social{
+        padding: 18px 0 28px;
+    }
 
     .social-icons{
-        justify-content: flex-start;
-        gap: 10px;
+        gap: 12px;
     }
 
     .social-icons a{
-        width: 40px;
-        height: 40px;
-        font-size: 15px;
+        width: 44px;
+        height: 44px;
+        font-size: 16px;
     }
-
-    /* BADGES */
-
-    .footer-badges{
-        justify-content: flex-start;
-    }
-
-    .footer-badge{
-        font-size: 12px;
-        padding: 8px 12px;
-    }
-
-    /* BOTTOM */
 
     .footer-bottom{
-        padding: 15px;
+        padding: 18px 10px;
     }
 
     .footer-bottom p{
-        text-align: center;
+        font-size: 13px;
         line-height: 1.6;
+    }
+}
+
+/* FOOTER BADGES */
+
+.footer-badges{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 18px;
+    margin-top: 28px;
+}
+
+.footer-badge{
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    color: #334155;
+}
+
+.footer-badge i{
+    color: #2563eb;
+    font-size: 16px;
+}
+
+/* MOBILE */
+
+@media (max-width: 768px){
+
+    .footer-badges{
+        gap: 14px;
+    }
+
+    .footer-badge{
+        font-size: 13px;
     }
 }

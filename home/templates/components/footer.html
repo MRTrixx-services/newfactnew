@@ -1,150 +1,233 @@
 {% load static %}
-
 <footer class="footer">
 
-    <div class="container footer-top">
+    <div class="container">
 
-        <div class="row gy-5 align-items-start">
+        <!-- TOP FOOTER -->
+        <div class="footer-top">
 
-            <!-- LEFT : BRAND -->
-            <div class="col-lg-4 col-md-6">
+            <div class="row gy-5">
 
-                <div class="footer-brand">
+                <!-- BRAND -->
+                <div class="col-lg-5 col-md-12">
 
-                    <a href="{% url 'home' %}" class="footer-brand-link">
-                        <img src="{% static '/home/images/logo.png' %}" alt="logo" class="footer-logo">
+                    <a href="{% url 'home' %}" class="footer-brand">
+
+                        <img src="{% static '/home/images/logo.png' %}"
+                             alt="logo"
+                             class="footer-logo">
+
                         <div>
-                            <h3 class="brand-title">NEW FACT ENGINEERING</h3>
-                            <p class="brand-subtitle">BIM & Engineering Solutions</p>
+
+                            <h3>NEW FACT ENGINEERING</h3>
+
+                            <p>
+                                BIM & Engineering Solutions
+                            </p>
+
                         </div>
+
                     </a>
 
-                </div>
+                    <div class="footer-description">
 
-                <p class="footer-description">
-                    We provide advanced BIM services including Architecture,
-                    Structural, and MEP modeling with precision workflows and
-                    modern engineering standards.
-                </p>
+                        We provide advanced BIM services including
+                        Architecture, Structural, and MEP modeling with
+                        precision workflows and modern engineering standards.
 
-                <!-- BADGES -->
-                <div class="footer-badges">
-
-                    <div class="footer-badge">
-                        <i class="fa-solid fa-shield-halved"></i>
-                        <span>Secure</span>
                     </div>
+                    <div class="footer-badges">
 
-                    <div class="footer-badge">
-                        <i class="fa-solid fa-headset"></i>
-                        <span>24/7 Support</span>
-                    </div>
+    <div class="footer-badge">
+        <i class="fa-solid fa-shield-halved"></i>
+        <span>Secure</span>
+    </div>
 
-                    <div class="footer-badge">
-                        <i class="fa-solid fa-users"></i>
-                        <span>Trusted Clients</span>
-                    </div>
+    <div class="footer-badge">
+        <i class="fa-solid fa-headset"></i>
+        <span>24/7 Support</span>
+    </div>
 
-                </div>
-
-            </div>
-
-            <!-- SERVICES -->
-            <div class="col-lg-3 col-md-6">
-
-                <h5 class="footer-heading">Services</h5>
-
-                <ul class="footer-links">
-                    <li>
-                        <a href="{% url 'services' %}"><i class="fa-solid fa-building"></i> Architecture BIM</a>
-                    </li>
-                    <li>
-                        <a href="{% url 'services' %}"><i class="fa-solid fa-cubes"></i> Structural BIM</a>
-                    </li>
-                    <li>
-                        <a href="{% url 'services' %}"><i class="fa-solid fa-gears"></i> MEP BIM</a>
-                    </li>
-                    <li>
-                        <a href="{% url 'services' %}"><i class="fa-solid fa-vr-cardboard"></i> VR / AR VDC</a>
-                    </li>
-                    <li>
-                        <a href="{% url 'services' %}"><i class="fa-solid fa-layer-group"></i> 4D / 5D Simulation</a>
-                    </li>
-                </ul>
-
-            </div>
-
-            <!-- CONTACT -->
-            <div class="col-lg-2 col-md-6">
-
-                <h5 class="footer-heading">Contact</h5>
-
-                <ul class="footer-links">
-                    <li>
-                        <i class="fa-solid fa-location-dot"></i>
-                        Bangalore, India
-                    </li>
-
-                    <li>
-                        <i class="fa-solid fa-phone"></i>
-                        +91 XXXXX XXXXX
-                    </li>
-
-                    <li>
-                        <i class="fa-solid fa-envelope"></i>
-                        info@newfactengineering.com
-                    </li>
-                </ul>
-
-            </div>
-
-            <!-- SOCIAL LINKS -->
-           <!-- SOCIAL LINKS -->
-<div class="col-lg-3 col-md-6">
-
-    <h5 class="footer-heading">Social Links</h5>
-
-    <div class="social-icons">
-
-        <a href="#">
-            <i class="fab fa-linkedin-in"></i>
-        </a>
-
-        <a href="#">
-            <i class="fab fa-youtube"></i>
-        </a>
-
-        <a href="#">
-            <i class="fab fa-facebook-f"></i>
-        </a>
-
-        <a href="#">
-            <i class="fab fa-instagram"></i>
-        </a>
-
-        <a href="#">
-            <i class="fab fa-telegram"></i>
-        </a>
-
+    <div class="footer-badge">
+        <i class="fa-solid fa-users"></i>
+        <span>Trusted Clients</span>
     </div>
 
 </div>
+
+                </div>
+
+                <!-- SERVICES -->
+                <!-- SERVICES -->
+<div class="col-lg-2 col-md-6">
+
+    <h5 class="footer-title">
+        Services
+    </h5>
+
+    <ul class="footer-links">
+
+        <li>
+            <a href="{% url 'services' %}">
+                <i class="fa-solid fa-building"></i>
+                Architecture BIM
+            </a>
+        </li>
+
+        <li>
+            <a href="{% url 'services' %}">
+                <i class="fa-solid fa-cubes"></i>
+                Structural BIM
+            </a>
+        </li>
+
+        <li>
+            <a href="{% url 'services' %}">
+                <i class="fa-solid fa-gears"></i>
+                MEP BIM
+            </a>
+        </li>
+
+        <li>
+            <a href="{% url 'services' %}">
+                <i class="fa-solid fa-vr-cardboard"></i>
+                VR / AR VDC
+            </a>
+        </li>
+
+        <li>
+            <a href="{% url 'services' %}">
+                <i class="fa-solid fa-layer-group"></i>
+                4D / 5D Simulation
+            </a>
+        </li>
+
+    </ul>
+
+</div>
+
+                <!-- QUICK LINKS -->
+                <!-- QUICK LINKS -->
+<div class="col-lg-2 col-md-6">
+
+    <h5 class="footer-title">
+        Quick Links
+    </h5>
+
+    <ul class="footer-links">
+
+        <li>
+            <a href="{% url 'home' %}">
+                <i class="fa-solid fa-house"></i>
+                Home
+            </a>
+        </li>
+
+        <li>
+            <a href="{% url 'services' %}">
+                <i class="fa-solid fa-briefcase"></i>
+                Services
+            </a>
+        </li>
+
+        <li>
+            <a href="{% url 'projects' %}">
+                <i class="fa-solid fa-diagram-project"></i>
+                Projects
+            </a>
+        </li>
+
+        <li>
+            <a href="{% url 'social_services' %}">
+                <i class="fa-solid fa-hand-holding-heart"></i>
+                Social Service
+            </a>
+        </li>
+
+        <li>
+            <a href="{% url 'contact' %}">
+                <i class="fa-solid fa-address-book"></i>
+                Contacts
+            </a>
+        </li>
+
+    </ul>
+
+</div>
+
+                <!-- CONTACT -->
+                <div class="col-lg-3 col-md-12">
+
+                    <h5 class="footer-title">
+                        Contact
+                    </h5>
+
+                    <div class="footer-contact">
+
+                        <div>
+                            <i class="fa-solid fa-location-dot"></i>
+                            <span>The principal place of the partnership business will be situated at Door No. 3/183B, South Street, Guruvadi Post, Ariyalur – 621 715.</span>
+                        </div>
+
+                        <div>
+                            <i class="fa-solid fa-phone"></i>
+                            <span>+91 85248 71605 <br>+65 8404 8528</span>
+                        </div>
+
+                        <div>
+                            <i class="fa-solid fa-envelope"></i>
+                            <span>info@newfactengineering.com</span>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+        <!-- FOOTER BADGES -->
+
+
+
+        <!-- SOCIAL -->
+        <div class="footer-social">
+
+            <div class="social-icons">
+
+                <a href="#">
+                    <i class="fab fa-linkedin-in"></i>
+                </a>
+
+                <a href="#">
+                    <i class="fab fa-youtube"></i>
+                </a>
+
+                <a href="#">
+                    <i class="fab fa-facebook-f"></i>
+                </a>
+
+                <a href="#">
+                    <i class="fab fa-instagram"></i>
+                </a>
+
+                <a href="#">
+                    <i class="fab fa-telegram"></i>
+                </a>
+
+            </div>
+
+        </div>
+
+        <!-- BOTTOM -->
+        <div class="footer-bottom">
+
+            <p>
+                © 2026 New Fact Engineering. All rights reserved.
+            </p>
 
         </div>
 
     </div>
-
-    <!-- BOTTOM -->
-    <div class="footer-bottom">
-
-    <div class="container footer-bottom-content">
-
-        <p>
-            © 2026 New Fact Engineering. All rights reserved.
-        </p>
-
-    </div>
-
-</div>
 
 </footer>
