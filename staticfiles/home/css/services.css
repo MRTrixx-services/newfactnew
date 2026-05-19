@@ -313,65 +313,25 @@
 @media(max-width: 768px){
 
     .services-title {
+
         font-size: 26px;
+
         padding: 8px 22px;
     }
 
     .service-header {
+
         font-size: 18px;
     }
 
     .mini-service-box {
+
         font-size: 16px;
     }
 
     .service-image img {
+
         height: 170px;
     }
 
 }
-
-@media(max-width: 576px) {
-
-    .services-title {
-        font-size: 22px;
-        padding: 8px 18px;
-    }
-
-    .intro-content {
-        padding: 0;
-    }
-
-    .intro-image {
-        width: 100%;
-        max-width: 100%;
-        margin: auto;
-    }
-
-    .service-card {
-        margin-bottom: 24px;
-    }
-
-    .service-header {
-        font-size: 16px;
-        padding: 10px;
-    }
-
-    .service-image img {
-        height: 160px;
-    }
-
-    .service-description {
-        font-size: 14px;
-        padding: 12px 14px;
-    }
-
-    .service-points p {
-        font-size: 14px;
-    }
-
-    .mini-service-box {
-        font-size: 15px;
-        padding: 12px 10px;
-    }
-} 

@@ -262,19 +262,11 @@
 @media(max-width: 992px){
 
     .projects-hero {
-        height: 320px;
+        height: 300px;
     }
 
     .project-name {
         font-size: 22px;
-    }
-
-    .project-date {
-        font-size: 12px;
-    }
-
-    .project-image img {
-        height: 220px;
     }
 
 }
@@ -282,66 +274,27 @@
 @media(max-width: 768px){
 
     .projects-title {
+
         font-size: 26px;
+
         padding: 8px 24px;
     }
 
     .column-title {
+
         font-size: 18px;
+
         padding: 8px 20px;
     }
 
     .project-name {
+
         font-size: 20px;
     }
 
     .project-image img {
+
         height: 200px;
     }
 
-    .project-description {
-        font-size: 14px;
-    }
-
-    .see-more-btn,
-    .view-details-btn {
-        display: inline-flex;
-        flex-wrap: wrap;
-    }
-
-    .project-card {
-        margin-bottom: 30px;
-    }
-}
-
-@media(max-width: 576px){
-
-    .projects-hero {
-        height: 260px;
-    }
-
-    .projects-title {
-        font-size: 22px;
-        padding: 8px 18px;
-    }
-
-    .project-name {
-        font-size: 18px;
-    }
-
-    .project-description {
-        font-size: 13px;
-    }
-
-    .project-image img {
-        height: auto;
-    }
-
-    .view-details-btn {
-        margin-left: 0;
-    }
-
-    .project-card {
-        margin-bottom: 24px;
-    }
 }
