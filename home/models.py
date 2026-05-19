@@ -38,7 +38,7 @@ class ServicePageIntro(models.Model):
 
 # =========================
 # SERVICES
-# =========================
+# =========================    
 class Service(models.Model):
 
     title = models.CharField(max_length=200)
@@ -58,6 +58,7 @@ class Service(models.Model):
     class Meta:
         ordering = ['order']
 
+    @property
     def bullet_list(self):
         return self.bullet_points.splitlines()
 

@@ -14,11 +14,15 @@ def home_view(request):
 
     content = HomeContent.objects.first()
 
+    featured_services = Service.objects.filter(
+        is_featured=True
+    )[:9]
+
     return render(request, 'home.html', {
         'sliders': sliders,
-        'content': content
+        'content': content,
+        'featured_services': featured_services
     })
-
 
 def services_view(request):
 

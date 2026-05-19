@@ -592,3 +592,125 @@ body{
         font-size: 10px;
     }
 }
+
+/* =========================
+   DYNAMIC SERVICES
+========================= */
+
+
+
+/* =========================
+   SERVICES SECTION
+========================= */
+
+.services-section{
+    padding:50px 0;
+    background:#f8f8f8;
+}
+
+/* BOX */
+
+.dynamic-service-box{
+    border:3px solid #233f99;
+    border-radius:22px;
+    background:#f4f4f4;
+    overflow:hidden;
+    transition:0.3s;
+}
+
+/* TITLE */
+
+.service-title{
+    padding:20px 20px;
+    font-size:17px;
+    font-weight:700;
+    color:#001b4e;
+    cursor:pointer;
+    transition:0.3s;
+    text-transform:uppercase;
+
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+}
+
+/* HOVER */
+
+.service-icon{
+    font-size:28px;
+    font-weight:300;
+    line-height:1;
+    transition:0.3s;
+    color:#233f99;
+}
+
+.dynamic-service-box:hover{
+    transform:translateY(-4px);
+    background:#ffffff;
+}
+
+/* EXPAND */
+
+.service-expand{
+    max-height:0;
+    overflow:hidden;
+    transition:max-height 0.5s ease;
+    background:#fff;
+    border-top:1px solid #ddd;
+}
+
+/* ACTIVE */
+
+.service-expand.active{
+    max-height:800px;
+    padding:25px;
+}
+
+/* DESCRIPTION */
+
+.service-desc{
+    font-size:15px;
+    line-height:1.8;
+    color:#444;
+    margin-bottom:20px;
+    text-align:left;
+}
+
+/* BULLETS */
+
+.service-bullets p{
+    margin-bottom:12px;
+    text-align:left;
+    font-size:14px;
+    color:#111;
+}
+
+/* BUTTON */
+
+.view-services-btn{
+    display:inline-block;
+    margin-top:20px;
+    background:#233f99;
+    color:#fff;
+    padding:10px 22px;
+    border-radius:8px;
+    text-decoration:none;
+    font-weight:600;
+    transition:0.3s;
+}
+
+.view-services-btn:hover{
+    background:#001b4e;
+    color:#fff;
+}
+
+/* MOBILE */
+
+@media(max-width:768px){
+
+    .service-title{
+        font-size:15px;
+        padding:22px 15px;
+    }
+
+}
