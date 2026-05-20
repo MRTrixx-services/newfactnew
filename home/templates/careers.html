@@ -1,0 +1,247 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<link rel="stylesheet" href="{% static 'home/css/careers.css' %}">
+
+<!-- HERO -->
+<section class="career-hero">
+    {% if hero.background_image %}
+    <img src="{{ hero.background_image.url }}" alt="hero">
+    {% endif %}
+    <div class="overlay"></div>
+    <div class="hero-content">
+        <span class="hero-badge">We're Hiring</span>
+        <h1>{{ hero.title }}</h1>
+        <p>{{ hero.subtitle }}</p>
+        <a href="#job-section" class="btn-primary">
+            Explore Careers <i class="fas fa-arrow-right"></i>
+        </a>
+    </div>
+</section>
+
+
+
+<!-- JOB OPENINGS -->
+<section class="section jobs-section" id="job-section">
+    <div class="container">
+        <div class="section-head">
+            <p class="section-label">Open Positions</p>
+            <h2>Find your perfect role</h2>
+        </div>
+        <div class="job-grid">
+            {% for job in jobs %}
+            <div class="job-card">
+                {% if job.department %}
+                <span class="dept-badge">{{ job.department }}</span>
+                {% endif %}
+                <h3>{{ job.title }}</h3>
+                <div class="job-meta">
+                    {% if job.location %}
+                    <span><i class="fas fa-map-marker-alt"></i> {{ job.location }}</span>
+                    {% endif %}
+                    {% if job.salary %}
+                    <span><i class="fas fa-money-bill-wave"></i> {{ job.salary }}</span>
+                    {% endif %}
+                </div>
+                <p>{{ job.description|truncatewords:30 }}</p>
+                <button class="btn-apply" onclick="openApplyModal('{{ job.id }}', '{{ job.title }}')">
+                    Apply Now <i class="fas fa-paper-plane"></i>
+                </button>
+            </div>
+            {% empty %}
+            <div class="empty-box">
+                <i class="fas fa-briefcase"></i>
+                <h3>No Open Positions</h3>
+                <p>We currently do not have any active openings. Check back soon.</p>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+
+<!-- WHY JOIN US -->
+<section class="section why-section">
+    <div class="container">
+        <div class="section-head">
+            <p class="section-label">Why Join Us</p>
+            <h2>Be part of something extraordinary</h2>
+        </div>
+        <div class="why-grid">
+            {% for item in why_join %}
+            <div class="why-card">
+                <div class="why-icon">
+
+    <i class="{% if item.icon %}{{ item.icon }}{% else %}fas fa-star{% endif %}"></i>
+
+</div>
+                <h3>{{ item.title }}</h3>
+                <p>{{ item.description }}</p>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<!-- INTERNSHIPS -->
+<section class="section intern-section">
+    <div class="container">
+        <div class="section-head">
+            <p class="section-label">Internships</p>
+            <h2>Launch your career with us</h2>
+        </div>
+        <div class="intern-grid">
+            {% for internship in internships %}
+            <div class="intern-card">
+                <div class="intern-icon"><i class="fas fa-user-graduate"></i></div>
+                <h3>{{ internship.title }}</h3>
+                <div class="intern-meta">
+                    {% if internship.duration %}
+                    <span><i class="fas fa-clock"></i> {{ internship.duration }}</span>
+                    {% endif %}
+                    {% if internship.stipend %}
+                    <span><i class="fas fa-tag"></i> {{ internship.stipend }}</span>
+                    {% endif %}
+                </div>
+                <p>{{ internship.description }}</p>
+            </div>
+            {% empty %}
+            <div class="empty-box">
+                <i class="fas fa-user-graduate"></i>
+                <h3>No Internships Available</h3>
+                <p>Internship programs are currently closed. Stay tuned for upcoming openings.</p>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<!-- CULTURE -->
+{% if cultures %}
+<section class="section culture-section">
+    <div class="container">
+        <div class="section-head">
+            <p class="section-label">Company Culture</p>
+            <h2>Life at our company</h2>
+        </div>
+        <div class="culture-grid">
+            {% for culture in cultures %}
+            <div class="culture-card">
+                <div class="culture-img">
+                    <img src="{{ culture.image.url }}" alt="{{ culture.title }}">
+                </div>
+                <div class="culture-body">
+                    <h3>{{ culture.title }}</h3>
+                    <p>{{ culture.description }}</p>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endif %}
+
+<!-- MODAL -->
+<div class="modal-overlay" id="applyModal">
+    <div class="modal-box">
+        <button class="modal-close" onclick="closeApplyModal()"><i class="fas fa-times"></i></button>
+        <h2>Apply for <span id="modalJobTitle"></span></h2>
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <input type="hidden" name="job" id="selectedJobId">
+            <div class="form-row">
+                <div class="form-field">
+                    <label>Full Name *</label>
+                    <input type="text" name="full_name" placeholder="John Doe" required>
+                </div>
+                <div class="form-field">
+                    <label>Email Address *</label>
+                    <input type="email" name="email" placeholder="you@email.com" required>
+                </div>
+            </div>
+            <div class="form-field">
+                <label>Phone Number</label>
+                <input type="text" name="phone" placeholder="+1 (555) 000-0000">
+            </div>
+            <div class="form-field">
+                <label>Cover Letter</label>
+                <textarea name="cover_letter" placeholder="Tell us why you're a great fit..."></textarea>
+            </div>
+            <div class="form-field">
+                <label>Resume (PDF/DOC) *</label>
+                <div class="file-wrap">
+                    <i class="fas fa-cloud-upload-alt"></i>
+                    <span id="fileLabel">Click to upload or drag & drop</span>
+                    <input type="file" name="resume" id="resume" required onchange="updateFileLabel(this)">
+                </div>
+            </div>
+            <button type="submit" class="btn-submit">
+                Submit Application <i class="fas fa-arrow-right"></i>
+            </button>
+        </form>
+    </div>
+</div>
+
+<!-- HR CONTACT -->
+<section class="section hr-section">
+    <div class="container">
+        <div class="section-head">
+            <p class="section-label">Contact HR</p>
+            <h2>Have questions? Reach out</h2>
+        </div>
+        {% if hr_contact %}
+        <div class="hr-card">
+            <div class="hr-item">
+                <div class="hr-icon"><i class="fas fa-envelope"></i></div>
+                <div>
+                    <p class="hr-label">Email</p>
+                    <a href="mailto:{{ hr_contact.email }}">{{ hr_contact.email }}</a>
+                </div>
+            </div>
+            <div class="hr-divider"></div>
+            <div class="hr-item">
+                <div class="hr-icon"><i class="fas fa-phone-alt"></i></div>
+                <div>
+                    <p class="hr-label">Phone</p>
+                    <a href="tel:{{ hr_contact.phone }}">{{ hr_contact.phone }}</a>
+                </div>
+            </div>
+            <div class="hr-divider"></div>
+            <div class="hr-item">
+                <div class="hr-icon"><i class="fas fa-map-marker-alt"></i></div>
+                <div>
+                    <p class="hr-label">Address</p>
+                    <p>{{ hr_contact.address }}</p>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+</section>
+
+<script>
+function openApplyModal(jobId, jobTitle) {
+    document.getElementById('selectedJobId').value = jobId;
+    document.getElementById('modalJobTitle').textContent = jobTitle;
+    document.getElementById('applyModal').classList.add('active');
+    document.body.style.overflow = 'hidden';
+}
+
+function closeApplyModal() {
+    document.getElementById('applyModal').classList.remove('active');
+    document.body.style.overflow = '';
+}
+
+function updateFileLabel(input) {
+    const label = document.getElementById('fileLabel');
+    label.textContent = input.files[0] ? input.files[0].name : 'Click to upload or drag & drop';
+}
+
+document.getElementById('applyModal').addEventListener('click', function(e) {
+    if (e.target === this) closeApplyModal();
+});
+</script>
+
+{% endblock %}

@@ -129,3 +129,4 @@ class SocialServiceAdmin(admin.ModelAdmin):
     list_filter = ['status']
     prepopulated_fields = {'slug': ('title',)}
     list_editable = ['order']
+
