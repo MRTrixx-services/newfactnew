@@ -24,25 +24,25 @@ def home_view(request):
         'featured_services': featured_services
     })
 
+
 def services_view(request):
 
     intro = ServicePageIntro.objects.first()
 
-    featured_services = Service.objects.filter(
-        is_featured=True
-    )
-
-    mini_services = Service.objects.filter(
-        is_featured=False
-    )
+    services = Service.objects.all()
 
     context = {
         'intro': intro,
-        'featured_services': featured_services,
-        'mini_services': mini_services
+        'services': services
     }
 
     return render(request, 'services.html', context)
+
+
+
+
+
+
 
 from .models import (
     ProjectsPage,

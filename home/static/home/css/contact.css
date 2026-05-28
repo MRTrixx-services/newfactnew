@@ -470,3 +470,36 @@
         height: 10px;
     }
 }
+
+
+
+/* ======================================== */
+/* MAP LOCATION ICON */
+/* ======================================== */
+
+.map-marker-icon {
+
+    color: #f97316;
+
+    font-size: 20px;
+
+    filter: drop-shadow(0 4px 10px rgba(0,0,0,0.25));
+
+    animation: markerBounce 1.8s infinite;
+}
+
+/* BOUNCE ANIMATION */
+
+@keyframes markerBounce {
+
+    0%, 100% {
+
+        transform: translateY(0);
+    }
+
+    50% {
+
+        transform: translateY(-6px);
+    }
+}
+

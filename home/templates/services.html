@@ -1,8 +1,11 @@
+
 {% extends 'base.html' %}
 {% load static %}
+
 {% block extra_css %}
 
 <link rel="stylesheet" href="{% static 'home/css/services.css' %}">
+
 {% endblock %}
 
 {% block content %}
@@ -19,26 +22,29 @@
             BIM SERVICES
         </h1>
 
-        <!-- INTRO -->
         {% if intro %}
 
         <div class="intro-wrapper">
 
             <!-- LEFT -->
+
             <div class="intro-content">
 
                 {{ intro.left_content|safe }}
 
             </div>
 
-            <!-- CENTER IMAGE -->
+            <!-- CENTER -->
+
             <div class="intro-image">
 
-                <img src="{{ intro.center_image.url }}" alt="intro-image">
+                <img src="{{ intro.center_image.url }}"
+                     alt="intro-image">
 
             </div>
 
             <!-- RIGHT -->
+
             <div class="intro-content">
 
                 {{ intro.right_content|safe }}
@@ -55,64 +61,121 @@
 
 
 <!-- ======================================== -->
-<!-- FEATURED SERVICES -->
+<!-- SERVICES ROW ACCORDION -->
 <!-- ======================================== -->
 
-<section class="featured-services">
+<section class="services-section">
 
     <div class="container">
 
-        <div class="row g-4">
+        <!-- ROW LOOP -->
 
-            {% for service in featured_services %}
+        {% for service in services %}
 
-            <div class="col-lg-3 col-md-6">
+            <!-- START ROW -->
 
-                <div class="service-card">
+            {% if forloop.counter0|divisibleby:4 %}
 
-                    <!-- TITLE -->
-                    <div class="service-header">
-                        {{ service.title }}
+            <div class="service-row-wrapper
+                        {% if forloop.counter0 == 0 %}
+                        active-row
+                        {% endif %}">
+
+                <div class="services-grid">
+
+            {% endif %}
+
+                    <!-- CARD -->
+
+                    <div class="service-card">
+
+                        <!-- HEADER -->
+
+                        <button class="service-header"
+                                type="button"
+                                onclick="toggleServiceRow(this)">
+
+                            <span>{{ service.title }}</span>
+
+                            <span class="service-icon">
+
+                                {% if forloop.counter0 < 4 %}
+                                    −
+                                {% else %}
+                                    +
+                                {% endif %}
+
+                            </span>
+
+                        </button>
+
+                        <!-- BODY -->
+
+                        <div class="service-body"
+
+                             {% if forloop.counter0 < 4 %}
+                             style="max-height:2000px;"
+                             {% endif %}>
+
+                            <!-- IMAGE -->
+
+                            <div class="service-image">
+
+                                <img src="{{ service.image.url }}"
+                                     alt="{{ service.title }}">
+
+                            </div>
+
+                            <!-- DESCRIPTION -->
+
+                            <div class="service-description">
+
+                                <div class="desc-text clamped">
+
+                                    {{ service.description|safe }}
+
+                                </div>
+
+                                <span class="see-more-btn"
+                                      onclick="toggleDesc(this)">
+
+                                      See More
+
+                                </span>
+
+                            </div>
+
+                            <!-- POINTS -->
+
+                            <div class="service-points">
+
+                                <div class="custom-points">
+
+                                    {% for point in service.bullet_list %}
+
+                                        <p>{{ point }}</p>
+
+                                    {% endfor %}
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
                     </div>
 
-                    <!-- IMAGE -->
-                    <div class="service-image">
+            <!-- END ROW -->
 
-                        <img src="{{ service.image.url }}" alt="{{ service.title }}">
-
-                    </div>
-
-                    <!-- DESCRIPTION -->
-                    <div class="service-description">
-
-                        <div class="desc-text clamped">{{ service.description|safe }}</div>
-
-                        <span class="see-more-btn" onclick="toggleDesc(this)">See More</span>
-
-                    </div>
-
-                    <!-- BULLETS -->
-                    <div class="service-points">
-
-                        <div class="custom-points">
-
-    {% for point in service.bullet_list %}
-
-        <p>{{ point }}</p>
-
-    {% endfor %}
-
-</div>
-
-                    </div>
+            {% if forloop.counter|divisibleby:4 or forloop.last %}
 
                 </div>
 
             </div>
 
-            {% endfor %}
+            {% endif %}
 
-        </div>
+        {% endfor %}
 
     </div>
 
@@ -120,42 +183,96 @@
 
 
 <!-- ======================================== -->
-<!-- MINI SERVICES -->
+<!-- SCRIPT -->
 <!-- ======================================== -->
 
-<section class="mini-services">
-
-    <div class="container">
-
-        <div class="row g-4 justify-content-center">
-
-            {% for service in mini_services %}
-
-            <div class="col-lg-3 col-md-4 col-6">
-
-                <div class="mini-service-box">
-
-                    {{ service.title }}
-
-                </div>
-
-            </div>
-
-            {% endfor %}
-
-        </div>
-
-    </div>
-
-</section>
+<script src="https://cdn.jsdelivr.net/npm/jsvectormap@1.5.3/dist/js/jsvectormap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jsvectormap@1.5.3/dist/maps/world.js"></script>
 
 <script>
-function toggleDesc(btn) {
-    const desc = btn.previousElementSibling;
-    const isClamped = desc.classList.contains('clamped');
-    desc.classList.toggle('clamped');
-    btn.textContent = isClamped ? 'See Less' : 'See More';
-}
-</script>
+var markerData = [
+    { name: 'USA',       projects: 12, coords: [37.09,  -95.71]  },
+    { name: 'Canada',    projects: 6,  coords: [56.13, -106.34]  },
+    { name: 'UK',        projects: 10, coords: [55.37,   -3.43]  },
+    { name: 'UAE',       projects: 8,  coords: [23.42,   53.84]  },
+    { name: 'India',     projects: 25, coords: [20.59,   78.96]  },
+    { name: 'Singapore', projects: 5,  coords: [ 1.35,  103.81]  },
+    { name: 'Australia', projects: 7,  coords: [-25.27, 133.77]  }
+];
 
+var map = new jsVectorMap({
+    selector: '#world-map',
+    map: 'world',
+    backgroundColor: '#eef2ff',
+
+    regionStyle: {
+        initial: {
+            fill: '#bfdbfe',
+            stroke: '#ffffff',
+            strokeWidth: 0.5,
+        },
+        hover: {
+            fill: '#3b82f6',
+            cursor: 'pointer',
+        },
+        selected: {
+            fill: '#1e40af',
+        },
+        selectedHover: {
+            fill: '#1d4ed8',
+        },
+    },
+
+    selectedRegions: [
+        'US','CA','GB','NO','NL','DE','AE','IN','SG','AU','FR','IT',
+        'ES','PT','SE','DK','FI','BE','CH','AT','PL','CZ','HU','RO',
+        'GR','TR','SA','QA','KW','BH','OM','EG','ZA','NG','KE','GH',
+        'ET','TZ','MA','DZ','LY','TN','SD','MX','BR','AR','CL','CO',
+        'PE','VE','EC','BO','PY','UY','CN','JP','KR','TH','MY','ID',
+        'PH','VN','BD','PK','LK','NP','MM','KH','NZ','RU','UA','KZ',
+        'UZ','IQ','IR','JO','LB','IL','YE','SY','AF','HK','TW'
+    ],
+
+    markers: markerData,
+
+    markersSelectable: false,
+
+    /* ── MARKER STYLE ── */
+    markerStyle: {
+        initial: {
+            fill: '#f97316',
+            stroke: '#ffffff',
+            strokeWidth: 2.5,
+            r: 9,
+        },
+        hover: {
+            fill: '#ea580c',
+            stroke: '#fff',
+            strokeWidth: 3,
+            scale: 1.6,
+            cursor: 'pointer',
+        },
+    },
+
+    showTooltip: true,
+
+    /* ── CUSTOM TOOLTIP ON HOVER ── */
+    onMarkerTooltipShow: function(event, tooltip, index) {
+        var m = markerData[index];
+        tooltip.html(
+            '<div class="map-tooltip">' +
+                '<div class="map-tooltip-name">' +
+                    '<span class="map-tooltip-dot"></span>' +
+                    m.name +
+                '</div>' +
+                '<div class="map-tooltip-row">' +
+                    '<span>Projects</span>' +
+                    '<strong>' + m.projects + '</strong>' +
+                '</div>' +
+            '</div>'
+        );
+    },
+});
+</script>
 {% endblock %}
+

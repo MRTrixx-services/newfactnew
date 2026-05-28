@@ -63,46 +63,21 @@
                 <div class="dynamic-service-box">
 
                     <!-- TITLE -->
-                    
+                    <button class="service-title" type="button" onclick="openServiceModal(this)">
+                        <span>{{ service.title }}</span>
+                        <span class="service-icon">+</span>
+                    </button>
 
-                    <div class="service-title"
-     onclick="toggleService(this)">
-
-    <span>{{ service.title }}</span>
-
-    <span class="service-icon">+</span>
-
-</div>
-
-                    <!-- EXPAND CONTENT -->
+                    <!-- HIDDEN DETAIL CONTENT FOR MODAL -->
                     <div class="service-expand">
-
-                        <!-- DESCRIPTION -->
                         <div class="service-desc">
-
                             {{ service.description|safe }}
-
                         </div>
-
-                        <!-- BULLETS -->
                         <div class="service-bullets">
-
                             {% for point in service.bullet_list %}
-
                                 <p>✔ {{ point }}</p>
-
                             {% endfor %}
-
                         </div>
-
-                        <!-- BUTTON -->
-                        <a href="{% url 'services' %}"
-                           class="view-services-btn">
-
-                            View All Services
-
-                        </a>
-
                     </div>
 
                 </div>
@@ -116,30 +91,231 @@
     </div>
 
 </div>
+
+<!-- SERVICE DETAIL MODAL -->
+<div class="modal-overlay" id="serviceModal" role="dialog" aria-modal="true" aria-hidden="true" aria-labelledby="serviceModalTitle">
+    <div class="modal-box" role="document">
+        <button type="button" class="modal-close" onclick="closeServiceModal()" aria-label="Close service details">×</button>
+        <div class="modal-header">
+            <h2 class="modal-title" id="serviceModalTitle"></h2>
+        </div>
+        <div class="modal-body">
+            <div class="modal-description"></div>
+            <div class="modal-bullets"></div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="modal-button modal-secondary" onclick="closeServiceModal()">Close</button>
+            <a href="{% url 'services' %}" class="modal-button modal-primary">View All Services</a>
+        </div>
+    </div>
+</div>
+
+<!-- 🔥 STATS SECTION -->
+<div class="stats-section">
+    <div class="stats-inner">
+        <div class="stat-col">
+            <div class="s-icon">🗓️</div>
+            <div class="s-num">10<em>+</em></div>
+            <div class="s-lbl">Years Experience</div>
+        </div>
+        <div class="stat-col">
+            <div class="s-icon">👥</div>
+            <div class="s-num">30<em>+</em></div>
+            <div class="s-lbl">Expert Team</div>
+        </div>
+        <div class="stat-col">
+            <div class="s-icon">✅</div>
+            <div class="s-num">250<em>+</em></div>
+            <div class="s-lbl">Projects Done</div>
+        </div>
+        <div class="stat-col">
+            <div class="s-icon">🏢</div>
+            <div class="s-num">100<em>+</em></div>
+            <div class="s-lbl">Trusted Clients</div>
+        </div>
+    </div>
+</div>
+
+<!-- 🔥 WHY CHOOSE US -->
+<div class="why-section">
+    <div class="container text-center">
+        <p class="sec-label">Why Choose Us</p>
+        <h2 class="sec-title">What Makes Us Different</h2>
+        <p class="sec-sub">We combine deep industry expertise with a client-first approach to deliver results that matter.</p>
+        <div class="why-grid">
+            <div class="why-card">
+                <div class="why-icon-box">🏆</div>
+                <h3>Proven Track Record</h3>
+                <p>Over a decade of delivering successful projects across industries with measurable outcomes.</p>
+            </div>
+            <div class="why-card">
+                <div class="why-icon-box">🤝</div>
+                <h3>Dedicated Support</h3>
+                <p>Our team is available around the clock to ensure your business runs without interruption.</p>
+            </div>
+            <div class="why-card">
+                <div class="why-icon-box">💡</div>
+                <h3>Innovative Solutions</h3>
+                <p>We bring fresh thinking and the latest tools to every challenge we take on.</p>
+            </div>
+            <div class="why-card">
+                <div class="why-icon-box">🔒</div>
+                <h3>Trusted & Secure</h3>
+                <p>Your data and business interests are protected with enterprise-grade security standards.</p>
+            </div>
+            <div class="why-card">
+                <div class="why-icon-box">📊</div>
+                <h3>Data-Driven Results</h3>
+                <p>Every decision we make is backed by insights and analytics that drive real growth.</p>
+            </div>
+            <div class="why-card">
+                <div class="why-icon-box">⚡</div>
+                <h3>Fast Turnaround</h3>
+                <p>We respect your time — delivering quality work on schedule, every time.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 🔥 HOW WE WORK -->
+<div class="process-section">
+    <div class="container text-center">
+        <p class="sec-label">Our Process</p>
+        <h2 class="sec-title">How We Work</h2>
+        <p class="sec-sub">A simple, transparent process designed to get you results faster.</p>
+        <div class="process-steps">
+            <div class="pstep">
+                <div class="pstep-num">1</div>
+                <div class="pstep-line"></div>
+                <h4>Consultation</h4>
+                <p>We understand your goals and challenges.</p>
+            </div>
+            <div class="pstep">
+                <div class="pstep-num">2</div>
+                <div class="pstep-line"></div>
+                <h4>Strategy</h4>
+                <p>We build a tailored plan for your needs.</p>
+            </div>
+            <div class="pstep">
+                <div class="pstep-num">3</div>
+                <div class="pstep-line"></div>
+                <h4>Execution</h4>
+                <p>Our experts deliver with precision.</p>
+            </div>
+            <div class="pstep">
+                <div class="pstep-num">4</div>
+                <div class="pstep-line"></div>
+                <h4>Results</h4>
+                <p>We measure, report, and optimize.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 🔥 TESTIMONIALS -->
+<div class="testi-section">
+    <div class="container text-center">
+        <p class="sec-label">Testimonials</p>
+        <h2 class="sec-title">What Our Clients Say</h2>
+        <p class="sec-sub">Real stories from businesses that trust us to deliver.</p>
+        <div class="testi-grid">
+            <div class="testi-card">
+                <div class="stars">★★★★★</div>
+                <p class="testi-quote">"Working with this team was a game-changer for our business. They understood our vision and delivered beyond expectations."</p>
+                <div class="testi-author">
+                    <div class="author-avatar">RK</div>
+                    <div>
+                        <div class="author-name">Ryan Carter</div>
+                        <div class="author-role">CEO, TechVision India</div>
+                    </div>
+                </div>
+            </div>
+            <div class="testi-card">
+                <div class="stars">★★★★★</div>
+                <p class="testi-quote">"Professional, responsive, and results-driven. We have seen a 40% improvement in efficiency since partnering with them."</p>
+                <div class="testi-author">
+                    <div class="author-avatar">PS</div>
+                    <div>
+                        <div class="author-name">Logan Reed</div>
+                        <div class="author-role">Director, Nexus Solutions</div>
+                    </div>
+                </div>
+            </div>
+            <div class="testi-card">
+                <div class="stars">★★★★★</div>
+                <p class="testi-quote">"Their attention to detail and commitment to quality is unmatched. We would not trust anyone else with our critical projects."</p>
+                <div class="testi-author">
+                    <div class="author-avatar">AM</div>
+                    <div>
+                        <div class="author-name">Daniel Foster</div>
+                        <div class="author-role">MD, GlobalEdge Corp</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 🔥 TRUSTED CLIENTS -->
+<div class="clients-section">
+    <div class="container text-center">
+        <p class="sec-label">Trusted By Leading Companies</p>
+        <div class="clients-row">
+            <div class="client-badge">TechVision India</div>
+            <div class="client-badge">Nexus Solutions</div>
+            <div class="client-badge">GlobalEdge Corp</div>
+            <div class="client-badge">Pinnacle Group</div>
+            <div class="client-badge">BrightPath Ltd</div>
+            <div class="client-badge">CoreSync Pvt Ltd</div>
+            <div class="client-badge">Vertex Enterprises</div>
+            <div class="client-badge">Infra Dynamics</div>
+        </div>
+    </div>
+</div>
+
+<!-- 🔥 CTA SECTION -->
+<div class="cta-section">
+    <h2>Ready to Work With Us?</h2>
+    <p>Let us help you grow your business. Get in touch with our experts today.</p>
+    <div class="cta-btns">
+        <a href="{% url 'contact' %}" class="btn-cta-white">Get a Free Consultation</a>
+        <a href="{% url 'services' %}" class="btn-cta-outline">View Our Services</a>
+    </div>
+</div>
 <script>
+function openServiceModal(button) {
+    const card = button.closest('.dynamic-service-box');
+    const titleText = button.querySelector('span').textContent.trim();
+    const description = card.querySelector('.service-desc').innerHTML;
+    const bullets = card.querySelector('.service-bullets').innerHTML;
 
-function toggleService(element) {
-
-    const expand =
-        element.nextElementSibling;
-
-    const icon =
-        element.querySelector('.service-icon');
-
-    expand.classList.toggle('active');
-
-    if (expand.classList.contains('active')) {
-
-        icon.innerHTML = '-';
-
-    } else {
-
-        icon.innerHTML = '+';
-
-    }
-
+    const modal = document.getElementById('serviceModal');
+    modal.querySelector('.modal-title').textContent = titleText;
+    modal.querySelector('.modal-description').innerHTML = description;
+    modal.querySelector('.modal-bullets').innerHTML = bullets;
+    modal.classList.add('active');
+    modal.setAttribute('aria-hidden', 'false');
+    document.body.classList.add('modal-open');
 }
 
+function closeServiceModal() {
+    const modal = document.getElementById('serviceModal');
+    modal.classList.remove('active');
+    modal.setAttribute('aria-hidden', 'true');
+    document.body.classList.remove('modal-open');
+}
+
+document.getElementById('serviceModal').addEventListener('click', function (e) {
+    if (e.target === this) {
+        closeServiceModal();
+    }
+});
+
+document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && document.getElementById('serviceModal').classList.contains('active')) {
+        closeServiceModal();
+    }
+});
 </script>
 
 {% endblock %}

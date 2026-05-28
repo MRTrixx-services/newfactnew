@@ -220,30 +220,24 @@ var map = new jsVectorMap({
         },
     },
     selectedRegions: ['US', 'CA', 'GB', 'NO', 'NL', 'DE', 'AE', 'IN', 'SG', 'AU', 'FR', 'IT', 'ES', 'PT', 'SE', 'DK', 'FI', 'BE', 'CH', 'AT', 'PL', 'CZ', 'HU', 'RO', 'GR', 'TR', 'SA', 'QA', 'KW', 'BH', 'OM', 'EG', 'ZA', 'NG', 'KE', 'GH', 'ET', 'TZ', 'MA', 'DZ', 'LY', 'TN', 'SD', 'MX', 'BR', 'AR', 'CL', 'CO', 'PE', 'VE', 'EC', 'BO', 'PY', 'UY', 'CN', 'JP', 'KR', 'TH', 'MY', 'ID', 'PH', 'VN', 'BD', 'PK', 'LK', 'NP', 'MM', 'KH', 'NZ', 'RU', 'UA', 'KZ', 'UZ', 'IQ', 'IR', 'JO', 'LB', 'IL', 'YE', 'SY', 'AF', 'HK', 'TW'],
-    markers: [
-        { name: 'USA',         coords: [37.09, -95.71] },
-        { name: 'Canada',      coords: [56.13, -106.34] },
-        { name: 'UK',          coords: [55.37, -3.43] },
-        { name: 'Norway',      coords: [60.47, 8.46] },
-        { name: 'Netherlands', coords: [52.13, 5.29] },
-        { name: 'Germany',     coords: [51.16, 10.45] },
-        { name: 'UAE',         coords: [23.42, 53.84] },
-        { name: 'India',       coords: [20.59, 78.96] },
-        { name: 'Singapore',   coords: [1.35, 103.81] },
-        { name: 'Australia',   coords: [-25.27, 133.77] },
-    ],
-    markerStyle: {
-        initial: {
-            fill: '#f97316',
-            stroke: '#ffffff',
-            strokeWidth: 2,
-            r: 7,
-        },
-        hover: {
-            fill: '#ea580c',
-            r: 10,
-        },
+    markers: [ { name: 'USA', projects: 12, coords: [37.09, -95.71] }, { name: 'Canada', projects: 6, coords: [56.13, -106.34] }, { name: 'UK', projects: 10, coords: [55.37, -3.43] }, { name: 'UAE', projects: 8, coords: [23.42, 53.84] }, { name: 'India', projects: 25, coords: [20.59, 78.96] }, { name: 'Singapore', projects: 5, coords: [1.35, 103.81] }, { name: 'Australia', projects: 7, coords: [-25.27, 133.77] } ],
+   
+    markersSelectable: false,
+
+    onLoaded(map) {
+
+        const markers =
+            document.querySelectorAll('.jvm-marker');
+
+        markers.forEach(marker => {
+
+            marker.innerHTML = `
+                <i class="fa-solid fa-location-dot map-marker-icon"></i>
+            `;
+        });
     },
+   
+
     markerLabelStyle: {
         initial: {
             fontFamily: 'inherit',
@@ -253,13 +247,21 @@ var map = new jsVectorMap({
         },
     },
     showTooltip: true,
-    labels: {
-        markers: {
-            render: function(marker) {
-                return marker.name;
-            },
+    
+labels: {
+    markers: {
+        render: function(marker) {
+
+            return `
+                ${marker.name}
+                <br>
+                Projects: ${marker.projects}
+            `;
         },
     },
+},
+
+
 });
 </script>
 

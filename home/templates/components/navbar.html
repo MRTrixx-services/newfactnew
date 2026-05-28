@@ -22,32 +22,37 @@
         </button>
 
         <!-- MENU -->
-        <div class="menu">
-            <a href="{% url 'home' %}">HOME</a>
-            <a href="{% url 'services' %}">SERVICES</a>
-            <a href="{% url 'projects' %}">PROJECTS</a>
-            <a href="{% url 'social_services' %}">SOCIAL SERVICE</a>
-            <a href="{% url 'careers' %}">CAREERS</a>
-            <a href="{% url 'contact' %}">CONTACTS</a>
-        </div>
+        <!-- MENU -->
+<div class="menu">
+    <a href="{% url 'home' %}"
+       class="{% if request.resolver_match.url_name == 'home' %}active{% endif %}">
+       HOME
+    </a>
+    <a href="{% url 'services' %}"
+       class="{% if request.resolver_match.url_name == 'services' %}active{% endif %}">
+       SERVICES
+    </a>
+    <a href="{% url 'projects' %}"
+       class="{% if request.resolver_match.url_name == 'projects' %}active{% endif %}">
+       PROJECTS
+    </a>
+    <a href="{% url 'social_services' %}"
+       class="{% if request.resolver_match.url_name == 'social_services' %}active{% endif %}">
+       SOCIAL SERVICE
+    </a>
+    <a href="{% url 'careers' %}"
+       class="{% if request.resolver_match.url_name == 'careers' %}active{% endif %}">
+       CAREERS
+    </a>
+    <a href="{% url 'contact' %}"
+       class="{% if request.resolver_match.url_name == 'contact' %}active{% endif %}">
+       CONTACTS
+    </a>
+</div>
 
-    </div>
 
     <!-- SUB BAR -->
-    <div class="sub-bar">
-
-        <div></div> <!-- empty for spacing -->
-
-        <div class="social-links">
-            <a href="#">LinkedIn</a>
-            <a href="#">YouTube</a>
-            <a href="#">Facebook</a>
-            <a href="#">Twitter</a>
-            <a href="#">Instagram</a>
-            <a href="#">Telegram</a>
-        </div>
-
-    </div>
+    
 
 </nav>
 
