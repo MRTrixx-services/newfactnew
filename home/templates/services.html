@@ -38,8 +38,26 @@
 
             <div class="intro-image">
 
-                <img src="{{ intro.center_image.url }}"
-                     alt="intro-image">
+                {% if intro.center_video %}
+
+    <video autoplay
+           muted
+           loop
+           playsinline
+           class="intro-media">
+
+        <source src="{{ intro.center_video.url }}"
+                type="video/mp4">
+
+    </video>
+
+{% elif intro.center_image %}
+
+    <img src="{{ intro.center_image.url }}"
+         alt="intro-image"
+         class="intro-media">
+
+{% endif %}
 
             </div>
 
@@ -121,8 +139,26 @@
 
                             <div class="service-image">
 
-                                <img src="{{ service.image.url }}"
-                                     alt="{{ service.title }}">
+                                {% if service.video %}
+
+    <video autoplay
+           muted
+           loop
+           playsinline
+           class="service-media">
+
+        <source src="{{ service.video.url }}"
+                type="video/mp4">
+
+    </video>
+
+{% elif service.image %}
+
+    <img src="{{ service.image.url }}"
+         alt="{{ service.title }}"
+         class="service-media">
+
+{% endif %}
 
                             </div>
 
@@ -185,94 +221,94 @@
 <!-- ======================================== -->
 <!-- SCRIPT -->
 <!-- ======================================== -->
-
-<script src="https://cdn.jsdelivr.net/npm/jsvectormap@1.5.3/dist/js/jsvectormap.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/jsvectormap@1.5.3/dist/maps/world.js"></script>
-
 <script>
-var markerData = [
-    { name: 'USA',       projects: 12, coords: [37.09,  -95.71]  },
-    { name: 'Canada',    projects: 6,  coords: [56.13, -106.34]  },
-    { name: 'UK',        projects: 10, coords: [55.37,   -3.43]  },
-    { name: 'UAE',       projects: 8,  coords: [23.42,   53.84]  },
-    { name: 'India',     projects: 25, coords: [20.59,   78.96]  },
-    { name: 'Singapore', projects: 5,  coords: [ 1.35,  103.81]  },
-    { name: 'Australia', projects: 7,  coords: [-25.27, 133.77]  }
-];
 
-var map = new jsVectorMap({
-    selector: '#world-map',
-    map: 'world',
-    backgroundColor: '#eef2ff',
+document.addEventListener("DOMContentLoaded", function () {
 
-    regionStyle: {
-        initial: {
-            fill: '#bfdbfe',
-            stroke: '#ffffff',
-            strokeWidth: 0.5,
-        },
-        hover: {
-            fill: '#3b82f6',
-            cursor: 'pointer',
-        },
-        selected: {
-            fill: '#1e40af',
-        },
-        selectedHover: {
-            fill: '#1d4ed8',
-        },
-    },
+    // FIRST ROW OPEN DEFAULT
+    const firstRow = document.querySelector(".service-row-wrapper");
 
-    selectedRegions: [
-        'US','CA','GB','NO','NL','DE','AE','IN','SG','AU','FR','IT',
-        'ES','PT','SE','DK','FI','BE','CH','AT','PL','CZ','HU','RO',
-        'GR','TR','SA','QA','KW','BH','OM','EG','ZA','NG','KE','GH',
-        'ET','TZ','MA','DZ','LY','TN','SD','MX','BR','AR','CL','CO',
-        'PE','VE','EC','BO','PY','UY','CN','JP','KR','TH','MY','ID',
-        'PH','VN','BD','PK','LK','NP','MM','KH','NZ','RU','UA','KZ',
-        'UZ','IQ','IR','JO','LB','IL','YE','SY','AF','HK','TW'
-    ],
+    if (firstRow) {
 
-    markers: markerData,
+        firstRow.classList.add("active-row");
 
-    markersSelectable: false,
+        firstRow.querySelectorAll(".service-body").forEach(body => {
+            body.style.maxHeight = body.scrollHeight + "px";
+        });
 
-    /* ── MARKER STYLE ── */
-    markerStyle: {
-        initial: {
-            fill: '#f97316',
-            stroke: '#ffffff',
-            strokeWidth: 2.5,
-            r: 9,
-        },
-        hover: {
-            fill: '#ea580c',
-            stroke: '#fff',
-            strokeWidth: 3,
-            scale: 1.6,
-            cursor: 'pointer',
-        },
-    },
+    }
 
-    showTooltip: true,
-
-    /* ── CUSTOM TOOLTIP ON HOVER ── */
-    onMarkerTooltipShow: function(event, tooltip, index) {
-        var m = markerData[index];
-        tooltip.html(
-            '<div class="map-tooltip">' +
-                '<div class="map-tooltip-name">' +
-                    '<span class="map-tooltip-dot"></span>' +
-                    m.name +
-                '</div>' +
-                '<div class="map-tooltip-row">' +
-                    '<span>Projects</span>' +
-                    '<strong>' + m.projects + '</strong>' +
-                '</div>' +
-            '</div>'
-        );
-    },
 });
+
+
+/* =========================================
+   ROW ACCORDION
+========================================= */
+
+function toggleServiceRow(button) {
+
+    const currentCard = button.closest(".service-card");
+    const currentRow = button.closest(".service-row-wrapper");
+
+    const isAlreadyActive = currentRow.classList.contains("active-row");
+
+    // CLOSE ALL ROWS
+    document.querySelectorAll(".service-row-wrapper").forEach(row => {
+
+        row.classList.remove("active-row");
+
+        row.querySelectorAll(".service-body").forEach(body => {
+            body.style.maxHeight = null;
+        });
+
+        row.querySelectorAll(".service-icon").forEach(icon => {
+            icon.innerHTML = "+";
+        });
+
+    });
+
+    // IF SAME ROW CLICKED -> KEEP CLOSED
+    if (isAlreadyActive) {
+        return;
+    }
+
+    // OPEN CURRENT ROW
+    currentRow.classList.add("active-row");
+
+    currentRow.querySelectorAll(".service-body").forEach(body => {
+        body.style.maxHeight = body.scrollHeight + "px";
+    });
+
+    currentRow.querySelectorAll(".service-icon").forEach(icon => {
+        icon.innerHTML = "−";
+    });
+
+}
+
+
+/* =========================================
+   SEE MORE
+========================================= */
+
+function toggleDesc(btn) {
+
+    const text = btn.previousElementSibling;
+
+    text.classList.toggle("expanded");
+
+    if (text.classList.contains("expanded")) {
+
+        btn.innerText = "See Less";
+
+    } else {
+
+        btn.innerText = "See More";
+
+    }
+
+}
+
 </script>
+
 {% endblock %}
 

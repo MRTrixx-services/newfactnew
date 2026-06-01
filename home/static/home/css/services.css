@@ -524,3 +524,39 @@
     flex-shrink: 0;
 }
 
+/* DESCRIPTION CLAMP */
+
+.desc-text.clamped {
+
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+
+    overflow: hidden;
+}
+
+.desc-text.expanded {
+
+    -webkit-line-clamp: unset;
+}
+
+.service-media,
+.intro-media {
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+    display: block;
+}
+
+
+/* SERVICE BODY ANIMATION */
+
+.service-body {
+
+    overflow: hidden;
+    max-height: 0;
+
+    transition: max-height 0.5s ease;
+}

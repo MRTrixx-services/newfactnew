@@ -21,7 +21,26 @@
     <div class="carousel-inner">
         {% for slide in sliders %}
         <div class="carousel-item {% if forloop.first %}active{% endif %}">
-            <img src="{{ slide.image.url }}" class="d-block w-100 slider-img">
+            {% if slide.video %}
+
+    <video class="d-block w-100 slider-video"
+           autoplay
+           muted
+           loop
+           playsinline>
+
+        <source src="{{ slide.video.url }}"
+                type="video/mp4">
+
+    </video>
+
+{% elif slide.image %}
+
+    <img src="{{ slide.image.url }}"
+         class="d-block w-100 slider-img"
+         alt="{{ slide.title }}">
+
+{% endif %}
         </div>
         {% endfor %}
     </div>
@@ -125,12 +144,12 @@
         </div>
         <div class="stat-col">
             <div class="s-icon">✅</div>
-            <div class="s-num">250<em>+</em></div>
+            <div class="s-num">1K<em>+</em></div>
             <div class="s-lbl">Projects Done</div>
         </div>
         <div class="stat-col">
             <div class="s-icon">🏢</div>
-            <div class="s-num">100<em>+</em></div>
+            <div class="s-num">500<em>+</em></div>
             <div class="s-lbl">Trusted Clients</div>
         </div>
     </div>

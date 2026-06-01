@@ -198,10 +198,21 @@
 <script src="https://cdn.jsdelivr.net/npm/jsvectormap@1.5.3/dist/maps/world.js"></script>
 
 <script>
+var markerData = [
+    { name: 'USA',       projects: 12, coords: [37.09,  -95.71]  },
+    { name: 'Canada',    projects: 6,  coords: [56.13, -106.34]  },
+    { name: 'UK',        projects: 10, coords: [55.37,   -3.43]  },
+    { name: 'UAE',       projects: 8,  coords: [23.42,   53.84]  },
+    { name: 'India',     projects: 25, coords: [20.59,   78.96]  },
+    { name: 'Singapore', projects: 5,  coords: [ 1.35,  103.81]  },
+    { name: 'Australia', projects: 7,  coords: [-25.27, 133.77]  }
+];
+
 var map = new jsVectorMap({
     selector: '#world-map',
     map: 'world',
     backgroundColor: '#eef2ff',
+
     regionStyle: {
         initial: {
             fill: '#bfdbfe',
@@ -219,49 +230,56 @@ var map = new jsVectorMap({
             fill: '#1d4ed8',
         },
     },
-    selectedRegions: ['US', 'CA', 'GB', 'NO', 'NL', 'DE', 'AE', 'IN', 'SG', 'AU', 'FR', 'IT', 'ES', 'PT', 'SE', 'DK', 'FI', 'BE', 'CH', 'AT', 'PL', 'CZ', 'HU', 'RO', 'GR', 'TR', 'SA', 'QA', 'KW', 'BH', 'OM', 'EG', 'ZA', 'NG', 'KE', 'GH', 'ET', 'TZ', 'MA', 'DZ', 'LY', 'TN', 'SD', 'MX', 'BR', 'AR', 'CL', 'CO', 'PE', 'VE', 'EC', 'BO', 'PY', 'UY', 'CN', 'JP', 'KR', 'TH', 'MY', 'ID', 'PH', 'VN', 'BD', 'PK', 'LK', 'NP', 'MM', 'KH', 'NZ', 'RU', 'UA', 'KZ', 'UZ', 'IQ', 'IR', 'JO', 'LB', 'IL', 'YE', 'SY', 'AF', 'HK', 'TW'],
-    markers: [ { name: 'USA', projects: 12, coords: [37.09, -95.71] }, { name: 'Canada', projects: 6, coords: [56.13, -106.34] }, { name: 'UK', projects: 10, coords: [55.37, -3.43] }, { name: 'UAE', projects: 8, coords: [23.42, 53.84] }, { name: 'India', projects: 25, coords: [20.59, 78.96] }, { name: 'Singapore', projects: 5, coords: [1.35, 103.81] }, { name: 'Australia', projects: 7, coords: [-25.27, 133.77] } ],
-   
+
+    selectedRegions: [
+        'US','CA','GB','NO','NL','DE','AE','IN','SG','AU','FR','IT',
+        'ES','PT','SE','DK','FI','BE','CH','AT','PL','CZ','HU','RO',
+        'GR','TR','SA','QA','KW','BH','OM','EG','ZA','NG','KE','GH',
+        'ET','TZ','MA','DZ','LY','TN','SD','MX','BR','AR','CL','CO',
+        'PE','VE','EC','BO','PY','UY','CN','JP','KR','TH','MY','ID',
+        'PH','VN','BD','PK','LK','NP','MM','KH','NZ','RU','UA','KZ',
+        'UZ','IQ','IR','JO','LB','IL','YE','SY','AF','HK','TW'
+    ],
+
+    markers: markerData,
+
     markersSelectable: false,
 
-    onLoaded(map) {
-
-        const markers =
-            document.querySelectorAll('.jvm-marker');
-
-        markers.forEach(marker => {
-
-            marker.innerHTML = `
-                <i class="fa-solid fa-location-dot map-marker-icon"></i>
-            `;
-        });
-    },
-   
-
-    markerLabelStyle: {
+    /* ── MARKER STYLE ── */
+    markerStyle: {
         initial: {
-            fontFamily: 'inherit',
-            fontSize: 11,
-            fontWeight: 700,
             fill: '#f97316',
+            stroke: '#ffffff',
+            strokeWidth: 2.5,
+            r: 9,
+        },
+        hover: {
+            fill: '#ea580c',
+            stroke: '#fff',
+            strokeWidth: 3,
+            scale: 1.6,
+            cursor: 'pointer',
         },
     },
+
     showTooltip: true,
-    
-labels: {
-    markers: {
-        render: function(marker) {
 
-            return `
-                ${marker.name}
-                <br>
-                Projects: ${marker.projects}
-            `;
-        },
+    /* ── CUSTOM TOOLTIP ON HOVER ── */
+    onMarkerTooltipShow: function(event, tooltip, index) {
+        var m = markerData[index];
+        tooltip.html(
+            '<div class="map-tooltip">' +
+                '<div class="map-tooltip-name">' +
+                    '<span class="map-tooltip-dot"></span>' +
+                    m.name +
+                '</div>' +
+                '<div class="map-tooltip-row">' +
+                    '<span>Projects</span>' +
+                    '<strong>' + m.projects + '</strong>' +
+                '</div>' +
+            '</div>'
+        );
     },
-},
-
-
 });
 </script>
 

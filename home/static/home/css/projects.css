@@ -11,6 +11,16 @@
     overflow: hidden;
 }
 
+.project-media,
+.hero-bg {
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+    display: block;
+}
+
 /* HERO IMAGE */
 
 .hero-bg {

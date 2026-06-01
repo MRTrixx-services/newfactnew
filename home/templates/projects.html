@@ -15,13 +15,26 @@
 
 <section class="projects-hero">
 
-    {% if page.hero_image %}
+    {% if page.hero_video %}
+
+    <video class="hero-bg"
+           autoplay
+           muted
+           loop
+           playsinline>
+
+        <source src="{{ page.hero_video.url }}"
+                type="video/mp4">
+
+    </video>
+
+{% elif page.hero_image %}
 
     <img src="{{ page.hero_image.url }}"
          class="hero-bg"
          alt="hero-image">
 
-    {% endif %}
+{% endif %}
 
     <div class="hero-overlay">
 
@@ -82,8 +95,26 @@
                         <!-- IMAGE -->
                         <div class="project-image">
 
-                            <img src="{{ project.image.url }}"
-                                 alt="{{ project.title }}">
+                            {% if project.video %}
+
+    <video autoplay
+           muted
+           loop
+           playsinline
+           class="project-media">
+
+        <source src="{{ project.video.url }}"
+                type="video/mp4">
+
+    </video>
+
+{% elif project.image %}
+
+    <img src="{{ project.image.url }}"
+         alt="{{ project.title }}"
+         class="project-media">
+
+{% endif %}
 
                         </div>
 

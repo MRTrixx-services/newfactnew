@@ -1,49 +1,95 @@
 from django.db import models
 from ckeditor.fields import RichTextField
+from django.utils.text import slugify
 
 
+# =========================================
+# HOME SLIDER
+# =========================================
 class Slider(models.Model):
-    title = models.CharField(max_length=200, blank=True)
-    image = models.ImageField(upload_to='slider/')
+
+    title = models.CharField(
+        max_length=200,
+        blank=True
+    )
+
+    image = models.ImageField(
+        upload_to='slider/',
+        blank=True,
+        null=True
+    )
+
+    video = models.FileField(
+        upload_to='slider/videos/',
+        blank=True,
+        null=True
+    )
+
     is_active = models.BooleanField(default=True)
 
+    order = models.PositiveIntegerField(default=0)
+
+    class Meta:
+        ordering = ['order']
+
     def __str__(self):
-        return self.title or "Slider Image"
+        return self.title or "Slider"
 
 
+# =========================================
+# HOME PAGE CONTENT
+# =========================================
 class HomeContent(models.Model):
+
     content = RichTextField()
 
     def __str__(self):
         return "Home Page Content"
 
 
-
-from django.db import models
-from ckeditor.fields import RichTextField
-
-
-# =========================
+# =========================================
 # SERVICES PAGE INTRO
-# =========================
+# =========================================
 class ServicePageIntro(models.Model):
 
     left_content = RichTextField()
-    center_image = models.ImageField(upload_to='services/intro/')
+
+    center_image = models.ImageField(
+        upload_to='services/intro/',
+        blank=True,
+        null=True
+    )
+
+    center_video = models.FileField(
+        upload_to='services/intro/videos/',
+        blank=True,
+        null=True
+    )
+
     right_content = RichTextField()
 
     def __str__(self):
         return "Services Page Intro"
 
 
-# =========================
+# =========================================
 # SERVICES
-# =========================    
+# =========================================
 class Service(models.Model):
 
     title = models.CharField(max_length=200)
 
-    image = models.ImageField(upload_to='services/')
+    image = models.ImageField(
+        upload_to='services/',
+        blank=True,
+        null=True
+    )
+
+    video = models.FileField(
+        upload_to='services/videos/',
+        blank=True,
+        null=True
+    )
 
     description = RichTextField()
 
@@ -64,10 +110,6 @@ class Service(models.Model):
 
     def __str__(self):
         return self.title
-    
-from django.db import models
-from ckeditor.fields import RichTextField
-from django.utils.text import slugify
 
 
 # =========================================
@@ -81,7 +123,15 @@ class ProjectsPage(models.Model):
     )
 
     hero_image = models.ImageField(
-        upload_to='projects/hero/'
+        upload_to='projects/hero/',
+        blank=True,
+        null=True
+    )
+
+    hero_video = models.FileField(
+        upload_to='projects/hero/videos/',
+        blank=True,
+        null=True
     )
 
     def __str__(self):
@@ -113,7 +163,15 @@ class Project(models.Model):
     short_description = RichTextField()
 
     image = models.ImageField(
-        upload_to='projects/'
+        upload_to='projects/',
+        blank=True,
+        null=True
+    )
+
+    video = models.FileField(
+        upload_to='projects/videos/',
+        blank=True,
+        null=True
     )
 
     status = models.CharField(
@@ -124,6 +182,16 @@ class Project(models.Model):
     project_date = models.DateField()
 
     order = models.PositiveIntegerField(default=0)
+
+    class Meta:
+        ordering = ['order']
+
+    def save(self, *args, **kwargs):
+
+        if not self.slug:
+            self.slug = slugify(self.title)
+
+        super().save(*args, **kwargs)
 
     def __str__(self):
         return self.title
@@ -140,7 +208,15 @@ class SocialServicesPage(models.Model):
     )
 
     hero_image = models.ImageField(
-        upload_to='social_services/hero/'
+        upload_to='social_services/hero/',
+        blank=True,
+        null=True
+    )
+
+    hero_video = models.FileField(
+        upload_to='social_services/hero/videos/',
+        blank=True,
+        null=True
     )
 
     def __str__(self):
@@ -172,7 +248,15 @@ class SocialService(models.Model):
     short_description = RichTextField()
 
     image = models.ImageField(
-        upload_to='social_services/'
+        upload_to='social_services/',
+        blank=True,
+        null=True
+    )
+
+    video = models.FileField(
+        upload_to='social_services/videos/',
+        blank=True,
+        null=True
     )
 
     status = models.CharField(
@@ -188,11 +272,11 @@ class SocialService(models.Model):
         ordering = ['order', '-project_date']
 
     def save(self, *args, **kwargs):
+
         if not self.slug:
             self.slug = slugify(self.title)
+
         super().save(*args, **kwargs)
 
     def __str__(self):
         return self.title
-
-

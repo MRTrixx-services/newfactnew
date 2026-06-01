@@ -13,9 +13,26 @@
 
 <section class="social-hero">
 
-    {% if page.hero_image %}
-    <img src="{{ page.hero_image.url }}" class="hero-bg" alt="hero-image">
-    {% endif %}
+    {% if page.hero_video %}
+
+    <video class="hero-bg"
+           autoplay
+           muted
+           loop
+           playsinline>
+
+        <source src="{{ page.hero_video.url }}"
+                type="video/mp4">
+
+    </video>
+
+{% elif page.hero_image %}
+
+    <img src="{{ page.hero_image.url }}"
+         class="hero-bg"
+         alt="hero-image">
+
+{% endif %}
 
     <div class="hero-overlay">
         <h1 class="social-title">{{ page.title }}</h1>
@@ -53,7 +70,26 @@
                         </div>
 
                         <div class="social-image">
-                            <img src="{{ item.image.url }}" alt="{{ item.title }}">
+                            {% if item.video %}
+
+    <video autoplay
+           muted
+           loop
+           playsinline
+           class="social-media">
+
+        <source src="{{ item.video.url }}"
+                type="video/mp4">
+
+    </video>
+
+{% elif item.image %}
+
+    <img src="{{ item.image.url }}"
+         alt="{{ item.title }}"
+         class="social-media">
+
+{% endif %}
                         </div>
 
                     </div>
