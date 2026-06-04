@@ -16,7 +16,7 @@ def home_view(request):
 
     featured_services = Service.objects.filter(
         is_featured=True
-    )[:9]
+    )[:12]
 
     return render(request, 'home.html', {
         'sliders': sliders,
@@ -37,10 +37,6 @@ def services_view(request):
     }
 
     return render(request, 'services.html', context)
-
-
-
-
 
 
 
