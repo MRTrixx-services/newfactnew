@@ -115,9 +115,32 @@
 /* PROJECT CARD */
 /* ======================================== */
 
-.project-card {
+/* ======================================== */
+/* PROJECT CARD */
+/* ======================================== */
+
+.project-card{
 
     margin-bottom: 40px;
+
+    border: 1px solid #0f3b82;
+
+    border-radius: 20px;
+
+    padding: 24px;
+
+    background: rgba(255,255,255,0.25);
+
+    transition: 0.3s ease;
+}
+
+/* HOVER */
+
+.project-card:hover{
+
+    transform: translateY(-4px);
+
+    box-shadow: 0 15px 35px rgba(15,59,130,0.10);
 }
 
 /* PROJECT TITLE */
