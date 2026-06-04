@@ -107,9 +107,17 @@
 /* SOCIAL CARD */
 /* ======================================== */
 
-.social-card {
+.social-card{
 
-    margin-bottom: 40px;
+    background: rgba(255,255,255,0.35);
+
+    border: 2px solid rgba(15,59,130,0.10);
+
+    border-radius: 20px;
+
+    padding: 24px;
+
+    height: 100%;
 }
 
 .social-name {
@@ -225,19 +233,45 @@
 
 /* SOCIAL IMAGE */
 
-.social-image .social-media {
+/* SOCIAL IMAGE */
 
-    width: 100%;
+.social-image{
 
-    height: 240px;
-
-    object-fit: cover;
-
-    border-radius: 10px;
+    background: white;
 
     border: 3px solid #0f3b82;
 
+    border-radius: 14px;
+
+    overflow: hidden;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    padding: 10px;
+}
+
+.social-image .social-media{
+
+    width: 100%;
+
+    height: 260px;
+
+    object-fit: contain;
+
+    display: block;
+
     transition: 0.3s ease;
+}
+
+/* HOVER */
+
+.social-image:hover .social-media{
+
+    transform: scale(1.02);
 }
 
 .social-image img:hover {
