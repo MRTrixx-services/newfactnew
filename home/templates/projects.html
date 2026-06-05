@@ -19,9 +19,11 @@
 
     <video class="hero-bg"
            autoplay
-           muted
-           loop
-           playsinline>
+       muted
+       loop
+       playsinline
+       webkit-playsinline
+       preload="auto">
 
         <source src="{{ page.hero_video.url }}"
                 type="video/mp4">
@@ -98,9 +100,11 @@
                             {% if project.video %}
 
     <video autoplay
-           muted
-           loop
-           playsinline
+       muted
+       loop
+       playsinline
+       webkit-playsinline
+       preload="auto"
            class="project-media">
 
         <source src="{{ project.video.url }}"
@@ -165,8 +169,28 @@
                         <!-- IMAGE -->
                         <div class="project-image">
 
-                            <img src="{{ project.image.url }}"
-                                 alt="{{ project.title }}">
+                            {% if project.video %}
+
+    <video autoplay
+           muted
+           loop
+           playsinline
+           webkit-playsinline
+           preload="auto"
+           class="project-media">
+
+        <source src="{{ project.video.url }}"
+                type="video/mp4">
+
+    </video>
+
+{% elif project.image %}
+
+    <img src="{{ project.image.url }}"
+         alt="{{ project.title }}"
+         class="project-media">
+
+{% endif %}
 
                         </div>
 
@@ -217,8 +241,28 @@
                         <!-- IMAGE -->
                         <div class="project-image">
 
-                            <img src="{{ project.image.url }}"
-                                 alt="{{ project.title }}">
+                            {% if project.video %}
+
+    <video autoplay
+           muted
+           loop
+           playsinline
+           webkit-playsinline
+           preload="auto"
+           class="project-media">
+
+        <source src="{{ project.video.url }}"
+                type="video/mp4">
+
+    </video>
+
+{% elif project.image %}
+
+    <img src="{{ project.image.url }}"
+         alt="{{ project.title }}"
+         class="project-media">
+
+{% endif %}
 
                         </div>
 

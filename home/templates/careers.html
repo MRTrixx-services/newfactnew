@@ -7,9 +7,28 @@
 
 <!-- HERO -->
 <section class="career-hero">
-    {% if hero.background_image %}
-    <img src="{{ hero.background_image.url }}" alt="hero">
-    {% endif %}
+    {% if hero.background_video %}
+
+<video autoplay
+       muted
+       loop
+       playsinline
+       webkit-playsinline
+       preload="auto"
+       class="career-hero-video">
+
+    <source src="{{ hero.background_video.url }}"
+            type="video/mp4">
+
+</video>
+
+{% elif hero.background_image %}
+
+<img src="{{ hero.background_image.url }}"
+     alt="hero"
+     class="career-hero-image">
+
+{% endif %}
     <div class="overlay"></div>
     <div class="hero-content">
         <span class="hero-badge">We're Hiring</span>

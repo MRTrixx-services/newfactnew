@@ -21,8 +21,30 @@
         </div>
 
         <div class="detail-image">
-            <img src="{{ service.image.url }}" alt="{{ service.title }}">
-        </div>
+
+    {% if service.video %}
+
+        <video autoplay
+               muted
+               loop
+               playsinline
+               webkit-playsinline
+               preload="auto"
+               class="social-media">
+
+            <source src="{{ service.video.url }}" type="video/mp4">
+
+        </video>
+
+    {% elif service.image %}
+
+        <img src="{{ service.image.url }}"
+             alt="{{ service.title }}"
+             class="social-media">
+
+    {% endif %}
+
+</div>
 
         <div class="detail-description">
             {{ service.short_description|safe }}

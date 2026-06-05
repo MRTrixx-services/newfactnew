@@ -29,9 +29,31 @@
 
         <!-- IMAGE -->
         <div class="detail-image">
-            <img src="{{ project.image.url }}" alt="{{ project.title }}">
-        </div>
 
+    {% if project.video %}
+
+        <video autoplay
+               muted
+               loop
+               playsinline
+               webkit-playsinline
+               preload="auto"
+               class="project-media">
+
+            <source src="{{ project.video.url }}"
+                    type="video/mp4">
+
+        </video>
+
+    {% elif project.image %}
+
+        <img src="{{ project.image.url }}"
+             alt="{{ project.title }}"
+             class="project-media">
+
+    {% endif %}
+
+</div>
         <!-- DESCRIPTION -->
         <div class="detail-description">
             {{ project.short_description|safe }}

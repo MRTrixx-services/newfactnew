@@ -17,9 +17,11 @@
 
     <video class="hero-bg"
            autoplay
-           muted
-           loop
-           playsinline>
+       muted
+       loop
+       playsinline
+       webkit-playsinline
+       preload="auto">
 
         <source src="{{ page.hero_video.url }}"
                 type="video/mp4">
@@ -73,9 +75,11 @@
                             {% if item.video %}
 
     <video autoplay
-           muted
-           loop
-           playsinline
+       muted
+       loop
+       playsinline
+       webkit-playsinline
+       preload="auto"
            class="social-media">
 
         <source src="{{ item.video.url }}"
@@ -117,7 +121,28 @@
                         </div>
 
                         <div class="social-image">
-                            <img src="{{ item.image.url }}" alt="{{ item.title }}">
+                            {% if item.video %}
+
+    <video autoplay
+           muted
+           loop
+           playsinline
+           webkit-playsinline
+           preload="auto"
+           class="social-media">
+
+        <source src="{{ item.video.url }}"
+                type="video/mp4">
+
+    </video>
+
+{% elif item.image %}
+
+    <img src="{{ item.image.url }}"
+         alt="{{ item.title }}"
+         class="social-media">
+
+{% endif %}
                         </div>
 
                     </div>
@@ -145,7 +170,28 @@
                         </div>
 
                         <div class="social-image">
-                            <img src="{{ item.image.url }}" alt="{{ item.title }}">
+                            {% if item.video %}
+
+    <video autoplay
+           muted
+           loop
+           playsinline
+           webkit-playsinline
+           preload="auto"
+           class="social-media">
+
+        <source src="{{ item.video.url }}"
+                type="video/mp4">
+
+    </video>
+
+{% elif item.image %}
+
+    <img src="{{ item.image.url }}"
+         alt="{{ item.title }}"
+         class="social-media">
+
+{% endif %}
                         </div>
 
                     </div>

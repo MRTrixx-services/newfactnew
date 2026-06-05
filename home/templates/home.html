@@ -24,11 +24,12 @@
             {% if slide.video %}
 
     <video class="d-block w-100 slider-video"
-           autoplay
-           muted
-           loop
-           playsinline>
-
+       autoplay
+       muted
+       loop
+       playsinline
+       webkit-playsinline
+       preload="auto">
         <source src="{{ slide.video.url }}"
                 type="video/mp4">
 
@@ -335,6 +336,51 @@ document.addEventListener('keydown', function (e) {
         closeServiceModal();
     }
 });
+</script>
+<script>
+
+document.addEventListener("DOMContentLoaded", function () {
+
+    document.querySelectorAll("video").forEach(video => {
+
+        video.muted = true;
+        video.setAttribute("muted", "");
+
+        const playPromise = video.play();
+
+        if (playPromise !== undefined) {
+            playPromise.catch(() => {});
+        }
+
+    });
+
+    const carousel = document.getElementById('mainCarousel');
+
+    if (carousel) {
+
+        carousel.addEventListener('slid.bs.carousel', function () {
+
+            document.querySelectorAll(".slider-video").forEach(video => {
+
+                video.pause();
+                video.currentTime = 0;
+
+            });
+
+            const activeVideo = carousel.querySelector('.carousel-item.active video');
+
+            if (activeVideo) {
+
+                activeVideo.play().catch(() => {});
+
+            }
+
+        });
+
+    }
+
+});
+
 </script>
 
 {% endblock %}

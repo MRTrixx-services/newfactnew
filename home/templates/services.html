@@ -41,9 +41,11 @@
                 {% if intro.center_video %}
 
     <video autoplay
-           muted
-           loop
-           playsinline
+       muted
+       loop
+       playsinline
+       webkit-playsinline
+       preload="auto"
            class="intro-media">
 
         <source src="{{ intro.center_video.url }}"
@@ -142,9 +144,11 @@
                                 {% if service.video %}
 
     <video autoplay
-           muted
-           loop
-           playsinline
+       muted
+       loop
+       playsinline
+       webkit-playsinline
+       preload="auto"
            class="service-media">
 
         <source src="{{ service.video.url }}"
