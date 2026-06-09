@@ -1,7 +1,5 @@
 from django.db import models
-
-# Create your models here.
-from django.db import models
+from ckeditor.fields import RichTextField
 
 
 class CareerHero(models.Model):
@@ -49,9 +47,9 @@ class JobOpening(models.Model):
         null=True
     )
 
-    description = models.TextField()
+    description = RichTextField()
 
-    skills = models.TextField(
+    skills = RichTextField(
         blank=True,
         null=True
     )

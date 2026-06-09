@@ -147,9 +147,10 @@
 
     display: flex;
 
-    align-items: flex-start;
+    align-items: center;
 
     margin-bottom: 10px;
+    justify-content:center;
 
     text-decoration: underline;
 }

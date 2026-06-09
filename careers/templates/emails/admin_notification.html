@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>New Job Application</title>
+</head>
+<body style="margin:0;padding:0;background:#f1f5f9;font-family:'Segoe UI',Arial,sans-serif;">
+
+  <table width="100%" cellpadding="0" cellspacing="0" style="background:#f1f5f9;padding:32px 16px;">
+    <tr>
+      <td align="center">
+        <table width="600" cellpadding="0" cellspacing="0" style="max-width:600px;width:100%;background:#ffffff;border-radius:16px;overflow:hidden;box-shadow:0 4px 24px rgba(15,23,42,0.10);">
+
+          <!-- HEADER -->
+          <tr>
+            <td style="background:linear-gradient(135deg,#1e3a8a 0%,#2563eb 100%);padding:36px 40px;text-align:center;">
+              <p style="margin:0 0 6px 0;font-size:12px;font-weight:700;letter-spacing:2px;color:rgba(255,255,255,0.65);text-transform:uppercase;">New Fact Engineering</p>
+              <h1 style="margin:0;font-size:26px;font-weight:800;color:#ffffff;letter-spacing:-0.3px;">New Job Application</h1>
+              <p style="margin:10px 0 0 0;font-size:14px;color:rgba(255,255,255,0.75);">A candidate has applied for a position</p>
+            </td>
+          </tr>
+
+          <!-- ALERT BADGE -->
+          <tr>
+            <td style="padding:24px 40px 0;text-align:center;">
+              <span style="display:inline-block;background:#eff6ff;color:#1d4ed8;border:1px solid #bfdbfe;border-radius:50px;padding:7px 20px;font-size:13px;font-weight:700;">
+                📋 Application Received — Action Required
+              </span>
+            </td>
+          </tr>
+
+          <!-- BODY -->
+          <tr>
+            <td style="padding:28px 40px 0;">
+
+              <p style="margin:0 0 20px;font-size:15px;color:#475569;line-height:1.7;">
+                Hello <strong style="color:#0f172a;">Admin</strong>,<br>
+                A new application has been submitted on the careers portal. Here are the full details:
+              </p>
+
+              <!-- APPLICANT INFO TABLE -->
+              <table width="100%" cellpadding="0" cellspacing="0" style="background:#f8fafc;border:1.5px solid #e2e8f0;border-radius:12px;overflow:hidden;margin-bottom:24px;">
+
+                <tr style="background:#1e3a8a;">
+                  <td colspan="2" style="padding:12px 20px;font-size:12px;font-weight:700;letter-spacing:1px;color:#fff;text-transform:uppercase;">
+                    👤 Applicant Details
+                  </td>
+                </tr>
+
+                <tr style="border-bottom:1px solid #e2e8f0;">
+                  <td style="padding:14px 20px;font-size:13px;font-weight:700;color:#64748b;width:38%;border-right:1px solid #e2e8f0;">Full Name</td>
+                  <td style="padding:14px 20px;font-size:14px;font-weight:700;color:#0f172a;">{{ full_name }}</td>
+                </tr>
+
+                <tr style="border-bottom:1px solid #e2e8f0;background:#fff;">
+                  <td style="padding:14px 20px;font-size:13px;font-weight:700;color:#64748b;border-right:1px solid #e2e8f0;">Email Address</td>
+                  <td style="padding:14px 20px;font-size:14px;color:#2563eb;">
+                    <a href="mailto:{{ email }}" style="color:#2563eb;text-decoration:none;">{{ email }}</a>
+                  </td>
+                </tr>
+
+                <tr style="border-bottom:1px solid #e2e8f0;">
+                  <td style="padding:14px 20px;font-size:13px;font-weight:700;color:#64748b;border-right:1px solid #e2e8f0;">Phone Number</td>
+                  <td style="padding:14px 20px;font-size:14px;color:#0f172a;">{{ phone|default:"Not provided" }}</td>
+                </tr>
+
+                <tr style="border-bottom:1px solid #e2e8f0;background:#fff;">
+                  <td style="padding:14px 20px;font-size:13px;font-weight:700;color:#64748b;border-right:1px solid #e2e8f0;">Applied For</td>
+                  <td style="padding:14px 20px;">
+                    <span style="display:inline-block;background:#eff6ff;color:#1d4ed8;border-radius:6px;padding:4px 12px;font-size:13px;font-weight:700;">
+                      {{ job_title|default:"General Application" }}
+                    </span>
+                  </td>
+                </tr>
+
+                <tr>
+                  <td style="padding:14px 20px;font-size:13px;font-weight:700;color:#64748b;border-right:1px solid #e2e8f0;">Applied On</td>
+                  <td style="padding:14px 20px;font-size:14px;color:#0f172a;">{{ applied_on }}</td>
+                </tr>
+
+              </table>
+
+              <!-- COVER LETTER -->
+              {% if cover_letter %}
+              <table width="100%" cellpadding="0" cellspacing="0" style="background:#f8fafc;border:1.5px solid #e2e8f0;border-radius:12px;overflow:hidden;margin-bottom:24px;">
+                <tr style="background:#0f172a;">
+                  <td style="padding:12px 20px;font-size:12px;font-weight:700;letter-spacing:1px;color:#fff;text-transform:uppercase;">
+                    💬 Cover Letter
+                  </td>
+                </tr>
+                <tr>
+                  <td style="padding:18px 20px;font-size:14px;color:#334155;line-height:1.8;">
+                    {{ cover_letter }}
+                  </td>
+                </tr>
+              </table>
+              {% endif %}
+
+              <!-- RESUME NOTE -->
+              <table width="100%" cellpadding="0" cellspacing="0" style="background:#fefce8;border:1.5px solid #fde68a;border-radius:12px;margin-bottom:28px;">
+                <tr>
+                  <td style="padding:16px 20px;font-size:14px;color:#92400e;line-height:1.7;">
+                    <strong>📎 Resume Attached:</strong> The applicant's resume has been saved to the system.
+                    Please log in to the admin panel to download and review it.
+                  </td>
+                </tr>
+              </table>
+
+              <!-- CTA BUTTON -->
+              <table width="100%" cellpadding="0" cellspacing="0" style="margin-bottom:32px;">
+                <tr>
+                  <td align="center">
+                    <a href="https://newfactengineering.com/admin/careers/careerapplication/"
+                       style="display:inline-block;background:linear-gradient(135deg,#1e3a8a,#2563eb);color:#fff;text-decoration:none;padding:14px 34px;border-radius:50px;font-size:14px;font-weight:700;letter-spacing:0.3px;">
+                      View in Admin Panel →
+                    </a>
+                  </td>
+                </tr>
+              </table>
+
+            </td>
+          </tr>
+
+          <!-- FOOTER -->
+          <tr>
+            <td style="background:#f8fafc;border-top:1px solid #e2e8f0;padding:20px 40px;text-align:center;">
+              <p style="margin:0;font-size:12px;color:#94a3b8;line-height:1.7;">
+                This is an automated notification from the <strong style="color:#64748b;">New Fact Engineering</strong> careers portal.<br>
+                © 2026 New Fact Engineering. All rights reserved.
+              </p>
+            </td>
+          </tr>
+
+        </table>
+      </td>
+    </tr>
+  </table>
+
+</body>
+</html>

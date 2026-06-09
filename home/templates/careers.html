@@ -64,10 +64,15 @@
                     <span><i class="fas fa-money-bill-wave"></i> {{ job.salary }}</span>
                     {% endif %}
                 </div>
-                <p>{{ job.description|truncatewords:30 }}</p>
-                <button class="btn-apply" onclick="openApplyModal('{{ job.id }}', '{{ job.title }}')">
-                    Apply Now <i class="fas fa-paper-plane"></i>
-                </button>
+                <p>{{ job.description|striptags|truncatewords:30 }}</p>
+                <div class="job-actions">
+                    <button class="btn-view" onclick="openJobDetail({{ job.id }})">
+                        View Details <i class="fas fa-eye"></i>
+                    </button>
+                    <button class="btn-apply" onclick="openApplyModal('{{ job.id }}', '{{ job.title }}')">
+                        Apply Now <i class="fas fa-paper-plane"></i>
+                    </button>
+                </div>
             </div>
             {% empty %}
             <div class="empty-box">
@@ -162,42 +167,77 @@
 </section>
 {% endif %}
 
+<!-- JOB DETAIL MODAL -->
+<div class="modal-overlay" id="jobDetailModal">
+    <div class="modal-box modal-box-lg">
+        <button class="modal-close" onclick="closeJobDetail()"><i class="fas fa-times"></i></button>
+        <div id="jobDetailContent"></div>
+        <div style="margin-top:24px;text-align:right;">
+            <button class="btn-apply" id="detailApplyBtn" onclick="applyFromDetail()">
+                Apply Now <i class="fas fa-paper-plane"></i>
+            </button>
+        </div>
+    </div>
+</div>
+
+<!-- TOAST NOTIFICATIONS -->
+<div id="toastContainer" style="position:fixed;top:24px;right:24px;z-index:99999;display:flex;flex-direction:column;gap:10px;max-width:380px;"></div>
+
 <!-- MODAL -->
 <div class="modal-overlay" id="applyModal">
     <div class="modal-box">
         <button class="modal-close" onclick="closeApplyModal()"><i class="fas fa-times"></i></button>
         <h2>Apply for <span id="modalJobTitle"></span></h2>
-        <form method="POST" enctype="multipart/form-data">
+
+        <form method="POST" enctype="multipart/form-data" id="applyForm" novalidate>
             {% csrf_token %}
             <input type="hidden" name="job" id="selectedJobId">
+
             <div class="form-row">
                 <div class="form-field">
-                    <label>Full Name *</label>
-                    <input type="text" name="full_name" placeholder="John Doe" required>
+                    <label>Full Name <span style="color:#ef4444">*</span></label>
+                    <input type="text" name="full_name" id="field_full_name"
+                           placeholder="John Doe" autocomplete="name">
+                    <span class="field-error" id="err_full_name"></span>
                 </div>
                 <div class="form-field">
-                    <label>Email Address *</label>
-                    <input type="email" name="email" placeholder="you@email.com" required>
+                    <label>Email Address <span style="color:#ef4444">*</span></label>
+                    <input type="email" name="email" id="field_email"
+                           placeholder="you@email.com" autocomplete="email">
+                    <span class="field-error" id="err_email"></span>
                 </div>
             </div>
+
             <div class="form-field">
                 <label>Phone Number</label>
-                <input type="text" name="phone" placeholder="+1 (555) 000-0000">
+                <input type="text" name="phone" id="field_phone"
+                       placeholder="+91 98765 43210" autocomplete="tel">
+                <span class="field-error" id="err_phone"></span>
             </div>
+
             <div class="form-field">
-                <label>Cover Letter</label>
-                <textarea name="cover_letter" placeholder="Tell us why you're a great fit..."></textarea>
+                <label>Cover Letter <span style="font-size:11px;color:#94a3b8;font-weight:400">(optional)</span></label>
+                <textarea name="cover_letter" id="field_cover_letter"
+                          placeholder="Tell us why you're a great fit for this role..."></textarea>
             </div>
+
             <div class="form-field">
-                <label>Resume (PDF/DOC) *</label>
-                <div class="file-wrap">
+                <label>Resume (PDF / DOC / DOCX) <span style="color:#ef4444">*</span></label>
+                <div class="file-wrap" id="fileWrap">
                     <i class="fas fa-cloud-upload-alt"></i>
-                    <span id="fileLabel">Click to upload or drag & drop</span>
-                    <input type="file" name="resume" id="resume" required onchange="updateFileLabel(this)">
+                    <span id="fileLabel">Click to upload or drag &amp; drop &nbsp;·&nbsp; Max 5MB</span>
+                    <input type="file" name="resume" id="resume"
+                           accept=".pdf,.doc,.docx" onchange="updateFileLabel(this)">
                 </div>
+                <span class="field-error" id="err_resume"></span>
             </div>
-            <button type="submit" class="btn-submit">
-                Submit Application <i class="fas fa-arrow-right"></i>
+
+            <button type="submit" class="btn-submit" id="submitBtn">
+                <span id="submitText">Submit Application</span>
+                <span id="submitSpinner" style="display:none">
+                    <i class="fas fa-circle-notch fa-spin"></i> Sending...
+                </span>
+                <i class="fas fa-arrow-right" id="submitArrow"></i>
             </button>
         </form>
     </div>
@@ -241,6 +281,161 @@
 </section>
 
 <script>
+/* ── JOBS DATA ───────────────────────────────────────── */
+const jobsData = {
+    {% for job in jobs %}
+    "{{ job.id }}": {
+        title: "{{ job.title|escapejs }}",
+        department: "{{ job.department|default:''|escapejs }}",
+        location: "{{ job.location|default:''|escapejs }}",
+        experience: "{{ job.experience|default:''|escapejs }}",
+        salary: "{{ job.salary|default:''|escapejs }}",
+        description: `{{ job.description|escapejs }}`,
+        skills: `{{ job.skills|default:''|escapejs }}`,
+    }{% if not forloop.last %},{% endif %}
+    {% endfor %}
+};
+
+/* ── TOAST ───────────────────────────────────────────── */
+function showToast(message, type) {
+    const container = document.getElementById('toastContainer');
+    const isSuccess = type === 'success';
+    const toast = document.createElement('div');
+    toast.style.cssText = [
+        'display:flex;align-items:flex-start;gap:12px;',
+        'background:#fff;border-radius:12px;padding:16px 18px;',
+        'box-shadow:0 8px 32px rgba(15,23,42,0.15);',
+        `border-left:4px solid ${isSuccess ? '#16a34a' : '#dc2626'};`,
+        'animation:slideInRight 0.3s ease;max-width:380px;',
+    ].join('');
+    toast.innerHTML = `
+        <span style="font-size:20px;flex-shrink:0;line-height:1.3">${isSuccess ? '✅' : '❌'}</span>
+        <div style="flex:1">
+            <p style="margin:0 0 2px;font-size:13.5px;font-weight:700;color:#0f172a">
+                ${isSuccess ? 'Application Submitted!' : 'Validation Error'}
+            </p>
+            <p style="margin:0;font-size:13px;color:#475569;line-height:1.5">${message}</p>
+        </div>
+        <button onclick="this.parentElement.remove()" style="background:none;border:none;font-size:16px;color:#94a3b8;cursor:pointer;flex-shrink:0;padding:0;line-height:1">×</button>
+    `;
+    container.appendChild(toast);
+    setTimeout(() => toast.style.opacity = '0', 4500);
+    setTimeout(() => toast.remove(), 5000);
+}
+
+/* ── DJANGO MESSAGES AS TOAST ────────────────────────── */
+{% if messages %}
+document.addEventListener('DOMContentLoaded', function() {
+    {% for msg in messages %}
+    showToast("{{ msg|escapejs }}", "{{ msg.tags }}");
+    {% endfor %}
+});
+{% endif %}
+
+/* ── FIELD VALIDATION HELPERS ───────────────────────── */
+function setError(fieldId, msg) {
+    const el = document.getElementById('field_' + fieldId);
+    const err = document.getElementById('err_' + fieldId);
+    if (el) el.style.borderColor = msg ? '#dc2626' : '';
+    if (err) { err.textContent = msg; err.style.display = msg ? 'block' : 'none'; }
+    return !!msg;
+}
+
+function validateForm() {
+    let hasError = false;
+    const name  = document.getElementById('field_full_name').value.trim();
+    const email = document.getElementById('field_email').value.trim();
+    const phone = document.getElementById('field_phone').value.trim();
+    const resume = document.getElementById('resume');
+
+    hasError = setError('full_name', name.length < 2 ? 'Full name must be at least 2 characters.' : '') || hasError;
+
+    const emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+    hasError = setError('email', !emailOk ? 'Please enter a valid email address.' : '') || hasError;
+
+    if (phone) {
+        const phoneOk = /^[\d\s\+\-\(\)]{7,15}$/.test(phone);
+        hasError = setError('phone', !phoneOk ? 'Enter a valid phone number.' : '') || hasError;
+    } else {
+        setError('phone', '');
+    }
+
+    if (!resume.files || !resume.files[0]) {
+        hasError = setError('resume', 'Please upload your resume.') || hasError;
+    } else {
+        const fname = resume.files[0].name.toLowerCase();
+        const allowed = ['.pdf', '.doc', '.docx'];
+        if (!allowed.some(ext => fname.endsWith(ext))) {
+            hasError = setError('resume', 'Only PDF, DOC, or DOCX files are allowed.') || hasError;
+        } else if (resume.files[0].size > 5 * 1024 * 1024) {
+            hasError = setError('resume', 'File size must not exceed 5MB.') || hasError;
+        } else {
+            setError('resume', '');
+        }
+    }
+    return !hasError;
+}
+
+/* ── FORM SUBMIT ─────────────────────────────────────── */
+document.addEventListener('DOMContentLoaded', function() {
+    const form = document.getElementById('applyForm');
+    if (!form) return;
+
+    form.addEventListener('submit', function(e) {
+        if (!validateForm()) {
+            e.preventDefault();
+            showToast('Please fix the errors in the form before submitting.', 'error');
+            return;
+        }
+        document.getElementById('submitText').style.display   = 'none';
+        document.getElementById('submitSpinner').style.display = 'inline';
+        document.getElementById('submitArrow').style.display  = 'none';
+        document.getElementById('submitBtn').disabled = true;
+    });
+
+    // Live clear errors on input
+    ['full_name','email','phone'].forEach(id => {
+        const el = document.getElementById('field_' + id);
+        if (el) el.addEventListener('input', () => setError(id, ''));
+    });
+});
+
+/* ── JOB DETAIL MODAL ───────────────────────────────── */
+let currentDetailJobId = null;
+
+function openJobDetail(jobId) {
+    const job = jobsData[jobId];
+    if (!job) return;
+    currentDetailJobId = jobId;
+    let metaHtml = '';
+    if (job.department) metaHtml += `<span class="detail-badge"><i class="fas fa-building"></i> ${job.department}</span>`;
+    if (job.location)   metaHtml += `<span class="detail-badge"><i class="fas fa-map-marker-alt"></i> ${job.location}</span>`;
+    if (job.experience) metaHtml += `<span class="detail-badge"><i class="fas fa-briefcase"></i> ${job.experience}</span>`;
+    if (job.salary)     metaHtml += `<span class="detail-badge"><i class="fas fa-money-bill-wave"></i> ${job.salary}</span>`;
+    let skillsHtml = job.skills ? `<div class="detail-section-block"><h4>Required Skills</h4><div class="detail-rich-content">${job.skills}</div></div>` : '';
+    document.getElementById('jobDetailContent').innerHTML = `
+        <h2 class="detail-job-title">${job.title}</h2>
+        <div class="detail-meta-badges">${metaHtml}</div>
+        <div class="detail-section-block"><h4>Job Description</h4><div class="detail-rich-content">${job.description}</div></div>
+        ${skillsHtml}`;
+    document.getElementById('detailApplyBtn').dataset.jobId    = jobId;
+    document.getElementById('detailApplyBtn').dataset.jobTitle = job.title;
+    document.getElementById('jobDetailModal').classList.add('active');
+    document.body.style.overflow = 'hidden';
+}
+
+function closeJobDetail() {
+    document.getElementById('jobDetailModal').classList.remove('active');
+    document.body.style.overflow = '';
+}
+
+function applyFromDetail() {
+    const btn = document.getElementById('detailApplyBtn');
+    closeJobDetail();
+    setTimeout(() => openApplyModal(btn.dataset.jobId, btn.dataset.jobTitle), 200);
+}
+
+/* ── APPLY MODAL ────────────────────────────────────── */
 function openApplyModal(jobId, jobTitle) {
     document.getElementById('selectedJobId').value = jobId;
     document.getElementById('modalJobTitle').textContent = jobTitle;
@@ -255,12 +450,40 @@ function closeApplyModal() {
 
 function updateFileLabel(input) {
     const label = document.getElementById('fileLabel');
-    label.textContent = input.files[0] ? input.files[0].name : 'Click to upload or drag & drop';
+    const wrap  = document.getElementById('fileWrap');
+    if (input.files[0]) {
+        label.textContent = input.files[0].name;
+        wrap.style.borderColor = '#16a34a';
+        setError('resume', '');
+    } else {
+        label.textContent = 'Click to upload or drag & drop · Max 5MB';
+        wrap.style.borderColor = '';
+    }
 }
 
 document.getElementById('applyModal').addEventListener('click', function(e) {
     if (e.target === this) closeApplyModal();
 });
+document.getElementById('jobDetailModal').addEventListener('click', function(e) {
+    if (e.target === this) closeJobDetail();
+});
+
+/* ── TOAST ANIMATION ─────────────────────────────────── */
+const style = document.createElement('style');
+style.textContent = `
+    @keyframes slideInRight {
+        from { opacity:0; transform:translateX(40px); }
+        to   { opacity:1; transform:translateX(0); }
+    }
+    .field-error {
+        display:none;
+        font-size:12px;
+        color:#dc2626;
+        margin-top:4px;
+        font-weight:600;
+    }
+`;
+document.head.appendChild(style);
 </script>
 
 {% endblock %}
