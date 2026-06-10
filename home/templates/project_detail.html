@@ -2,65 +2,48 @@
 {% load static %}
 
 {% block extra_css %}
-<link rel="stylesheet" href="{% static '/home/css/project_detail.css' %}">
+<link rel="stylesheet" href="{% static 'home/css/project_detail.css' %}">
 {% endblock %}
 
 {% block content %}
 
-<!-- ======================================== -->
-<!-- PROJECT DETAIL -->
-<!-- ======================================== -->
-
 <section class="detail-section">
-
     <div class="container">
 
-        <!-- BACK BUTTON -->
-        <a href="{% url 'projects' %}" class="back-btn">← Back to Projects</a>
+        <a href="{% url 'projects' %}" class="back-btn">
+            <i class="fas fa-arrow-left"></i> Back to Projects
+        </a>
 
-        <!-- TITLE -->
-        <h1 class="detail-title">{{ project.title }}</h1>
-
-        <!-- DATE & STATUS -->
-        <div class="detail-meta">
-            <span class="detail-date">{{ project.project_date }}</span>
-            <span class="detail-status {{ project.status }}">{{ project.get_status_display }}</span>
+        <div class="detail-header">
+            <h1 class="detail-title">{{ project.title }}</h1>
+            <div class="detail-meta">
+                <span class="detail-date">
+                    <i class="fas fa-calendar-alt"></i>
+                    {{ project.project_date }}
+                </span>
+                <span class="detail-status {{ project.status }}">
+                    {{ project.get_status_display }}
+                </span>
+            </div>
         </div>
 
-        <!-- IMAGE -->
+        {% if project.image or project.video %}
         <div class="detail-image">
+            {% if project.video %}
+            <video autoplay muted loop playsinline webkit-playsinline preload="auto" class="project-media">
+                <source src="{{ project.video.url }}" type="video/mp4">
+            </video>
+            {% elif project.image %}
+            <img src="{{ project.image.url }}" alt="{{ project.title }}" class="project-media">
+            {% endif %}
+        </div>
+        {% endif %}
 
-    {% if project.video %}
-
-        <video autoplay
-               muted
-               loop
-               playsinline
-               webkit-playsinline
-               preload="auto"
-               class="project-media">
-
-            <source src="{{ project.video.url }}"
-                    type="video/mp4">
-
-        </video>
-
-    {% elif project.image %}
-
-        <img src="{{ project.image.url }}"
-             alt="{{ project.title }}"
-             class="project-media">
-
-    {% endif %}
-
-</div>
-        <!-- DESCRIPTION -->
         <div class="detail-description">
             {{ project.short_description|safe }}
         </div>
 
     </div>
-
 </section>
 
 {% endblock %}

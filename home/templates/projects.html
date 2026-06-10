@@ -2,303 +2,214 @@
 {% load static %}
 
 {% block extra_css %}
-
 <link rel="stylesheet" href="{% static 'home/css/projects.css' %}">
-
 {% endblock %}
 
 {% block content %}
 
-<!-- ======================================== -->
-<!-- HERO SECTION -->
-<!-- ======================================== -->
-
+<!-- HERO -->
 <section class="projects-hero">
 
     {% if page.hero_video %}
-
-    <video class="hero-bg"
-           autoplay
-       muted
-       loop
-       playsinline
-       webkit-playsinline
-       preload="auto">
-
-        <source src="{{ page.hero_video.url }}"
-                type="video/mp4">
-
+    <video class="hero-bg" autoplay muted loop playsinline webkit-playsinline preload="auto">
+        <source src="{{ page.hero_video.url }}" type="video/mp4">
     </video>
-
-{% elif page.hero_image %}
-
-    <img src="{{ page.hero_image.url }}"
-         class="hero-bg"
-         alt="hero-image">
-
-{% endif %}
+    {% elif page.hero_image %}
+    <img src="{{ page.hero_image.url }}" class="hero-bg" alt="hero">
+    {% endif %}
 
     <div class="hero-overlay">
-
-        <h1 class="projects-title">
-            {{ page.title }}
-        </h1>
-
+        <span class="hero-eyebrow"><i class="fas fa-diagram-project"></i> Our Work</span>
+        <h1 class="projects-title">{{ page.title }}</h1>
+        <p class="hero-sub">Delivering precision engineering projects with cutting-edge BIM technology and innovation.</p>
     </div>
 
 </section>
 
 
-<!-- ======================================== -->
-<!-- PROJECTS SECTION -->
-<!-- ======================================== -->
-
+<!-- PROJECTS GRID -->
 <section class="projects-section">
-
     <div class="container-fluid">
-
         <div class="row g-4">
 
-            <!-- ======================================== -->
-            <!-- HISTORY PROJECTS -->
-            <!-- ======================================== -->
-
+            <!-- PROJECT HISTORY -->
             <div class="col-lg-4">
-
-                <div class="project-column">
-
-                    <div class="column-title">
-                        PROJECT HISTORY
+                <div class="project-column col-history">
+                    <div class="column-header">
+                        <span class="column-dot"></span>
+                        <h2 class="column-title">Project History</h2>
+                        <span class="column-count">{{ history_projects|length }}</span>
                     </div>
 
                     {% for project in history_projects %}
-
                     <div class="project-card">
 
-                        <!-- TITLE -->
-                        <h3 class="project-name">
-                            {{ forloop.counter }}.
-                            {{ project.title }}
-                        </h3>
-
-                        <!-- DATE -->
-                        <div class="project-date">
-                            {{ project.project_date }}
-                        </div>
-
-                        <!-- DESCRIPTION -->
-                        <div class="project-description">
-
-                            <div class="desc-text clamped">{{ project.short_description|safe }}</div>
-                            <span class="see-more-btn" onclick="toggleDesc(this, '{% url 'project_detail' project.slug %}')">See More</span>
-
-                        </div>
-
-                        <!-- IMAGE -->
+                        {% if project.image or project.video %}
                         <div class="project-image">
-
                             {% if project.video %}
+                            <video autoplay muted loop playsinline webkit-playsinline preload="auto" class="project-media">
+                                <source src="{{ project.video.url }}" type="video/mp4">
+                            </video>
+                            {% elif project.image %}
+                            <img src="{{ project.image.url }}" alt="{{ project.title }}" class="project-media">
+                            {% endif %}
+                            <span class="card-status-badge badge-history">Completed</span>
+                        </div>
+                        {% endif %}
 
-    <video autoplay
-       muted
-       loop
-       playsinline
-       webkit-playsinline
-       preload="auto"
-           class="project-media">
+                        <div class="card-body-wrap">
+                            <h3 class="project-name">{{ project.title }}</h3>
+                            <span class="project-date">
+                                <i class="fas fa-calendar-alt"></i>
+                                {{ project.project_date }}
+                            </span>
+                            <div class="project-description">
+                                <div class="desc-text clamped">{{ project.short_description|safe }}</div>
+                            </div>
+                        </div>
 
-        <source src="{{ project.video.url }}"
-                type="video/mp4">
-
-    </video>
-
-{% elif project.image %}
-
-    <img src="{{ project.image.url }}"
-         alt="{{ project.title }}"
-         class="project-media">
-
-{% endif %}
-
+                        <div class="card-footer-wrap">
+                            <button class="see-more-btn" onclick="toggleDesc(this)">
+                                See More <i class="fas fa-chevron-down"></i>
+                            </button>
+                            <a href="{% url 'project_detail' project.slug %}" class="view-details-btn">
+                                View Details <i class="fas fa-arrow-right"></i>
+                            </a>
                         </div>
 
                     </div>
-
+                    {% empty %}
+                    <div class="pj-empty">
+                        <i class="fas fa-archive"></i>
+                        <p>No completed projects yet.</p>
+                    </div>
                     {% endfor %}
-
                 </div>
-
             </div>
 
-
-            <!-- ======================================== -->
             <!-- LIVE PROJECTS -->
-            <!-- ======================================== -->
-
             <div class="col-lg-4">
-
-                <div class="project-column">
-
-                    <div class="column-title">
-                        LIVE PROJECTS
+                <div class="project-column col-live">
+                    <div class="column-header">
+                        <span class="column-dot"></span>
+                        <h2 class="column-title">Live Projects</h2>
+                        <span class="column-count">{{ live_projects|length }}</span>
                     </div>
 
                     {% for project in live_projects %}
-
                     <div class="project-card">
 
-                        <!-- TITLE -->
-                        <h3 class="project-name">
-                            {{ forloop.counter }}.
-                            {{ project.title }}
-                        </h3>
-
-                        <!-- DATE -->
-                        <div class="project-date">
-                            {{ project.project_date }}
-                        </div>
-
-                        <!-- DESCRIPTION -->
-                        <div class="project-description">
-
-                            <div class="desc-text clamped">{{ project.short_description|safe }}</div>
-                            <span class="see-more-btn" onclick="toggleDesc(this, '{% url 'project_detail' project.slug %}')">See More</span>
-
-                        </div>
-
-                        <!-- IMAGE -->
+                        {% if project.image or project.video %}
                         <div class="project-image">
-
                             {% if project.video %}
+                            <video autoplay muted loop playsinline webkit-playsinline preload="auto" class="project-media">
+                                <source src="{{ project.video.url }}" type="video/mp4">
+                            </video>
+                            {% elif project.image %}
+                            <img src="{{ project.image.url }}" alt="{{ project.title }}" class="project-media">
+                            {% endif %}
+                            <span class="card-status-badge badge-live">Live</span>
+                        </div>
+                        {% endif %}
 
-    <video autoplay
-           muted
-           loop
-           playsinline
-           webkit-playsinline
-           preload="auto"
-           class="project-media">
+                        <div class="card-body-wrap">
+                            <h3 class="project-name">{{ project.title }}</h3>
+                            <span class="project-date">
+                                <i class="fas fa-calendar-alt"></i>
+                                {{ project.project_date }}
+                            </span>
+                            <div class="project-description">
+                                <div class="desc-text clamped">{{ project.short_description|safe }}</div>
+                            </div>
+                        </div>
 
-        <source src="{{ project.video.url }}"
-                type="video/mp4">
-
-    </video>
-
-{% elif project.image %}
-
-    <img src="{{ project.image.url }}"
-         alt="{{ project.title }}"
-         class="project-media">
-
-{% endif %}
-
+                        <div class="card-footer-wrap">
+                            <button class="see-more-btn" onclick="toggleDesc(this)">
+                                See More <i class="fas fa-chevron-down"></i>
+                            </button>
+                            <a href="{% url 'project_detail' project.slug %}" class="view-details-btn">
+                                View Details <i class="fas fa-arrow-right"></i>
+                            </a>
                         </div>
 
                     </div>
-
+                    {% empty %}
+                    <div class="pj-empty">
+                        <i class="fas fa-circle-dot"></i>
+                        <p>No live projects at the moment.</p>
+                    </div>
                     {% endfor %}
-
                 </div>
-
             </div>
 
-
-            <!-- ======================================== -->
             <!-- UPCOMING PROJECTS -->
-            <!-- ======================================== -->
-
             <div class="col-lg-4">
-
-                <div class="project-column">
-
-                    <div class="column-title">
-                        UPCOMING PROJECTS
+                <div class="project-column col-upcoming">
+                    <div class="column-header">
+                        <span class="column-dot"></span>
+                        <h2 class="column-title">Upcoming Projects</h2>
+                        <span class="column-count">{{ upcoming_projects|length }}</span>
                     </div>
 
                     {% for project in upcoming_projects %}
-
                     <div class="project-card">
 
-                        <!-- TITLE -->
-                        <h3 class="project-name">
-                            {{ forloop.counter }}.
-                            {{ project.title }}
-                        </h3>
-
-                        <!-- DATE -->
-                        <div class="project-date">
-                            {{ project.project_date }}
-                        </div>
-
-                        <!-- DESCRIPTION -->
-                        <div class="project-description">
-
-                            <div class="desc-text clamped">{{ project.short_description|safe }}</div>
-                            <span class="see-more-btn" onclick="toggleDesc(this, '{% url 'project_detail' project.slug %}')">See More</span>
-
-                        </div>
-
-                        <!-- IMAGE -->
+                        {% if project.image or project.video %}
                         <div class="project-image">
-
                             {% if project.video %}
+                            <video autoplay muted loop playsinline webkit-playsinline preload="auto" class="project-media">
+                                <source src="{{ project.video.url }}" type="video/mp4">
+                            </video>
+                            {% elif project.image %}
+                            <img src="{{ project.image.url }}" alt="{{ project.title }}" class="project-media">
+                            {% endif %}
+                            <span class="card-status-badge badge-upcoming">Coming Soon</span>
+                        </div>
+                        {% endif %}
 
-    <video autoplay
-           muted
-           loop
-           playsinline
-           webkit-playsinline
-           preload="auto"
-           class="project-media">
+                        <div class="card-body-wrap">
+                            <h3 class="project-name">{{ project.title }}</h3>
+                            <span class="project-date">
+                                <i class="fas fa-calendar-alt"></i>
+                                {{ project.project_date }}
+                            </span>
+                            <div class="project-description">
+                                <div class="desc-text clamped">{{ project.short_description|safe }}</div>
+                            </div>
+                        </div>
 
-        <source src="{{ project.video.url }}"
-                type="video/mp4">
-
-    </video>
-
-{% elif project.image %}
-
-    <img src="{{ project.image.url }}"
-         alt="{{ project.title }}"
-         class="project-media">
-
-{% endif %}
-
+                        <div class="card-footer-wrap">
+                            <button class="see-more-btn" onclick="toggleDesc(this)">
+                                See More <i class="fas fa-chevron-down"></i>
+                            </button>
+                            <a href="{% url 'project_detail' project.slug %}" class="view-details-btn">
+                                View Details <i class="fas fa-arrow-right"></i>
+                            </a>
                         </div>
 
                     </div>
-
+                    {% empty %}
+                    <div class="pj-empty">
+                        <i class="fas fa-calendar-plus"></i>
+                        <p>No upcoming projects planned yet.</p>
+                    </div>
                     {% endfor %}
-
                 </div>
-
             </div>
 
         </div>
-
     </div>
-
 </section>
 
 <script>
-function toggleDesc(btn, url) {
-    const desc = btn.previousElementSibling;
-    const isClamped = desc.classList.contains('clamped');
-    desc.classList.toggle('clamped');
-    if (isClamped) {
-        btn.textContent = 'See Less';
-        if (!btn.nextElementSibling) {
-            const link = document.createElement('a');
-            link.href = url;
-            link.className = 'view-details-btn';
-            link.textContent = 'View Full Details';
-            btn.insertAdjacentElement('afterend', link);
-        }
-    } else {
-        btn.textContent = 'See More';
-        const link = btn.nextElementSibling;
-        if (link) link.remove();
-    }
+function toggleDesc(btn) {
+    const bodyWrap = btn.closest('.card-body-wrap') || btn.closest('.project-card').querySelector('.card-body-wrap');
+    const desc     = bodyWrap.querySelector('.desc-text');
+    const icon     = btn.querySelector('i');
+    const expanded = desc.classList.toggle('expanded');
+
+    btn.childNodes[0].textContent = expanded ? 'See Less ' : 'See More ';
+    icon.className = expanded ? 'fas fa-chevron-up' : 'fas fa-chevron-down';
 }
 </script>
 

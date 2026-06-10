@@ -8,50 +8,42 @@
 {% block content %}
 
 <section class="detail-section">
-
     <div class="container">
 
-        <a href="{% url 'social_services' %}" class="back-btn">← Back to Social Services</a>
+        <a href="{% url 'social_services' %}" class="back-btn">
+            <i class="fas fa-arrow-left"></i> Back to Social Services
+        </a>
 
-        <h1 class="detail-title">{{ service.title }}</h1>
-
-        <div class="detail-meta">
-            <span class="detail-date">{{ service.project_date }}</span>
-            <span class="detail-status {{ service.status }}">{{ service.get_status_display }}</span>
+        <div class="detail-header">
+            <h1 class="detail-title">{{ service.title }}</h1>
+            <div class="detail-meta">
+                <span class="detail-date">
+                    <i class="fas fa-calendar-alt"></i>
+                    {{ service.project_date }}
+                </span>
+                <span class="detail-status {{ service.status }}">
+                    {{ service.get_status_display }}
+                </span>
+            </div>
         </div>
 
+        {% if service.image or service.video %}
         <div class="detail-image">
-
-    {% if service.video %}
-
-        <video autoplay
-               muted
-               loop
-               playsinline
-               webkit-playsinline
-               preload="auto"
-               class="social-media">
-
-            <source src="{{ service.video.url }}" type="video/mp4">
-
-        </video>
-
-    {% elif service.image %}
-
-        <img src="{{ service.image.url }}"
-             alt="{{ service.title }}"
-             class="social-media">
-
-    {% endif %}
-
-</div>
+            {% if service.video %}
+            <video autoplay muted loop playsinline webkit-playsinline preload="auto" class="social-media">
+                <source src="{{ service.video.url }}" type="video/mp4">
+            </video>
+            {% elif service.image %}
+            <img src="{{ service.image.url }}" alt="{{ service.title }}" class="social-media">
+            {% endif %}
+        </div>
+        {% endif %}
 
         <div class="detail-description">
             {{ service.short_description|safe }}
         </div>
 
     </div>
-
 </section>
 
 {% endblock %}

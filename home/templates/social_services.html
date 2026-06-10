@@ -7,224 +7,209 @@
 
 {% block content %}
 
-<!-- ======================================== -->
-<!-- HERO SECTION -->
-<!-- ======================================== -->
-
+<!-- HERO -->
 <section class="social-hero">
 
     {% if page.hero_video %}
-
-    <video class="hero-bg"
-           autoplay
-       muted
-       loop
-       playsinline
-       webkit-playsinline
-       preload="auto">
-
-        <source src="{{ page.hero_video.url }}"
-                type="video/mp4">
-
+    <video class="hero-bg" autoplay muted loop playsinline webkit-playsinline preload="auto">
+        <source src="{{ page.hero_video.url }}" type="video/mp4">
     </video>
-
-{% elif page.hero_image %}
-
-    <img src="{{ page.hero_image.url }}"
-         class="hero-bg"
-         alt="hero-image">
-
-{% endif %}
+    {% elif page.hero_image %}
+    <img src="{{ page.hero_image.url }}" class="hero-bg" alt="hero">
+    {% endif %}
 
     <div class="hero-overlay">
+        <span class="hero-eyebrow"><i class="fas fa-hand-holding-heart"></i> Community Impact</span>
         <h1 class="social-title">{{ page.title }}</h1>
+        <p class="hero-sub">Committed to building stronger communities through meaningful service and sustainable initiatives.</p>
     </div>
 
 </section>
 
 
-<!-- ======================================== -->
-<!-- SOCIAL SERVICES SECTION -->
-<!-- ======================================== -->
-
+<!-- SERVICES GRID -->
 <section class="social-section">
-
     <div class="container-fluid">
-
         <div class="row g-4">
 
             <!-- SERVICE HISTORY -->
             <div class="col-lg-4">
-                <div class="social-column">
-
-                    <div class="column-title">SERVICE HISTORY</div>
+                <div class="social-column col-history">
+                    <div class="column-header">
+                        <span class="column-dot"></span>
+                        <h2 class="column-title">Service History</h2>
+                        <span class="column-count">{{ history|length }}</span>
+                    </div>
 
                     {% for item in history %}
                     <div class="social-card">
 
-                        <h3 class="social-name">{{ forloop.counter }}. {{ item.title }}</h3>
-
-                        <div class="social-date">{{ item.project_date }}</div>
-
-                        <div class="social-description">
-                            <div class="desc-text clamped">{{ item.short_description|safe }}</div>
-                            <span class="see-more-btn" onclick="toggleDesc(this, '{% url 'social_service_detail' item.slug %}')">See More</span>
-                        </div>
-
+                        {% if item.image or item.video %}
                         <div class="social-image">
                             {% if item.video %}
+                            <video autoplay muted loop playsinline webkit-playsinline preload="auto" class="social-media">
+                                <source src="{{ item.video.url }}" type="video/mp4">
+                            </video>
+                            {% elif item.image %}
+                            <img src="{{ item.image.url }}" alt="{{ item.title }}" class="social-media">
+                            {% endif %}
+                            <span class="card-status-badge badge-history">Completed</span>
+                        </div>
+                        {% endif %}
 
-    <video autoplay
-       muted
-       loop
-       playsinline
-       webkit-playsinline
-       preload="auto"
-           class="social-media">
+                        <div class="card-body-wrap">
+                            <h3 class="social-name">{{ item.title }}</h3>
+                            <span class="social-date">
+                                <i class="fas fa-calendar-alt"></i>
+                                {{ item.project_date }}
+                            </span>
+                            <div class="social-description">
+                                <div class="desc-text clamped">{{ item.short_description|safe }}</div>
+                            </div>
+                        </div>
 
-        <source src="{{ item.video.url }}"
-                type="video/mp4">
-
-    </video>
-
-{% elif item.image %}
-
-    <img src="{{ item.image.url }}"
-         alt="{{ item.title }}"
-         class="social-media">
-
-{% endif %}
+                        <div class="card-footer-wrap">
+                            <button class="see-more-btn" onclick="toggleDesc(this)">
+                                See More <i class="fas fa-chevron-down"></i>
+                            </button>
+                            <a href="{% url 'social_service_detail' item.slug %}" class="view-details-btn">
+                                View Details <i class="fas fa-arrow-right"></i>
+                            </a>
                         </div>
 
                     </div>
+                    {% empty %}
+                    <div class="ss-empty">
+                        <i class="fas fa-archive"></i>
+                        <p>No completed services yet.</p>
+                    </div>
                     {% endfor %}
-
                 </div>
             </div>
 
             <!-- ONGOING SERVICES -->
             <div class="col-lg-4">
-                <div class="social-column">
-
-                    <div class="column-title">ONGOING SERVICES</div>
+                <div class="social-column col-ongoing">
+                    <div class="column-header">
+                        <span class="column-dot"></span>
+                        <h2 class="column-title">Ongoing Services</h2>
+                        <span class="column-count">{{ ongoing|length }}</span>
+                    </div>
 
                     {% for item in ongoing %}
                     <div class="social-card">
 
-                        <h3 class="social-name">{{ forloop.counter }}. {{ item.title }}</h3>
-
-                        <div class="social-date">{{ item.project_date }}</div>
-
-                        <div class="social-description">
-                            <div class="desc-text clamped">{{ item.short_description|safe }}</div>
-                            <span class="see-more-btn" onclick="toggleDesc(this, '{% url 'social_service_detail' item.slug %}')">See More</span>
-                        </div>
-
+                        {% if item.image or item.video %}
                         <div class="social-image">
                             {% if item.video %}
+                            <video autoplay muted loop playsinline webkit-playsinline preload="auto" class="social-media">
+                                <source src="{{ item.video.url }}" type="video/mp4">
+                            </video>
+                            {% elif item.image %}
+                            <img src="{{ item.image.url }}" alt="{{ item.title }}" class="social-media">
+                            {% endif %}
+                            <span class="card-status-badge badge-ongoing">Live</span>
+                        </div>
+                        {% endif %}
 
-    <video autoplay
-           muted
-           loop
-           playsinline
-           webkit-playsinline
-           preload="auto"
-           class="social-media">
+                        <div class="card-body-wrap">
+                            <h3 class="social-name">{{ item.title }}</h3>
+                            <span class="social-date">
+                                <i class="fas fa-calendar-alt"></i>
+                                {{ item.project_date }}
+                            </span>
+                            <div class="social-description">
+                                <div class="desc-text clamped">{{ item.short_description|safe }}</div>
+                            </div>
+                        </div>
 
-        <source src="{{ item.video.url }}"
-                type="video/mp4">
-
-    </video>
-
-{% elif item.image %}
-
-    <img src="{{ item.image.url }}"
-         alt="{{ item.title }}"
-         class="social-media">
-
-{% endif %}
+                        <div class="card-footer-wrap">
+                            <button class="see-more-btn" onclick="toggleDesc(this)">
+                                See More <i class="fas fa-chevron-down"></i>
+                            </button>
+                            <a href="{% url 'social_service_detail' item.slug %}" class="view-details-btn">
+                                View Details <i class="fas fa-arrow-right"></i>
+                            </a>
                         </div>
 
                     </div>
+                    {% empty %}
+                    <div class="ss-empty">
+                        <i class="fas fa-spinner"></i>
+                        <p>No ongoing services at the moment.</p>
+                    </div>
                     {% endfor %}
-
                 </div>
             </div>
 
             <!-- UPCOMING SERVICES -->
             <div class="col-lg-4">
-                <div class="social-column">
-
-                    <div class="column-title">UPCOMING SERVICES</div>
+                <div class="social-column col-upcoming">
+                    <div class="column-header">
+                        <span class="column-dot"></span>
+                        <h2 class="column-title">Upcoming Services</h2>
+                        <span class="column-count">{{ upcoming|length }}</span>
+                    </div>
 
                     {% for item in upcoming %}
                     <div class="social-card">
 
-                        <h3 class="social-name">{{ forloop.counter }}. {{ item.title }}</h3>
-
-                        <div class="social-date">{{ item.project_date }}</div>
-
-                        <div class="social-description">
-                            <div class="desc-text clamped">{{ item.short_description|safe }}</div>
-                            <span class="see-more-btn" onclick="toggleDesc(this, '{% url 'social_service_detail' item.slug %}')">See More</span>
-                        </div>
-
+                        {% if item.image or item.video %}
                         <div class="social-image">
                             {% if item.video %}
+                            <video autoplay muted loop playsinline webkit-playsinline preload="auto" class="social-media">
+                                <source src="{{ item.video.url }}" type="video/mp4">
+                            </video>
+                            {% elif item.image %}
+                            <img src="{{ item.image.url }}" alt="{{ item.title }}" class="social-media">
+                            {% endif %}
+                            <span class="card-status-badge badge-upcoming">Coming Soon</span>
+                        </div>
+                        {% endif %}
 
-    <video autoplay
-           muted
-           loop
-           playsinline
-           webkit-playsinline
-           preload="auto"
-           class="social-media">
+                        <div class="card-body-wrap">
+                            <h3 class="social-name">{{ item.title }}</h3>
+                            <span class="social-date">
+                                <i class="fas fa-calendar-alt"></i>
+                                {{ item.project_date }}
+                            </span>
+                            <div class="social-description">
+                                <div class="desc-text clamped">{{ item.short_description|safe }}</div>
+                            </div>
+                        </div>
 
-        <source src="{{ item.video.url }}"
-                type="video/mp4">
-
-    </video>
-
-{% elif item.image %}
-
-    <img src="{{ item.image.url }}"
-         alt="{{ item.title }}"
-         class="social-media">
-
-{% endif %}
+                        <div class="card-footer-wrap">
+                            <button class="see-more-btn" onclick="toggleDesc(this)">
+                                See More <i class="fas fa-chevron-down"></i>
+                            </button>
+                            <a href="{% url 'social_service_detail' item.slug %}" class="view-details-btn">
+                                View Details <i class="fas fa-arrow-right"></i>
+                            </a>
                         </div>
 
                     </div>
+                    {% empty %}
+                    <div class="ss-empty">
+                        <i class="fas fa-calendar-plus"></i>
+                        <p>No upcoming services planned yet.</p>
+                    </div>
                     {% endfor %}
-
                 </div>
             </div>
 
         </div>
-
     </div>
-
 </section>
 
 <script>
-function toggleDesc(btn, url) {
-    const desc = btn.previousElementSibling;
-    const isClamped = desc.classList.contains('clamped');
-    desc.classList.toggle('clamped');
-    if (isClamped) {
-        btn.textContent = 'See Less';
-        if (!btn.nextElementSibling) {
-            const link = document.createElement('a');
-            link.href = url;
-            link.className = 'view-details-btn';
-            link.textContent = 'View Full Details';
-            btn.insertAdjacentElement('afterend', link);
-        }
-    } else {
-        btn.textContent = 'See More';
-        const link = btn.nextElementSibling;
-        if (link) link.remove();
-    }
+function toggleDesc(btn) {
+    const bodyWrap  = btn.closest('.card-body-wrap') || btn.closest('.social-card').querySelector('.card-body-wrap');
+    const desc      = bodyWrap.querySelector('.desc-text');
+    const icon      = btn.querySelector('i');
+    const expanded  = desc.classList.toggle('expanded');
+
+    btn.childNodes[0].textContent = expanded ? 'See Less ' : 'See More ';
+    icon.className = expanded ? 'fas fa-chevron-up' : 'fas fa-chevron-down';
 }
 </script>
 
