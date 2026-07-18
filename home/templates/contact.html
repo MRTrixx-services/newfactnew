@@ -3,9 +3,40 @@
 
 {% block extra_css %}
 <link rel="stylesheet" href="{% static 'home/css/contact.css' %}">
+<style>
+.toast-container-custom{position:fixed;top:24px;right:24px;z-index:9999;display:flex;flex-direction:column;gap:10px;}
+.toast-msg{display:flex;align-items:flex-start;gap:12px;min-width:300px;max-width:420px;padding:16px 20px;border-radius:12px;box-shadow:0 8px 32px rgba(15,23,42,0.15);font-size:14px;font-weight:500;line-height:1.5;animation:slideIn .35s ease;}
+.toast-msg.success{background:#f0fdf4;border-left:4px solid #16a34a;color:#15803d;}
+.toast-msg.error{background:#fef2f2;border-left:4px solid #dc2626;color:#b91c1c;}
+.toast-icon{font-size:18px;flex-shrink:0;margin-top:1px;}
+.toast-close{margin-left:auto;background:none;border:none;cursor:pointer;font-size:16px;color:inherit;opacity:.6;padding:0;line-height:1;}
+.toast-close:hover{opacity:1;}
+@keyframes slideIn{from{opacity:0;transform:translateX(40px);}to{opacity:1;transform:translateX(0);}}
+@keyframes fadeOut{to{opacity:0;transform:translateX(40px);}}
+</style>
 {% endblock %}
 
 {% block content %}
+
+{% if messages %}
+<div class="toast-container-custom" id="toastContainer">
+  {% for msg in messages %}
+  <div class="toast-msg {% if msg.tags == 'success' %}success{% else %}error{% endif %}" role="alert">
+    <span class="toast-icon">{% if msg.tags == 'success' %}✅{% else %}⚠️{% endif %}</span>
+    <span>{{ msg }}</span>
+    <button class="toast-close" onclick="this.parentElement.remove()" aria-label="Close">✕</button>
+  </div>
+  {% endfor %}
+</div>
+<script>
+  setTimeout(function(){
+    document.querySelectorAll('.toast-msg').forEach(function(t){
+      t.style.animation='fadeOut .4s ease forwards';
+      setTimeout(function(){t.remove();},400);
+    });
+  }, 5000);
+</script>
+{% endif %}
 
 <!-- ======================================== -->
 <!-- CONTACT HERO -->
@@ -79,35 +110,35 @@
 
                     <h3 class="form-heading">For any questions, please reach out to us.</h3>
 
-                    <form class="contact-form">
+                    <form class="contact-form" method="POST" action="{% url 'contact' %}">{% csrf_token %}
 
                         <div class="row g-3">
 
                             <div class="col-md-6">
                                 <div class="field-group">
                                     <label>Your Name</label>
-                                    <input type="text" placeholder="John Doe">
+                                    <input type="text" name="name" placeholder="John Doe" required>
                                 </div>
                             </div>
 
                             <div class="col-md-6">
                                 <div class="field-group">
                                     <label>Your Email</label>
-                                    <input type="email" placeholder="john@example.com">
+                                    <input type="email" name="email" placeholder="john@example.com" required>
                                 </div>
                             </div>
 
                             <div class="col-12">
                                 <div class="field-group">
                                     <label>Subject</label>
-                                    <input type="text" placeholder="How can we help?">
+                                    <input type="text" name="subject" placeholder="How can we help?" required>
                                 </div>
                             </div>
 
                             <div class="col-12">
                                 <div class="field-group">
                                     <label>Message</label>
-                                    <textarea rows="6" placeholder="Write your message here..."></textarea>
+                                    <textarea rows="6" name="message" placeholder="Write your message here..." required></textarea>
                                 </div>
                             </div>
 

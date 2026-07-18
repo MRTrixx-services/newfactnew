@@ -10,7 +10,8 @@ from .models import (
     ProjectsPage,
     Project,
     SocialServicesPage,
-    SocialService
+    SocialService,
+    ContactMessage,
 )
 
 
@@ -212,3 +213,16 @@ class SocialServiceAdmin(admin.ModelAdmin):
         'slug': ('title',)
     }
 
+
+# =========================================
+# CONTACT MESSAGE
+# =========================================
+@admin.register(ContactMessage)
+class ContactMessageAdmin(admin.ModelAdmin):
+
+    list_display = ['name', 'email', 'subject', 'submitted_at']
+    search_fields = ['name', 'email', 'subject']
+    readonly_fields = ['name', 'email', 'subject', 'message', 'submitted_at']
+
+    def has_add_permission(self, request):
+        return False

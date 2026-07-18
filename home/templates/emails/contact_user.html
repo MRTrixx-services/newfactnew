@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Message Received</title>
+</head>
+<body style="margin:0;padding:0;background:#f1f5f9;font-family:'Segoe UI',Arial,sans-serif;">
+
+  <table width="100%" cellpadding="0" cellspacing="0" style="background:#f1f5f9;padding:32px 16px;">
+    <tr>
+      <td align="center">
+        <table width="600" cellpadding="0" cellspacing="0" style="max-width:600px;width:100%;background:#ffffff;border-radius:16px;overflow:hidden;box-shadow:0 4px 24px rgba(15,23,42,0.10);">
+
+          <!-- HEADER -->
+          <tr>
+            <td style="background:linear-gradient(135deg,#1e3a8a 0%,#2563eb 100%);padding:40px 40px 32px;text-align:center;">
+              <div style="width:64px;height:64px;background:rgba(255,255,255,0.15);border-radius:50%;margin:0 auto 16px;font-size:28px;line-height:64px;text-align:center;">
+                ✅
+              </div>
+              <p style="margin:0 0 6px;font-size:12px;font-weight:700;letter-spacing:2px;color:rgba(255,255,255,0.65);text-transform:uppercase;">New Fact Engineering</p>
+              <h1 style="margin:0 0 8px;font-size:26px;font-weight:800;color:#ffffff;letter-spacing:-0.3px;">Message Received!</h1>
+              <p style="margin:0;font-size:15px;color:rgba(255,255,255,0.80);line-height:1.6;">
+                Thank you for reaching out. We'll get back to you shortly.
+              </p>
+            </td>
+          </tr>
+
+          <!-- GREETING -->
+          <tr>
+            <td style="padding:32px 40px 0;">
+              <p style="margin:0 0 16px;font-size:16px;color:#0f172a;font-weight:700;">
+                Dear {{ name }},
+              </p>
+              <p style="margin:0 0 24px;font-size:15px;color:#475569;line-height:1.8;">
+                We have successfully received your message at <strong style="color:#0f172a;">New Fact Engineering</strong>.
+                Our team will review it and respond to you as soon as possible.
+              </p>
+            </td>
+          </tr>
+
+          <!-- MESSAGE SUMMARY -->
+          <tr>
+            <td style="padding:0 40px;">
+              <table width="100%" cellpadding="0" cellspacing="0" style="background:#f8fafc;border:1.5px solid #e2e8f0;border-radius:12px;overflow:hidden;margin-bottom:24px;">
+
+                <tr style="background:#0f172a;">
+                  <td colspan="2" style="padding:12px 20px;font-size:12px;font-weight:700;letter-spacing:1px;color:#fff;text-transform:uppercase;">
+                    📋 Your Message Summary
+                  </td>
+                </tr>
+
+                <tr style="border-bottom:1px solid #e2e8f0;">
+                  <td style="padding:13px 20px;font-size:13px;font-weight:700;color:#64748b;width:40%;border-right:1px solid #e2e8f0;">Name</td>
+                  <td style="padding:13px 20px;font-size:14px;color:#0f172a;">{{ name }}</td>
+                </tr>
+
+                <tr style="border-bottom:1px solid #e2e8f0;background:#fff;">
+                  <td style="padding:13px 20px;font-size:13px;font-weight:700;color:#64748b;border-right:1px solid #e2e8f0;">Email</td>
+                  <td style="padding:13px 20px;font-size:14px;color:#0f172a;">{{ email }}</td>
+                </tr>
+
+                <tr style="border-bottom:1px solid #e2e8f0;">
+                  <td style="padding:13px 20px;font-size:13px;font-weight:700;color:#64748b;border-right:1px solid #e2e8f0;">Subject</td>
+                  <td style="padding:13px 20px;font-size:14px;font-weight:700;color:#1d4ed8;">{{ subject }}</td>
+                </tr>
+
+                <tr>
+                  <td style="padding:13px 20px;font-size:13px;font-weight:700;color:#64748b;border-right:1px solid #e2e8f0;">Submitted On</td>
+                  <td style="padding:13px 20px;font-size:14px;color:#0f172a;">{{ submitted_on }}</td>
+                </tr>
+
+              </table>
+            </td>
+          </tr>
+
+          <!-- YOUR MESSAGE -->
+          <tr>
+            <td style="padding:0 40px 24px;">
+              <table width="100%" cellpadding="0" cellspacing="0" style="background:#eff6ff;border:1.5px solid #bfdbfe;border-radius:12px;overflow:hidden;">
+                <tr style="background:#1d4ed8;">
+                  <td style="padding:12px 20px;font-size:12px;font-weight:700;letter-spacing:1px;color:#fff;text-transform:uppercase;">
+                    💬 Your Message
+                  </td>
+                </tr>
+                <tr>
+                  <td style="padding:18px 20px;font-size:14px;color:#334155;line-height:1.8;">
+                    {{ message }}
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+
+          <!-- WHAT HAPPENS NEXT -->
+          <tr>
+            <td style="padding:0 40px 24px;">
+              <table width="100%" cellpadding="0" cellspacing="0" style="background:#f8fafc;border:1.5px solid #e2e8f0;border-radius:12px;overflow:hidden;">
+                <tr style="background:#0f172a;">
+                  <td style="padding:12px 20px;font-size:12px;font-weight:700;letter-spacing:1px;color:#fff;text-transform:uppercase;">
+                    🚀 What Happens Next?
+                  </td>
+                </tr>
+                <tr>
+                  <td style="padding:20px 20px 8px;">
+                    <table width="100%" cellpadding="0" cellspacing="0">
+                      <tr>
+                        <td style="padding:0 0 14px;vertical-align:top;">
+                          <table cellpadding="0" cellspacing="0">
+                            <tr>
+                              <td style="width:32px;vertical-align:top;padding-top:2px;">
+                                <span style="display:inline-block;width:24px;height:24px;background:#1d4ed8;color:#fff;border-radius:50%;font-size:11px;font-weight:700;text-align:center;line-height:24px;">1</span>
+                              </td>
+                              <td style="padding-left:10px;">
+                                <p style="margin:0;font-size:14px;font-weight:700;color:#0f172a;">Message Review</p>
+                                <p style="margin:4px 0 0;font-size:13px;color:#475569;line-height:1.6;">Our team will review your enquiry carefully.</p>
+                              </td>
+                            </tr>
+                          </table>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td style="padding:0 0 14px;vertical-align:top;">
+                          <table cellpadding="0" cellspacing="0">
+                            <tr>
+                              <td style="width:32px;vertical-align:top;padding-top:2px;">
+                                <span style="display:inline-block;width:24px;height:24px;background:#1d4ed8;color:#fff;border-radius:50%;font-size:11px;font-weight:700;text-align:center;line-height:24px;">2</span>
+                              </td>
+                              <td style="padding-left:10px;">
+                                <p style="margin:0;font-size:14px;font-weight:700;color:#0f172a;">Response</p>
+                                <p style="margin:4px 0 0;font-size:13px;color:#475569;line-height:1.6;">We will respond to your email within <strong>1–2 business days</strong>.</p>
+                              </td>
+                            </tr>
+                          </table>
+                        </td>
+                      </tr>
+                    </table>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+
+          <!-- CONTACT INFO -->
+          <tr>
+            <td style="padding:0 40px 32px;">
+              <p style="margin:0 0 12px;font-size:14px;color:#475569;line-height:1.7;">
+                Need immediate assistance? Reach us directly:
+              </p>
+              <table cellpadding="0" cellspacing="0">
+                <tr>
+                  <td style="padding-right:20px;font-size:13px;color:#64748b;">
+                    📧 <a href="mailto:info@newfactengineering.com" style="color:#1d4ed8;text-decoration:none;font-weight:600;">info@newfactengineering.com</a>
+                  </td>
+                  <td style="font-size:13px;color:#64748b;">
+                    📞 <a href="tel:+918524871605" style="color:#1d4ed8;text-decoration:none;font-weight:600;">+91 85248 71605</a>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+
+          <!-- DIVIDER -->
+          <tr>
+            <td style="padding:0 40px;">
+              <hr style="border:none;border-top:1px solid #e2e8f0;margin:0 0 24px;">
+            </td>
+          </tr>
+
+          <!-- CLOSING -->
+          <tr>
+            <td style="padding:0 40px 32px;">
+              <p style="margin:0;font-size:15px;color:#475569;line-height:1.8;">
+                We appreciate you reaching out to us. We look forward to connecting with you!
+              </p>
+              <p style="margin:16px 0 0;font-size:15px;color:#0f172a;font-weight:700;">
+                Best Regards,<br>
+                <span style="color:#1d4ed8;">New Fact Engineering Team</span><br>
+                <span style="font-size:13px;font-weight:600;color:#64748b;">New Fact Engineering</span>
+              </p>
+            </td>
+          </tr>
+
+          <!-- FOOTER -->
+          <tr>
+            <td style="background:#0f172a;padding:20px 40px;text-align:center;">
+              <p style="margin:0 0 6px;font-size:12px;color:#475569;">
+                <a href="https://newfactengineering.com" style="color:#60a5fa;text-decoration:none;font-weight:600;">newfactengineering.com</a>
+                &nbsp;|&nbsp;
+                <a href="mailto:info@newfactengineering.com" style="color:#60a5fa;text-decoration:none;">info@newfactengineering.com</a>
+              </p>
+              <p style="margin:0;font-size:11.5px;color:#334155;">
+                © 2026 New Fact Engineering. All rights reserved.
+              </p>
+            </td>
+          </tr>
+
+        </table>
+      </td>
+    </tr>
+  </table>
+
+</body>
+</html>
