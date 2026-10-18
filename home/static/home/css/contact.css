@@ -145,8 +145,6 @@
     flex-wrap: wrap;
 
     gap: 12px;
-
-    color:#dbeafe;
 }
 
 .social-link {
@@ -157,7 +155,7 @@
 
     background: #0f3b82;
 
-    color: white;
+    color: #ffffff;
 
     border-radius: 50%;
 
@@ -174,11 +172,16 @@
     transition: 0.3s;
 }
 
+.social-link i {
+
+    color: #ffffff;
+}
+
 .social-link:hover {
 
     background: #1e40af;
 
-    color: white;
+    color: #ffffff;
 
     transform: translateY(-3px);
 }

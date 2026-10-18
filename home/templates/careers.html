@@ -49,9 +49,24 @@
             <p class="section-label">Open Positions</p>
             <h2>Find your perfect role</h2>
         </div>
-        <div class="job-grid">
+
+        <!-- SEARCH + FILTER -->
+        <div class="job-controls">
+            <div class="job-search-wrap">
+                <i class="fas fa-search"></i>
+                <input type="text" id="jobSearch" placeholder="Search by title, department, location..." oninput="filterJobs()">
+            </div>
+            <div class="dept-tabs" id="deptTabs">
+                <button class="dept-tab active" data-dept="all" onclick="setDept(this)">All</button>
+                {% for job in jobs %}{% if job.department %}
+                <button class="dept-tab" data-dept="{{ job.department|lower }}" onclick="setDept(this)">{{ job.department }}</button>
+                {% endif %}{% endfor %}
+            </div>
+        </div>
+
+        <div class="job-grid" id="jobGrid">
             {% for job in jobs %}
-            <div class="job-card">
+            <div class="job-card" data-dept="{{ job.department|lower|default:'' }}" data-title="{{ job.title|lower }}" data-location="{{ job.location|lower|default:'' }}">
                 {% if job.department %}
                 <span class="dept-badge">{{ job.department }}</span>
                 {% endif %}
@@ -81,6 +96,11 @@
                 <p>We currently do not have any active openings. Check back soon.</p>
             </div>
             {% endfor %}
+            <div class="empty-box" id="noResults" style="display:none;grid-column:1/-1">
+                <i class="fas fa-search"></i>
+                <h3>No Results Found</h3>
+                <p>Try a different search term or department.</p>
+            </div>
         </div>
     </div>
 </section>
@@ -467,6 +487,45 @@ document.getElementById('applyModal').addEventListener('click', function(e) {
 document.getElementById('jobDetailModal').addEventListener('click', function(e) {
     if (e.target === this) closeJobDetail();
 });
+
+/* ── DEPARTMENT FILTER + SEARCH ─────────────────────── */
+let activeDept = 'all';
+
+function setDept(btn) {
+    activeDept = btn.dataset.dept;
+    document.querySelectorAll('.dept-tab').forEach(t => t.classList.remove('active'));
+    btn.classList.add('active');
+    filterJobs();
+}
+
+function filterJobs() {
+    const q = document.getElementById('jobSearch').value.trim().toLowerCase();
+    const cards = document.querySelectorAll('#jobGrid .job-card');
+    let visible = 0;
+
+    // dedupe dept tabs
+    const seen = new Set();
+    document.querySelectorAll('.dept-tab:not([data-dept="all"])').forEach(tab => {
+        const d = tab.dataset.dept;
+        if (seen.has(d)) { tab.style.display = 'none'; }
+        else { seen.add(d); tab.style.display = ''; }
+    });
+
+    cards.forEach(card => {
+        const dept  = card.dataset.dept;
+        const title = card.dataset.title;
+        const loc   = card.dataset.location;
+        const deptMatch = activeDept === 'all' || dept === activeDept;
+        const searchMatch = !q || title.includes(q) || dept.includes(q) || loc.includes(q);
+        const show = deptMatch && searchMatch;
+        card.style.display = show ? '' : 'none';
+        if (show) visible++;
+    });
+
+    document.getElementById('noResults').style.display = visible === 0 ? 'flex' : 'none';
+}
+
+document.addEventListener('DOMContentLoaded', filterJobs);
 
 /* ── TOAST ANIMATION ─────────────────────────────────── */
 const style = document.createElement('style');

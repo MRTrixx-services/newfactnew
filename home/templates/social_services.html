@@ -44,6 +44,10 @@
                     {% for item in history %}
                     <div class="social-card">
 
+                        <div class="card-title-wrap">
+                            <h3 class="social-name">{{ item.title }}</h3>
+                        </div>
+
                         {% if item.image or item.video %}
                         <div class="social-image">
                             {% if item.video %}
@@ -58,7 +62,6 @@
                         {% endif %}
 
                         <div class="card-body-wrap">
-                            <h3 class="social-name">{{ item.title }}</h3>
                             <span class="social-date">
                                 <i class="fas fa-calendar-alt"></i>
                                 {{ item.project_date }}
@@ -99,6 +102,10 @@
                     {% for item in ongoing %}
                     <div class="social-card">
 
+                        <div class="card-title-wrap">
+                            <h3 class="social-name">{{ item.title }}</h3>
+                        </div>
+
                         {% if item.image or item.video %}
                         <div class="social-image">
                             {% if item.video %}
@@ -113,7 +120,6 @@
                         {% endif %}
 
                         <div class="card-body-wrap">
-                            <h3 class="social-name">{{ item.title }}</h3>
                             <span class="social-date">
                                 <i class="fas fa-calendar-alt"></i>
                                 {{ item.project_date }}
@@ -154,6 +160,10 @@
                     {% for item in upcoming %}
                     <div class="social-card">
 
+                        <div class="card-title-wrap">
+                            <h3 class="social-name">{{ item.title }}</h3>
+                        </div>
+
                         {% if item.image or item.video %}
                         <div class="social-image">
                             {% if item.video %}
@@ -168,7 +178,6 @@
                         {% endif %}
 
                         <div class="card-body-wrap">
-                            <h3 class="social-name">{{ item.title }}</h3>
                             <span class="social-date">
                                 <i class="fas fa-calendar-alt"></i>
                                 {{ item.project_date }}

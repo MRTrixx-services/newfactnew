@@ -230,13 +230,10 @@
 
 <script>
 var markerData = [
-    { name: 'USA',       projects: 12, coords: [37.09,  -95.71]  },
-    { name: 'Canada',    projects: 6,  coords: [56.13, -106.34]  },
-    { name: 'UK',        projects: 10, coords: [55.37,   -3.43]  },
-    { name: 'UAE',       projects: 8,  coords: [23.42,   53.84]  },
-    { name: 'India',     projects: 25, coords: [20.59,   78.96]  },
-    { name: 'Singapore', projects: 5,  coords: [ 1.35,  103.81]  },
-    { name: 'Australia', projects: 7,  coords: [-25.27, 133.77]  }
+    { name: 'India',       projects: 25, coords: [20.59,   78.96] },
+    { name: 'Singapore',   projects: 5,  coords: [ 1.35,  103.81] },
+    { name: 'Australia',   projects: 7,  coords: [-25.27, 133.77] },
+    { name: 'New Zealand', projects: 4,  coords: [-40.90, 174.88] }
 ];
 
 var map = new jsVectorMap({
@@ -262,15 +259,7 @@ var map = new jsVectorMap({
         },
     },
 
-    selectedRegions: [
-        'US','CA','GB','NO','NL','DE','AE','IN','SG','AU','FR','IT',
-        'ES','PT','SE','DK','FI','BE','CH','AT','PL','CZ','HU','RO',
-        'GR','TR','SA','QA','KW','BH','OM','EG','ZA','NG','KE','GH',
-        'ET','TZ','MA','DZ','LY','TN','SD','MX','BR','AR','CL','CO',
-        'PE','VE','EC','BO','PY','UY','CN','JP','KR','TH','MY','ID',
-        'PH','VN','BD','PK','LK','NP','MM','KH','NZ','RU','UA','KZ',
-        'UZ','IQ','IR','JO','LB','IL','YE','SY','AF','HK','TW'
-    ],
+    selectedRegions: ['IN', 'SG', 'AU', 'NZ'],
 
     markers: markerData,
 

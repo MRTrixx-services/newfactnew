@@ -44,6 +44,10 @@
                     {% for project in history_projects %}
                     <div class="project-card">
 
+                        <div class="card-title-wrap">
+                            <h3 class="project-name">{{ project.title }}</h3>
+                        </div>
+
                         {% if project.image or project.video %}
                         <div class="project-image">
                             {% if project.video %}
@@ -58,7 +62,6 @@
                         {% endif %}
 
                         <div class="card-body-wrap">
-                            <h3 class="project-name">{{ project.title }}</h3>
                             <span class="project-date">
                                 <i class="fas fa-calendar-alt"></i>
                                 {{ project.project_date }}
@@ -99,6 +102,10 @@
                     {% for project in live_projects %}
                     <div class="project-card">
 
+                        <div class="card-title-wrap">
+                            <h3 class="project-name">{{ project.title }}</h3>
+                        </div>
+
                         {% if project.image or project.video %}
                         <div class="project-image">
                             {% if project.video %}
@@ -113,7 +120,6 @@
                         {% endif %}
 
                         <div class="card-body-wrap">
-                            <h3 class="project-name">{{ project.title }}</h3>
                             <span class="project-date">
                                 <i class="fas fa-calendar-alt"></i>
                                 {{ project.project_date }}
@@ -154,6 +160,10 @@
                     {% for project in upcoming_projects %}
                     <div class="project-card">
 
+                        <div class="card-title-wrap">
+                            <h3 class="project-name">{{ project.title }}</h3>
+                        </div>
+
                         {% if project.image or project.video %}
                         <div class="project-image">
                             {% if project.video %}
@@ -168,7 +178,6 @@
                         {% endif %}
 
                         <div class="card-body-wrap">
-                            <h3 class="project-name">{{ project.title }}</h3>
                             <span class="project-date">
                                 <i class="fas fa-calendar-alt"></i>
                                 {{ project.project_date }}
