@@ -144,9 +144,7 @@
 }
 
 .social-section > .container-fluid {
-    max-width: 1400px;
-    margin: 0 auto;
-    padding: 0 24px;
+    padding: 0 clamp(16px, 3vw, 72px);
 }
 
 /* =========================================
@@ -503,6 +501,34 @@
 
 .detail-description p { margin-bottom: 14px; }
 .detail-description p:last-child { margin-bottom: 0; }
+
+/* ========================================= */
+/* LARGE SCREEN 1600px+ */
+/* ========================================= */
+
+@media (min-width: 1600px) {
+    .social-hero    { height: clamp(400px, 45vh, 600px); }
+    .social-title   { font-size: 56px; }
+    .hero-sub       { font-size: 17px; max-width: 640px; }
+    .social-section { padding: 80px 0 100px; }
+    .social-name    { font-size: 19px; }
+    .social-image   { height: 260px; }
+    .column-title   { font-size: 17px; }
+}
+
+@media (min-width: 2200px) {
+    .social-title   { font-size: 72px; }
+    .hero-sub       { font-size: 20px; max-width: 780px; }
+    .social-section { padding: 100px 0 130px; }
+    .social-name    { font-size: 22px; }
+    .social-image   { height: 320px; }
+    .column-title   { font-size: 20px; }
+    .card-title-wrap  { padding: 20px 26px 16px; }
+    .card-body-wrap   { padding: 24px 26px 22px; }
+    .social-description { font-size: 15px; }
+    .ss-stat-num    { font-size: 34px; }
+    .ss-stat-lbl    { font-size: 13px; }
+}
 
 /* =========================================
    RESPONSIVE

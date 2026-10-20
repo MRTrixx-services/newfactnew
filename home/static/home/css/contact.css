@@ -44,6 +44,10 @@
     padding: 60px 0;
 }
 
+.contact-main > .container-fluid {
+    padding-inline: 24px;
+}
+
 /* INFO CARD */
 
 .info-card {
@@ -507,4 +511,3 @@
         transform: translateY(-6px);
     }
 }
-

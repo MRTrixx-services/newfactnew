@@ -176,6 +176,40 @@
 }
 
 /* ========================================= */
+/* LARGE SCREEN 1600px+ */
+/* ========================================= */
+
+@media (min-width: 1600px) {
+    .top-bar        { padding: 16px 60px; }
+    .brand img      { height: 54px; width: 54px; }
+    .brand-text     { font-size: 17px; }
+    .brand-sub      { font-size: 12px; }
+    .menu a         { font-size: 14px; padding: 10px 22px; }
+}
+
+/* ========================================= */
+/* 4K 2200px+ */
+/* ========================================= */
+
+@media (min-width: 2200px) {
+    .top-bar        { padding: 20px 120px; }
+    .brand img      { height: 64px; width: 64px; }
+    .brand-text     { font-size: 20px; }
+    .brand-sub      { font-size: 13px; }
+    .menu a         { font-size: 17px; padding: 13px 28px; }
+    .menu           { gap: 10px; }
+}
+
+/* ========================================= */
+/* SMALL LAPTOP 1100px */
+/* ========================================= */
+
+@media (max-width: 1100px) {
+    .top-bar { padding: 12px 20px; }
+    .menu    { gap: 2px; }
+}
+
+/* ========================================= */
 /* MOBILE */
 /* ========================================= */
 

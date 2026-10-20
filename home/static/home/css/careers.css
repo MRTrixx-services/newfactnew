@@ -22,9 +22,12 @@ body {
     line-height: 1.65;
 }
 
-.container {
-    width: min(92%, 1180px);
-    margin: 0 auto;
+.section > .container-fluid {
+    padding-inline: clamp(16px, 4vw, 72px);
+}
+
+.footer > .container-fluid {
+    padding-inline: clamp(16px, 3vw, 72px);
 }
 
 /* =============================================
