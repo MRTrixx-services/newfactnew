@@ -40,7 +40,7 @@ body{
 }
 
 .home-content{
-    max-width: 1300px;
+    max-width: 2300px;
     font-size: 17px;
     line-height: 1.8;
     color: #222;
@@ -369,7 +369,7 @@ body.modal-open{
 .stats-inner {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    max-width: 1000px;
+    max-width: 2300px;
     margin: 0 auto;
 }
 
@@ -421,7 +421,7 @@ body.modal-open{
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 20px;
-    max-width: 1100px;
+    max-width: 2300px;
     margin: 0 auto;
     text-align: left;
 }
@@ -475,7 +475,7 @@ body.modal-open{
 
 .process-steps {
     display: flex;
-    max-width: 900px;
+    max-width: 2300px;
     margin: 0 auto;
 }
 
@@ -544,7 +544,7 @@ body.modal-open{
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 20px;
-    max-width: 1100px;
+    max-width: 2300px;
     margin: 0 auto;
     text-align: left;
 }
@@ -617,7 +617,7 @@ body.modal-open{
     gap: 12px;
     flex-wrap: wrap;
     justify-content: center;
-    max-width: 1000px;
+    max-width: 2300px;
     margin: 20px auto 0;
 }
 
@@ -637,8 +637,10 @@ body.modal-open{
 
 .cta-section {
     background: #233f99;
+    
     padding: 60px 24px;
     text-align: center;
+    
 }
 
 .cta-section h2 {
