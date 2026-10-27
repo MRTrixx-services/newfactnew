@@ -1,138 +1,151 @@
-/* ========================================= */
-/* NAVBAR */
-/* ========================================= */
+
+/* =========================================
+   NEWFACT ENGINEERING - PREMIUM NAVBAR
+   Large Desktop + Ultrawide + Mobile
+========================================= */
+
+.custom-navbar,
+.custom-navbar * {
+    box-sizing: border-box;
+}
 
 .custom-navbar {
-    background: #eef3fb;
-    border-bottom: 1px solid #d4e0f7;
+    --nav-bg: #eef3fb;
+    --nav-border: #d4e0f7;
+    --nav-primary: #1e3a8a;
+    --nav-text: #334155;
+
+    width: 100%;
+    background: var(--nav-bg);
+    border-bottom: 1px solid var(--nav-border);
     position: sticky;
     top: 0;
     z-index: 9999;
 }
 
-/* ========================================= */
-/* TOP BAR */
-/* ========================================= */
+/* =========================================
+   TOP BAR
+========================================= */
 
 .top-bar {
+    width: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 14px 30px;
+    gap: 28px;
+
+    padding: 20px 36px;
+    min-height: 90px;
 }
 
-/* ========================================= */
-/* BRAND */
-/* ========================================= */
+/* =========================================
+   BRAND / LOGO
+========================================= */
 
 .brand {
     display: flex;
     align-items: center;
-    gap: 12px;
+    gap: 16px;
+    flex-shrink: 0;
+    min-width: 0;
+
     text-decoration: none;
     color: #0f172a;
 }
 
 .brand:hover {
     color: #0f172a;
-    opacity: 0.9;
+    opacity: 0.96;
 }
 
 .brand img {
-    height: 46px;
-    width: 46px;
+    width: 56px;
+    height: 56px;
+    flex-shrink: 0;
+
     object-fit: contain;
     border-radius: 50%;
     border: 3px solid #ffffff;
 }
 
+.brand > div {
+    min-width: 0;
+}
+
 .brand-text {
-    font-size: 15px;
-    font-weight: 800;
-    color: #0f172a;
     display: block;
-    line-height: 1.2;
+    color: #0f172a;
+
+    font-size: 18px;
+    font-weight: 800;
+    line-height: 1.3;
+    letter-spacing: 0.25px;
+
+    white-space: nowrap;
 }
 
 .brand-sub {
-    font-size: 10.5px;
-    color: #3b82f6;
-    letter-spacing: 0.5px;
     display: block;
+    margin-top: 4px;
+
+    color: #2563eb;
+    font-size: 12px;
+    font-weight: 600;
+    line-height: 1.4;
+    letter-spacing: 0.6px;
+
+    white-space: nowrap;
 }
 
-/* ========================================= */
-/* TOGGLER */
-/* ========================================= */
-
-.nav-toggler {
-    display: none;
-    flex-direction: column;
-    justify-content: center;
-    gap: 5px;
-    width: 42px;
-    height: 42px;
-    background: transparent;
-    border: none;
-    cursor: pointer;
-}
-
-.nav-toggler span {
-    width: 26px;
-    height: 2.5px;
-    background: #1e3a8a;
-    border-radius: 20px;
-    transition: 0.3s ease;
-    display: block;
-}
-
-/* TOGGLER ANIMATION */
-
-.nav-toggler.open span:nth-child(1) {
-    transform: rotate(45deg) translate(5px, 5px);
-}
-
-.nav-toggler.open span:nth-child(2) {
-    opacity: 0;
-}
-
-.nav-toggler.open span:nth-child(3) {
-    transform: rotate(-45deg) translate(6px, -6px);
-}
-
-/* ========================================= */
-/* MENU */
-/* ========================================= */
+/* =========================================
+   NAVIGATION MENU
+========================================= */
 
 .menu {
     display: flex;
     align-items: center;
-    gap: 5px;
+    justify-content: flex-end;
+    gap: 7px;
+    min-width: 0;
 }
 
 .menu a {
-    padding: 9px 18px;
-    border-radius: 50px;
-    text-decoration: none;
-    font-size: 13px;
-    font-weight: 700;
-    color: #334155;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+
+    flex-shrink: 0;
+    padding: 13px 21px;
+
     border: none;
+    border-radius: 50px;
     background: transparent;
-    transition: 0.2s ease;
-    letter-spacing: 0.2px;
+
+    color: var(--nav-text);
+    text-decoration: none;
+    text-align: center;
+    white-space: nowrap;
+
+    font-size: 15px;
+    font-weight: 750;
+    line-height: 1.4;
+    letter-spacing: 0.3px;
+
+    transition:
+        background-color 0.2s ease,
+        color 0.2s ease,
+        box-shadow 0.2s ease;
 }
 
 .menu a:hover {
-    background: #d4e0f7;
-    color: #1e3a8a;
+    background: var(--nav-border);
+    color: var(--nav-primary);
 }
 
-/* ACTIVE LINK */
-
 .menu a.active {
-    background: #1e3a8a;
+    background: var(--nav-primary);
     color: #ffffff;
+    box-shadow: 0 4px 10px rgba(30, 58, 138, 0.16);
 }
 
 .menu a.active:hover {
@@ -140,87 +153,313 @@
     color: #ffffff;
 }
 
-/* ========================================= */
-/* SUB BAR */
-/* ========================================= */
+/* =========================================
+   HAMBURGER TOGGLER
+========================================= */
+
+.nav-toggler {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+
+    width: 48px;
+    height: 48px;
+    flex-shrink: 0;
+
+    background: transparent;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.nav-toggler span {
+    display: block;
+    width: 29px;
+    height: 3px;
+
+    background: var(--nav-primary);
+    border-radius: 20px;
+
+    transition:
+        transform 0.3s ease,
+        opacity 0.3s ease;
+}
+
+.nav-toggler.open span:nth-child(1) {
+    transform: translateY(9px) rotate(45deg);
+}
+
+.nav-toggler.open span:nth-child(2) {
+    opacity: 0;
+}
+
+.nav-toggler.open span:nth-child(3) {
+    transform: translateY(-9px) rotate(-45deg);
+}
+
+/* =========================================
+   SUB BAR / SOCIAL LINKS
+========================================= */
 
 .sub-bar {
     display: flex;
     justify-content: flex-end;
     align-items: center;
-    padding: 6px 30px 10px;
-    background: #eef3fb;
-}
 
-/* ========================================= */
-/* SOCIAL LINKS */
-/* ========================================= */
+    padding: 8px 36px 12px;
+    background: var(--nav-bg);
+}
 
 .social-links {
     display: flex;
-    gap: 20px;
     flex-wrap: wrap;
     justify-content: flex-end;
+    gap: 22px;
 }
 
 .social-links a {
     color: #64748b;
     text-decoration: none;
-    font-size: 11.5px;
+    font-size: 13px;
     font-weight: 600;
-    transition: 0.2s ease;
+
+    transition: color 0.2s ease;
 }
 
 .social-links a:hover {
-    color: #1e3a8a;
+    color: var(--nav-primary);
 }
 
-/* ========================================= */
-/* LARGE SCREEN 1600px+ */
-/* ========================================= */
+/* =========================================
+   LARGE DESKTOP - 1440px+
+========================================= */
 
-@media (min-width: 1600px) {
-    .top-bar        { padding: 16px 60px; }
-    .brand img      { height: 54px; width: 54px; }
-    .brand-text     { font-size: 17px; }
-    .brand-sub      { font-size: 12px; }
-    .menu a         { font-size: 14px; padding: 10px 22px; }
+@media (min-width: 1440px) {
+    .top-bar {
+        min-height: 100px;
+        padding: 22px 3vw;
+        gap: 30px;
+    }
+
+    .brand {
+        gap: 18px;
+    }
+
+    .brand img {
+        width: 64px;
+        height: 64px;
+        border-width: 4px;
+    }
+
+    .brand-text {
+        font-size: 20px;
+    }
+
+    .brand-sub {
+        font-size: 13px;
+    }
+
+    .menu {
+        gap: 8px;
+    }
+
+    .menu a {
+        padding: 15px 23px;
+        font-size: 16px;
+    }
 }
 
-/* ========================================= */
-/* 4K 2200px+ */
-/* ========================================= */
+/* =========================================
+   ULTRAWIDE - 2200px+
+   2300 / 2560 / 3440 / 3840px
+========================================= */
 
 @media (min-width: 2200px) {
-    .top-bar        { padding: 20px 120px; }
-    .brand img      { height: 64px; width: 64px; }
-    .brand-text     { font-size: 20px; }
-    .brand-sub      { font-size: 13px; }
-    .menu a         { font-size: 17px; padding: 13px 28px; }
-    .menu           { gap: 10px; }
+    .top-bar {
+        min-height: clamp(120px, 5.6vw, 190px);
+
+        padding-block: clamp(28px, 1.5vw, 52px);
+        padding-inline: clamp(70px, 3.5vw, 145px);
+
+        gap: clamp(32px, 2vw, 72px);
+    }
+
+    /* Larger company logo */
+
+    .brand {
+        gap: clamp(20px, 1vw, 32px);
+    }
+
+    .brand img {
+        width: clamp(82px, 3.3vw, 120px);
+        height: clamp(82px, 3.3vw, 120px);
+        border-width: 5px;
+    }
+
+    /* Larger company name */
+
+    .brand-text {
+        font-size: clamp(25px, 1.15vw, 38px);
+        line-height: 1.25;
+        letter-spacing: 0.4px;
+    }
+
+    .brand-sub {
+        margin-top: 7px;
+        font-size: clamp(16px, 0.65vw, 22px);
+        letter-spacing: 0.8px;
+        line-height: 1.45;
+    }
+
+    /* Larger navigation links */
+
+    .menu {
+        gap: clamp(8px, 0.55vw, 20px);
+    }
+
+    .menu a {
+        padding-block: clamp(17px, 0.85vw, 29px);
+        padding-inline: clamp(20px, 1.15vw, 40px);
+
+        font-size: clamp(19px, 0.9vw, 29px);
+        font-weight: 750;
+        letter-spacing: 0.45px;
+
+        border-radius: 70px;
+    }
+
+    .menu a.active {
+        box-shadow: 0 6px 16px rgba(30, 58, 138, 0.2);
+    }
+
+    .sub-bar {
+        padding: 12px clamp(70px, 3.5vw, 145px) 16px;
+    }
+
+    .social-links {
+        gap: 28px;
+    }
+
+    .social-links a {
+        font-size: clamp(14px, 0.5vw, 18px);
+    }
 }
 
-/* ========================================= */
-/* SMALL LAPTOP 1100px */
-/* ========================================= */
+/* =========================================
+   EXTRA-WIDE SCREENS - 3000px+
+========================================= */
 
-@media (max-width: 1100px) {
-    .top-bar { padding: 12px 20px; }
-    .menu    { gap: 2px; }
+@media (min-width: 3000px) {
+    .top-bar {
+        min-height: 180px;
+        gap: 60px;
+    }
+
+    .brand img {
+        width: 120px;
+        height: 120px;
+    }
+
+    .brand-text {
+        font-size: 38px;
+    }
+
+    .brand-sub {
+        font-size: 22px;
+    }
+
+    .menu {
+        gap: 18px;
+    }
+
+    .menu a {
+        padding: 26px 36px;
+        font-size: 27px;
+    }
 }
 
-/* ========================================= */
-/* MOBILE */
-/* ========================================= */
+/* =========================================
+   LAPTOP - 769px TO 1250px
+========================================= */
+
+@media (max-width: 1250px) and (min-width: 769px) {
+    .top-bar {
+        min-height: 76px;
+        padding: 12px 18px;
+        gap: 10px;
+    }
+
+    .brand {
+        gap: 9px;
+    }
+
+    .brand img {
+        width: 42px;
+        height: 42px;
+        border-width: 2px;
+    }
+
+    .brand-text {
+        font-size: 13px;
+        letter-spacing: 0;
+    }
+
+    .brand-sub {
+        font-size: 10px;
+        letter-spacing: 0.1px;
+    }
+
+    .menu {
+        gap: 1px;
+    }
+
+    .menu a {
+        padding: 10px 8px;
+        font-size: 11px;
+        letter-spacing: 0;
+    }
+}
+
+/* =========================================
+   MOBILE - 768px AND BELOW
+========================================= */
 
 @media (max-width: 768px) {
-
     .top-bar {
-        padding: 14px 18px;
+        position: relative;
+        min-height: 70px;
+        padding: 12px 16px;
+        gap: 12px;
+    }
+
+    .brand {
+        max-width: calc(100% - 56px);
+        gap: 10px;
+    }
+
+    .brand img {
+        width: 44px;
+        height: 44px;
+        border-width: 2px;
+    }
+
+    .brand-text {
+        font-size: 13px;
+        line-height: 1.3;
+        white-space: normal;
+    }
+
+    .brand-sub {
+        font-size: 10px;
+        letter-spacing: 0.2px;
+        white-space: normal;
     }
 
     .nav-toggler {
         display: flex;
+        margin-left: auto;
         z-index: 10001;
     }
 
@@ -229,29 +468,54 @@
         top: 100%;
         left: 0;
         width: 100%;
-        background: #eef3fb;
+
+        display: flex;
         flex-direction: column;
-        align-items: center;
-        gap: 8px;
-        padding: 0;
+        align-items: stretch;
+        gap: 6px;
+
+        padding: 0 16px;
+
+        background: var(--nav-bg);
+        border-top: 1px solid var(--nav-border);
+        box-shadow: 0 12px 24px rgba(15, 23, 42, 0.08);
+
         max-height: 0;
         overflow: hidden;
-        transition: all 0.4s ease;
-        border-top: 1px solid #d4e0f7;
+        visibility: hidden;
+        pointer-events: none;
+
+        transition:
+            max-height 0.35s ease,
+            padding 0.35s ease,
+            visibility 0.35s ease;
     }
 
     .menu a {
-        width: 85%;
+        width: 100%;
+        flex-shrink: 1;
+
+        padding: 13px 16px;
+        border-radius: 40px;
+
+        font-size: 14px;
         text-align: center;
+
         opacity: 0;
-        transform: translateY(-8px);
-        transition: 0.3s ease;
-        border-radius: 50px;
+        transform: translateY(-6px);
+
+        transition:
+            opacity 0.2s ease,
+            transform 0.2s ease,
+            background-color 0.2s ease;
     }
 
     .custom-navbar.nav-open .menu {
-        max-height: 500px;
-        padding: 16px 0;
+        max-height: 520px;
+        padding: 16px;
+        overflow-y: auto;
+        visibility: visible;
+        pointer-events: auto;
     }
 
     .custom-navbar.nav-open .menu a {
@@ -265,24 +529,57 @@
     }
 
     .social-links {
-        gap: 12px;
         justify-content: center;
+        gap: 12px;
     }
 
     .social-links a {
         font-size: 11px;
     }
+}
+
+/* =========================================
+   EXTRA SMALL MOBILE
+========================================= */
+
+@media (max-width: 380px) {
+    .top-bar {
+        padding-inline: 10px;
+        gap: 6px;
+    }
+
+    .brand {
+        gap: 7px;
+    }
 
     .brand img {
-        height: 38px;
-        width: 38px;
+        width: 36px;
+        height: 36px;
     }
 
     .brand-text {
-        font-size: 13px;
+        font-size: 11px;
     }
 
     .brand-sub {
-        font-size: 10px;
+        font-size: 9px;
+    }
+
+    .nav-toggler {
+        width: 38px;
+        height: 40px;
     }
 }
+
+/* =========================================
+   ACCESSIBILITY
+========================================= */
+
+@media (prefers-reduced-motion: reduce) {
+    .menu,
+    .menu a,
+    .nav-toggler span {
+        transition: none;
+    }
+}
+

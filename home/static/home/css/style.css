@@ -15,7 +15,8 @@
 }
 
 body{
-    font-family: Arial, sans-serif;
+    font-family: 'Inter', sans-serif;
+    font-style: italic;
     overflow-x: hidden;
 }
 

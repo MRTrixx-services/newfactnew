@@ -176,13 +176,29 @@
 .col-ongoing  .column-dot { background: var(--ss-green); box-shadow: 0 0 0 3px rgba(22,163,74,0.2); }
 .col-upcoming .column-dot { background: var(--ss-amber); box-shadow: 0 0 0 3px rgba(217,119,6,0.2); }
 
+
 .column-title {
-    font-size: 15px;
-    font-weight: 800;
-    color: var(--ss-dark);
-    letter-spacing: 0.8px;
+    font-size: 21px;
+    font-weight: 900;
+    color: #0b1739;
+    letter-spacing: 0.5px;
     text-transform: uppercase;
     margin: 0;
+    line-height: 1.3;
+    text-shadow: 0.3px 0 currentColor;
+}
+
+@media (max-width: 992px) {
+    .column-title {
+        font-size: 18px;
+    }
+}
+
+@media (max-width: 768px) {
+    .column-title {
+        font-size: 16px;
+        letter-spacing: 0.2px;
+    }
 }
 
 .column-count {

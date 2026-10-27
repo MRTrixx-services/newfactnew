@@ -539,6 +539,201 @@ body {
     border-color: var(--blue-dark);
 }
 
+
+/* =========================================
+   COMPANY CULTURE INTRO SECTION
+========================================= */
+
+.culture-intro-section {
+    position: relative;
+    padding: 90px 20px;
+    background: #f8fafc;
+    overflow: hidden;
+}
+
+.culture-intro-container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Section Heading */
+
+.culture-intro-header {
+    max-width: 800px;
+    margin: 0 auto 55px;
+    text-align: center;
+}
+
+.culture-eyebrow {
+    display: inline-block;
+    margin-bottom: 16px;
+    padding: 8px 16px;
+    border-radius: 30px;
+    background: rgba(37, 99, 235, 0.09);
+    color: #2563eb;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 1.8px;
+    text-transform: uppercase;
+}
+
+.culture-intro-header h2 {
+    margin: 0 0 22px;
+    color: #0f172a;
+    font-size: clamp(30px, 4vw, 44px);
+    font-weight: 750;
+    line-height: 1.2;
+    letter-spacing: -1px;
+}
+
+.culture-intro-description {
+    max-width: 740px;
+    margin: 0 auto;
+    color: #64748b;
+    font-size: 16px;
+    line-height: 1.9;
+}
+
+/* Culture Values Grid */
+
+.culture-values-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 24px;
+}
+
+/* Individual Cards */
+
+.culture-value-card {
+    padding: 34px 24px;
+    background: #ffffff;
+    border: 1px solid #e8edf4;
+    border-radius: 18px;
+    text-align: center;
+    transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease,
+        border-color 0.3s ease;
+}
+
+.culture-value-card:hover {
+    transform: translateY(-8px);
+    border-color: #bfdbfe;
+    box-shadow: 0 18px 40px rgba(15, 23, 42, 0.08);
+}
+
+/* Icons */
+
+.culture-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 66px;
+    height: 66px;
+    margin: 0 auto 22px;
+    border-radius: 18px;
+    font-size: 25px;
+    transition: transform 0.3s ease;
+}
+
+.culture-value-card:hover .culture-icon {
+    transform: scale(1.08);
+}
+
+.teamwork-icon {
+    color: #2563eb;
+    background: #eff6ff;
+}
+
+.innovation-icon {
+    color: #d97706;
+    background: #fffbeb;
+}
+
+.growth-icon {
+    color: #059669;
+    background: #ecfdf5;
+}
+
+.integrity-icon {
+    color: #7c3aed;
+    background: #f5f3ff;
+}
+
+/* Card Content */
+
+.culture-value-card h3 {
+    margin: 0 0 12px;
+    color: #0f172a;
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.culture-value-card p {
+    margin: 0;
+    color: #64748b;
+    font-size: 14px;
+    line-height: 1.8;
+}
+
+/* Tablet */
+
+@media (max-width: 991px) {
+    .culture-intro-section {
+        padding: 70px 20px;
+    }
+
+    .culture-values-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 20px;
+    }
+
+    .culture-intro-header {
+        margin-bottom: 40px;
+    }
+}
+
+/* Mobile */
+
+@media (max-width: 575px) {
+    .culture-intro-section {
+        padding: 55px 16px;
+    }
+
+    .culture-intro-header {
+        margin-bottom: 32px;
+    }
+
+    .culture-intro-header h2 {
+        font-size: 30px;
+        letter-spacing: -0.5px;
+    }
+
+    .culture-intro-description {
+        font-size: 14px;
+        line-height: 1.8;
+    }
+
+    .culture-values-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+
+    .culture-value-card {
+        padding: 28px 22px;
+    }
+
+    .culture-icon {
+        width: 58px;
+        height: 58px;
+        font-size: 22px;
+        border-radius: 15px;
+    }
+}
+
+
+
+
 /* =============================================
    JOB DETAIL MODAL
    ============================================= */
